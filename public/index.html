@@ -1,1 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doctrinal Compass</title>
+<meta name="description" content="A comprehensive review of Christian doctrine, for Christians. Explore what other traditions hold and compare them against your own.">
+<meta name="theme-color" content="#faf9f7">
+<link rel="canonical" href="https://doctrinalcompass.org/">
+<style>
+/* Doctrinal Compass — styles.css */
 
+:root {
+  --paper: #faf9f7;
+  --card:  #ffffff;
+  --ink:   #1a1a18;
+  --muted: #75736d;
+  --rule:  #e4e2dd;
+  --sunk:  #f1efea;
+
+  --a: #2f5568;
+  --b: #6d4f3c;
+
+  --serif: "Iowan Old Style", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:  ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.55 var(--serif);
+  padding-bottom: calc(70px + env(safe-area-inset-bottom));
+}
+
+.wrap { max-width: 620px; margin: 0 auto; padding: 0 16px; }
+
+header.masthead { border-bottom: 1px solid var(--rule); padding: 16px 0; }
+.masthead h1 { margin: 0; font: 600 19px/1.2 var(--serif); letter-spacing: -0.01em; }
+
+nav.tabs {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; background: var(--card);
+  border-top: 1px solid var(--rule);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 20;
+}
+
+nav.tabs a {
+  flex: 1; min-height: 54px;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; color: var(--muted);
+  font: 500 12px var(--sans); letter-spacing: 0.02em;
+  border-top: 2px solid transparent;
+}
+
+nav.tabs a[aria-current="page"] { color: var(--ink); border-top-color: var(--ink); }
+
+main { padding: 22px 0 30px; }
+
+h2 { margin: 0 0 8px; font: 600 19px/1.25 var(--serif); }
+h3 { margin: 20px 0 6px; font: 600 15px/1.3 var(--serif); }
+p  { margin: 0 0 12px; }
+
+.lede { color: var(--muted); font: 400 15px/1.5 var(--sans); }
+
+.eyebrow {
+  font: 500 10px/1 var(--mono); letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+}
+
+.card {
+  background: var(--card); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 14px; margin-bottom: 12px;
+}
+
+button, .btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; min-height: 48px; padding: 0 16px; margin-bottom: 8px;
+  border: 1px solid var(--ink); border-radius: 7px;
+  background: var(--ink); color: var(--card);
+  font: 500 15px var(--sans); text-decoration: none; cursor: pointer;
+}
+
+.btn.ghost, button.ghost { background: transparent; color: var(--ink); }
+button.small, .btn.small { min-height: 40px; font-size: 13px; width: auto; }
+button:focus-visible, a:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--a); outline-offset: 2px;
+}
+
+.row { display: flex; gap: 8px; }
+.row > * { flex: 1; margin-bottom: 0; }
+
+select, textarea {
+  width: 100%; min-height: 46px; padding: 9px 11px;
+  border: 1px solid var(--rule); border-radius: 7px;
+  background: var(--card); color: var(--ink); font: 400 15px var(--sans);
+}
+
+textarea { min-height: 84px; font: 400 12px/1.5 var(--mono); word-break: break-all; }
+
+/* glossary */
+.term { border: 0; background: none; padding: 0; margin: 0; min-height: 0; width: auto;
+        display: inline; font: inherit; color: inherit;
+        border-bottom: 1px dotted var(--muted); cursor: pointer; }
+.term::after { content: "\00a0?"; font: 500 9px var(--mono); vertical-align: super; color: var(--muted); }
+
+dialog.glossary {
+  border: 1px solid var(--rule); border-radius: 10px; padding: 16px;
+  max-width: 400px; width: calc(100% - 32px); background: var(--card); color: var(--ink);
+}
+dialog.glossary::backdrop { background: rgba(26,26,24,0.35); }
+dialog.glossary h4 { margin: 0 0 6px; font: 600 16px var(--serif); }
+dialog.glossary p { font: 400 15px/1.5 var(--sans); }
+
+/* authority bars */
+.auth { margin: 10px 0 14px; }
+.auth-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.auth-row .k { flex: 0 0 96px; font: 500 11px var(--mono); letter-spacing: 0.04em;
+               text-transform: uppercase; color: var(--muted); }
+.auth-row .bar { flex: 1; height: 6px; background: var(--sunk); border-radius: 3px; overflow: hidden; }
+.auth-row .bar i { display: block; height: 100%; background: var(--muted); border-radius: 3px; }
+.auth-row.a .bar i { background: var(--a); }
+.auth-row.b .bar i { background: var(--b); }
+
+/* lists */
+.list { list-style: none; margin: 0; padding: 0; }
+.list li { border-bottom: 1px solid var(--rule); }
+.list button {
+  width: 100%; min-height: 58px; margin: 0; padding: 11px 0;
+  border: 0; border-radius: 0; background: none; color: var(--ink);
+  flex-direction: column; align-items: flex-start; gap: 2px; text-align: left;
+}
+.list .name { font: 600 16px var(--serif); }
+.list .locus { font: 400 12px var(--sans); color: var(--muted); }
+.list .agree { font: 500 11px var(--mono); color: var(--muted); }
+
+/* positions */
+.axis-block { border-top: 1px solid var(--rule); padding-top: 14px; margin-top: 14px; }
+.axis-block h3 { margin-top: 0; }
+.axis-q { font: 400 13px/1.45 var(--sans); color: var(--muted); margin-bottom: 12px; }
+
+.position { border-left: 3px solid var(--rule); padding-left: 11px; margin-bottom: 13px; }
+.position.a { border-left-color: var(--a); }
+.position.b { border-left-color: var(--b); }
+.position .who { font: 600 12px var(--sans); margin-bottom: 3px; }
+.position .what { margin: 0 0 7px; font-size: 16px; }
+.position .why { margin: 0; font: 400 15px/1.5 var(--serif);
+                 background: var(--sunk); padding: 9px 11px; border-radius: 5px; }
+.position .why b { display: block; font: 500 9px/1 var(--mono); letter-spacing: 0.08em;
+                   text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+
+.refs { margin-top: 6px; font: 400 11px/1.5 var(--mono); color: var(--muted); }
+.refs span { display: block; }
+
+.note { font: 400 12px/1.45 var(--sans); color: var(--muted);
+        background: var(--sunk); border-radius: 5px; padding: 8px 10px; margin-bottom: 12px; }
+
+.verify { display: inline-block; font: 600 9px/1 var(--mono); letter-spacing: 0.08em;
+          color: #8a6d1f; border: 1px solid #8a6d1f; border-radius: 3px; padding: 2px 3px; }
+
+.unwritten { font: 400 13px var(--sans); color: var(--muted);
+             background: var(--sunk); border-radius: 5px; padding: 10px; margin: 0; }
+
+/* seats */
+.seats { display: flex; gap: 8px; margin-bottom: 14px; }
+.seats > div { flex: 1; min-width: 0; }
+.seat-label { font: 500 10px/1 var(--mono); letter-spacing: 0.08em;
+              text-transform: uppercase; margin-bottom: 5px; }
+.seat-label.a { color: var(--a); }
+.seat-label.b { color: var(--b); }
+
+/* test */
+.progress { font: 500 10px var(--mono); letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+.ptrack { height: 2px; background: var(--rule); margin-bottom: 18px; }
+.ptrack span { display: block; height: 100%; background: var(--ink); }
+
+.choice {
+  min-height: 54px; padding: 13px; margin-bottom: 7px;
+  border: 1px solid var(--rule); border-radius: 7px;
+  background: var(--card); color: var(--ink);
+  font: 400 16px/1.4 var(--serif); justify-content: flex-start; text-align: left;
+}
+
+/* result / agreeability */
+.score { font: 600 34px/1 var(--serif); margin: 2px 0 2px; }
+.score-sub { font: 400 13px var(--sans); color: var(--muted); margin-bottom: 16px; }
+.diverge { border-top: 1px solid var(--rule); padding: 12px 0; }
+.diverge .k { font: 500 10px var(--mono); letter-spacing: 0.08em;
+              text-transform: uppercase; color: var(--muted); }
+.diverge p { margin: 3px 0 8px; font-size: 15px; }
+
+.locked { text-align: center; padding: 30px 0; }
+.locked p { font: 400 15px var(--sans); color: var(--muted); }
+
+.footnote { font: 400 11px/1.45 var(--sans); color: var(--muted); margin-top: 18px; }
+
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (min-width: 600px) { body { font-size: 18px; } }
+
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap"><h1>Doctrinal Compass</h1></div>
+</header>
+
+<main class="wrap" id="app"></main>
+
+<nav class="tabs" aria-label="Sections">
+  <a href="#/">Home</a>
+  <a href="#/explore">Explore</a>
+  <a href="#/compare">Compare</a>
+  <a href="#/test">Assess</a>
+  <a href="#/terms">Terms</a>
+</nav>
+
+<dialog class="glossary" id="glossary-dialog" aria-label="Definition"></dialog>
+
+<noscript><div class="wrap" style="padding:24px 0"><p>This site needs JavaScript.</p></div></noscript>
+
+<script>
+/* ============================================================
+   ==                                                        ==
+   ==   E D I T   B E L O W   T H I S   L I N E              ==
+   ==                                                        ==
+   ==   Everything you add to the site lives in this block:  ==
+   ==   glossary terms, axes, traditions, positions, and     ==
+   ==   the assessment questions.                            ==
+   ==                                                        ==
+   ==   Rules that keep the site honest:                     ==
+   ==   - State each position in its own words.              ==
+   ==   - `why` is the reasoning from INSIDE that tradition. ==
+   ==   - `texts` are scripture ADDRESSES, never quotations. ==
+   ==   - Leave verify:true until YOU have read the source.  ==
+   ==   - Keep entries a similar length across traditions.   ==
+   ==                                                        ==
+   ==   Every comma, quote and brace matters. If the site    ==
+   ==   goes blank after an edit, you dropped one — use      ==
+   ==   GitHub's History to revert the last commit.          ==
+   ==                                                        ==
+   ============================================================ */
+
+/* Doctrinal Compass — content.js
+ *
+ * THIS IS THE ONLY FILE YOU EDIT TO ADD CONTENT.
+ * Every page on the site renders from this data, so a tradition page, an axis
+ * page and the comparison view can never drift out of sync with each other.
+ *
+ * Editing rules, so the site keeps its promise:
+ *   1. `what` states the position in the tradition's own terms. Never in the
+ *      terms of its critics.
+ *   2. `why` is the reasoning FROM INSIDE. It answers "why would a thoughtful
+ *      person hold this", not "what's wrong with this".
+ *   3. `texts` are scripture ADDRESSES, never quotations. A reference is
+ *      checkable; a quotation typed from memory is how sites like this die.
+ *   4. `sources` point at primary documents. Anything not personally checked
+ *      against the document keeps verify:true, which prints a VERIFY badge.
+ *      Set verify:false only after YOU have read it in the source.
+ *   5. Keep `what` roughly the same length across traditions on a given axis.
+ *      Unequal length is the most visible bias there is.
+ */
+
+window.DATA = (function () {
+  'use strict';
+
+  /* ================= GLOSSARY ================= */
+  /* Tap any <span data-term="id"> in the copy to open these. */
+
+  var glossary = {
+    'sola-scriptura': {
+      term: 'Sola scriptura',
+      body: 'Scripture is the only infallible rule of faith. Creeds, councils and confessions still carry real authority, but they are subordinate and can in principle be corrected by Scripture.',
+      also: 'Latin: "by Scripture alone." Often confused with solo scriptura.'
+    },
+    'solo-scriptura': {
+      term: 'Solo scriptura',
+      body: 'Scripture is the only authority at all, with no binding role for creed, council or church. The individual reader stands directly before the text.',
+      also: 'A distinct position from sola scriptura, though the two are often blurred together.'
+    },
+    'prima-scriptura': {
+      term: 'Prima scriptura',
+      body: 'Scripture is supreme, but tradition, reason and experience are genuine subordinate authorities rather than merely useful tools.',
+      also: 'Latin: "Scripture first."'
+    },
+    'magisterium': {
+      term: 'Magisterium',
+      body: 'The teaching office of the Catholic Church — the bishops in communion with the Bishop of Rome — charged with authentically interpreting the Word of God.',
+      also: 'Catholic teaching holds that the Magisterium serves the Word of God and is not above it.'
+    },
+    'sacred-tradition': {
+      term: 'Sacred Tradition',
+      body: 'The apostolic preaching handed on in the life of the Church. In Catholic and Orthodox teaching this is not a second body of facts added to the Bible, but the same deposit transmitted in a second mode.',
+      also: 'Distinguish from "traditions" (lowercase) meaning local customs, which both communions agree can change.'
+    },
+    'norma-normans': {
+      term: 'Norma normans / norma normata',
+      body: 'The "norming norm" and the "normed norm." Scripture norms everything else; the creeds and confessions are themselves normed by Scripture, and are authoritative because and insofar as they agree with it.',
+      also: 'Standard Lutheran vocabulary for how confessions can be binding without rivalling Scripture.'
+    },
+    'deuterocanon': {
+      term: 'Deuterocanonical books',
+      body: 'Books including Tobit, Judith, Wisdom, Sirach, Baruch and 1–2 Maccabees, plus additions to Esther and Daniel. Catholics and Orthodox receive them as Scripture; Protestants classify them as Apocrypha and exclude them from the canon.',
+      also: 'Greek-derived term meaning "second canon" — second in the order they were settled, not second in authority.'
+    },
+    'anagignoskomena': {
+      term: 'Anagignoskomena',
+      body: 'Greek for "those which are read." The Orthodox term for the books beyond the Protestant Old Testament that are read in the Church, received as Scripture though sometimes distinguished in rank.',
+      also: 'Orthodox canon lists vary somewhat between local churches.'
+    },
+    'material-sufficiency': {
+      term: 'Material vs. formal sufficiency',
+      body: 'Material sufficiency: everything necessary for salvation is contained in Scripture. Formal sufficiency: Scripture is also clear enough to be rightly interpreted without an external interpreting authority. Some traditions affirm the first and deny the second.',
+      also: 'This distinction resolves many arguments that otherwise talk past each other.'
+    },
+    'perspicuity': {
+      term: 'Perspicuity of Scripture',
+      body: 'The teaching that what is necessary for salvation is clear enough in Scripture that an ordinary reader, with ordinary means, can grasp it.',
+      also: 'Not a claim that every passage is easy.'
+    },
+    'adiaphora': {
+      term: 'Adiaphora',
+      body: 'Matters "indifferent" — practices neither commanded nor forbidden by Scripture, on which the church may legitimately decide for good order.',
+      also: 'Where a tradition draws this line largely determines how much freedom it allows.'
+    },
+    'ceni': {
+      term: 'CENI',
+      body: 'Command, Example and Necessary Inference — a hermeneutic that authorises a practice only if Scripture commands it, shows an approved example of it, or necessarily implies it.',
+      also: 'Paired with the "law of silence": where Scripture does not speak, neither do we.'
+    },
+    'regulative-principle': {
+      term: 'Regulative principle of worship',
+      body: 'Worship may include only what Scripture positively commands. Contrast the normative principle, which permits whatever Scripture does not forbid.',
+      also: 'The same two traditions can share a doctrine of Scripture and still worship very differently because of this.'
+    },
+    'apostolic-succession': {
+      term: 'Apostolic succession',
+      body: 'The continuity of ordained ministry, traced through the laying on of hands from the apostles, understood as guarding the continuity of apostolic teaching.',
+      also: 'Held by Catholic, Orthodox and Anglican bodies, understood differently in each.'
+    },
+    'ecumenical-council': {
+      term: 'Ecumenical council',
+      body: 'A council understood to speak for the whole Church. The first seven, from Nicaea in 325 to Nicaea II in 787, are received by both Catholic and Orthodox Christians.',
+      also: 'Rome counts later councils as ecumenical; the Orthodox do not.'
+    },
+    'homoousios': {
+      term: 'Homoousios',
+      body: 'Greek for "of the same substance." The Nicene term stating that the Son is of the same being as the Father, not merely similar to him.',
+      also: 'This single word is the historic dividing line on the nature of God.'
+    },
+    'filioque': {
+      term: 'Filioque',
+      body: 'Latin for "and the Son." The Western addition to the Nicene Creed stating that the Spirit proceeds from the Father and the Son. The East holds the Spirit proceeds from the Father.',
+      also: 'A disagreement about the creed itself and about who may amend it.'
+    },
+    'modalism': {
+      term: 'Modalism',
+      body: 'The view that Father, Son and Spirit are not three distinct persons but three modes, roles or manifestations of one single person.',
+      also: 'Groups described this way by others often reject the label and prefer their own terms.'
+    },
+    'subordinationism': {
+      term: 'Subordinationism',
+      body: 'The view that the Son, and often the Spirit, are lesser in being than the Father rather than equal in nature.',
+      also: 'Distinguish from functional subordination, which many Trinitarians affirm within an equality of being.'
+    },
+    'continuing-revelation': {
+      term: 'Continuing revelation',
+      body: 'The teaching that God still gives authoritative revelation beyond the biblical canon, whether through a living prophet, a governing body, or direct illumination.',
+      also: 'The canon question and this question are separate: a group can hold a closed canon and still expect ongoing guidance.'
+    },
+    'inner-light': {
+      term: 'Inner Light',
+      body: 'The Quaker term for the immediate presence of Christ teaching the individual and the gathered meeting directly, without an intermediary.',
+      also: 'Also called the Inward Light or "that of God in everyone."'
+    },
+    'inerrancy': {
+      term: 'Inerrancy',
+      body: 'The teaching that Scripture, in its original manuscripts, does not err in what it affirms. Distinguished by its own defenders from a wooden literalism.',
+      also: 'Held most explicitly by conservative evangelical bodies; other traditions prefer "infallible in matters of faith and practice."'
+    }
+  };
+
+  /* ================= AXES ================= */
+
+  var axes = [
+    {
+      id: 'authority',
+      name: 'Where authority sits',
+      question: 'When Christians disagree about what is true, what settles it? This is the deepest division on the site, and most other disagreements run downstream of it.',
+      written: true,
+      spectrum: { left: 'The text alone', right: 'A living voice' }
+    },
+    {
+      id: 'canon',
+      name: 'Which books count',
+      question: 'Before you can ask what Scripture teaches, you have to know what Scripture is. Which books belong, and is the list closed?',
+      written: true
+    },
+    {
+      id: 'godhead',
+      name: 'The nature of God',
+      question: 'Is God three distinct persons in one being, one person in three modes, or three distinct beings united in purpose? The historic creeds answer one way; several modern groups answer differently.',
+      written: true
+    },
+    { id: 'baptism',  name: 'Baptism',            question: 'Who is baptised, by what mode, and what does the act accomplish?', written: false },
+    { id: 'supper',   name: "The Lord's Supper",  question: 'In what sense, if any, is Christ present in the bread and cup?', written: false },
+    { id: 'salvation',name: 'Salvation and election', question: 'How is a person justifie
