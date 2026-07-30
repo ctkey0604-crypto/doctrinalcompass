@@ -1,0 +1,1741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doctrinal Compass</title>
+<meta name="description" content="A comprehensive review of Christian doctrine, for Christians. Explore what other traditions hold and compare them against your own.">
+<meta name="theme-color" content="#f7f5f1">
+<link rel="canonical" href="https://doctrinalcompass.org/">
+<style>
+/* ============================================================
+   Doctrinal Compass — styles
+   One file, no web fonts, no external requests. Mobile first.
+   ============================================================ */
+
+:root {
+  /* surfaces */
+  --paper: #f7f5f1;
+  --card:  #fffdfa;
+  --sunk:  #efece4;
+  --ink:   #16150f;
+  --muted: #6f6b60;
+  --faint: #938f83;
+  --rule:  #ddd9cf;
+  --hair:  #e9e5dc;
+
+  /* the two comparison seats. deliberately equal in weight. */
+  --a: #2f5568;
+  --b: #6d4f3c;
+  --a-wash: #eaeff2;
+  --b-wash: #f3ede8;
+
+  /* agreement scale, green through red, in aged-ink tones */
+  --ag1: #2f6b45;
+  --ag2: #5c7a34;
+  --ag3: #94721c;
+  --ag4: #a35c2b;
+  --ag5: #8d3a31;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:  ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--serif);
+  padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------- running head ---------- */
+
+header.masthead {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  position: sticky; top: 0; z-index: 10;
+}
+.masthead .wrap {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px; padding-top: 14px; padding-bottom: 12px;
+}
+.masthead h1 {
+  margin: 0; font: 600 17px/1 var(--serif);
+  letter-spacing: -0.012em;
+}
+.masthead .folio {
+  font: 500 10px/1 var(--mono); letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--faint);
+  white-space: nowrap;
+}
+
+main { padding: 26px 0 40px; }
+
+/* ---------- type scale ---------- */
+
+h2 {
+  margin: 0 0 10px;
+  font: 600 27px/1.15 var(--serif);
+  letter-spacing: -0.02em;
+}
+h3 {
+  margin: 0 0 8px;
+  font: 600 17px/1.3 var(--serif);
+  letter-spacing: -0.008em;
+}
+p { margin: 0 0 14px; }
+
+.lede { color: var(--muted); font: 400 15.5px/1.55 var(--sans); }
+.tiny { font: 400 12.5px/1.5 var(--sans); color: var(--muted); }
+
+.eyebrow {
+  font: 500 10px/1 var(--mono); letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--faint);
+  margin: 0 0 10px;
+}
+
+.rule { border: 0; border-top: 1px solid var(--rule); margin: 26px 0; }
+
+/* ---------- controls ---------- */
+
+button, .btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; min-height: 50px; padding: 0 18px; margin: 0 0 9px;
+  border: 1px solid var(--ink); border-radius: 3px;
+  background: var(--ink); color: var(--card);
+  font: 500 15px var(--sans); text-decoration: none; cursor: pointer;
+  transition: background .14s ease, color .14s ease, border-color .14s ease;
+}
+.btn.ghost, button.ghost {
+  background: transparent; color: var(--ink); border-color: var(--rule);
+}
+.btn.ghost:hover, button.ghost:hover { border-color: var(--ink); }
+button.small, .btn.small { min-height: 40px; font-size: 13px; width: auto; padding: 0 14px; }
+
+button:focus-visible, a:focus-visible, select:focus-visible, [role=button]:focus-visible {
+  outline: 2px solid var(--a); outline-offset: 2px;
+}
+
+.row { display: flex; gap: 9px; }
+.row > * { flex: 1; margin-bottom: 0; }
+
+select {
+  width: 100%; min-height: 46px; padding: 10px 12px;
+  border: 1px solid var(--rule); border-radius: 3px;
+  background: var(--card); color: var(--ink);
+  font: 500 14px var(--sans);
+}
+
+/* ---------- bottom nav ---------- */
+
+nav.tabs {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; background: var(--card);
+  border-top: 1px solid var(--rule);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 20;
+}
+nav.tabs a {
+  flex: 1; min-height: 56px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; text-decoration: none; color: var(--faint);
+  font: 500 10.5px var(--sans); letter-spacing: 0.04em;
+  border-top: 2px solid transparent;
+}
+nav.tabs a .dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: transparent; transition: background .14s ease;
+}
+nav.tabs a[aria-current="page"] { color: var(--ink); }
+nav.tabs a[aria-current="page"] .dot { background: var(--ink); }
+
+/* ---------- home ---------- */
+
+.hero { margin-bottom: 30px; }
+.hero h2 { font-size: 30px; line-height: 1.12; margin-bottom: 12px; }
+
+.doors { border-top: 1px solid var(--rule); }
+.door {
+  display: block; width: 100%; margin: 0; padding: 17px 0;
+  border: 0; border-bottom: 1px solid var(--rule); border-radius: 0;
+  background: none; color: var(--ink);
+  text-align: left; text-decoration: none;
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px;
+}
+.door .dt { font: 600 18px/1.2 var(--serif); letter-spacing: -0.01em; }
+.door .dd { font: 400 13.5px/1.45 var(--sans); color: var(--muted); margin-top: 3px; }
+.door .meta {
+  font: 500 10px/1.5 var(--mono); letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--faint); text-align: right;
+  white-space: nowrap;
+}
+.door:hover .dt { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- glossary term ---------- */
+
+.term {
+  border: 0; background: none; padding: 0; margin: 0; min-height: 0; width: auto;
+  display: inline; font: inherit; color: inherit; cursor: pointer;
+  border-bottom: 1px solid var(--rule);
+  box-shadow: inset 0 -1px 0 var(--rule);
+}
+.term::after {
+  content: "\00b0"; font: 600 11px var(--mono);
+  vertical-align: super; color: var(--faint); margin-left: 1px;
+}
+
+dialog.glossary {
+  border: 1px solid var(--rule); border-radius: 4px; padding: 20px;
+  max-width: 420px; width: calc(100% - 32px);
+  background: var(--card); color: var(--ink);
+  box-shadow: 0 10px 40px rgba(22,21,15,0.14);
+}
+dialog.glossary::backdrop { background: rgba(22,21,15,0.4); }
+dialog.glossary .eyebrow { margin-bottom: 6px; }
+dialog.glossary h4 { margin: 0 0 9px; font: 600 20px/1.2 var(--serif); letter-spacing: -0.015em; }
+dialog.glossary p { font: 400 15.5px/1.55 var(--sans); margin: 0 0 12px; }
+dialog.glossary .also {
+  font: 400 13px/1.5 var(--sans); color: var(--muted);
+  border-top: 1px solid var(--hair); padding-top: 11px; margin-bottom: 16px;
+}
+
+/* ---------- authority profile ---------- */
+
+.auth { margin: 0 0 4px; }
+.auth-head {
+  display: flex; align-items: baseline; gap: 8px;
+  padding-bottom: 9px; margin-bottom: 11px;
+  border-bottom: 1px solid var(--hair);
+}
+.auth-head .lbl {
+  font: 500 10px/1 var(--mono); letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--faint);
+}
+.auth-head .val { font: 600 15px/1.2 var(--serif); }
+
+.auth-row {
+  display: grid; grid-template-columns: 1fr auto auto;
+  align-items: center; gap: 10px; padding: 6px 0;
+}
+.auth-row .k { font: 400 14.5px/1.3 var(--serif); }
+.auth-row .seg { display: flex; gap: 3px; }
+.auth-row .seg i {
+  display: block; width: 9px; height: 9px; border-radius: 1px;
+  background: transparent; border: 1px solid var(--rule);
+}
+.auth-row .seg i.on { background: var(--muted); border-color: var(--muted); }
+.auth-row.a .seg i.on { background: var(--a); border-color: var(--a); }
+.auth-row.b .seg i.on { background: var(--b); border-color: var(--b); }
+.auth-row .v {
+  font: 500 11px/1 var(--mono); letter-spacing: 0.04em;
+  color: var(--muted); text-align: right; min-width: 92px;
+}
+.auth-row.zero .k, .auth-row.zero .v { color: var(--faint); }
+
+/* the fingerprint: a compact inline restatement of the same four values */
+.fp { display: inline-flex; gap: 5px; vertical-align: middle; }
+.fp span { display: flex; gap: 1.5px; }
+.fp i {
+  display: block; width: 4px; height: 9px; border-radius: 0.5px;
+  background: var(--rule);
+}
+.fp i.on { background: var(--muted); }
+
+/* ---------- agreement ---------- */
+
+.ag {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid; border-radius: 2px; padding: 3px 7px 3px 6px;
+  font: 500 11px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.ag .meter { display: flex; gap: 2px; }
+.ag .meter i {
+  display: block; width: 4px; height: 8px; border-radius: 0.5px;
+  background: currentColor; opacity: 0.24;
+}
+.ag .meter i.on { opacity: 1; }
+.ag .n { font-variant-numeric: tabular-nums; opacity: 0.72; letter-spacing: 0.02em; }
+
+.ag-vclose { color: var(--ag1); border-color: var(--ag1); background: #eef4f0; }
+.ag-close  { color: var(--ag2); border-color: var(--ag2); background: #f1f3ea; }
+.ag-mixed  { color: var(--ag3); border-color: var(--ag3); background: #f6f2e4; }
+.ag-far    { color: var(--ag4); border-color: var(--ag4); background: #f7efe7; }
+.ag-vfar   { color: var(--ag5); border-color: var(--ag5); background: #f7ecea; }
+
+.ag-big { display: block; margin: 2px 0 16px; }
+.ag-big .word { font: 600 30px/1.1 var(--serif); letter-spacing: -0.02em; display: block; }
+.ag-big .word.ag-vclose { color: var(--ag1); }
+.ag-big .word.ag-close  { color: var(--ag2); }
+.ag-big .word.ag-mixed  { color: var(--ag3); }
+.ag-big .word.ag-far    { color: var(--ag4); }
+.ag-big .word.ag-vfar   { color: var(--ag5); }
+.ag-big .say { font: 400 14.5px/1.5 var(--sans); color: var(--muted); margin-top: 6px; }
+.ag-big .bar { display: flex; gap: 3px; margin-top: 11px; }
+.ag-big .bar i {
+  display: block; height: 5px; flex: 1; border-radius: 1px; background: var(--rule);
+}
+.ag-big .bar i.on.ag-vclose { background: var(--ag1); }
+.ag-big .bar i.on.ag-close  { background: var(--ag2); }
+.ag-big .bar i.on.ag-mixed  { background: var(--ag3); }
+.ag-big .bar i.on.ag-far    { background: var(--ag4); }
+.ag-big .bar i.on.ag-vfar   { background: var(--ag5); }
+
+/* ---------- index list ---------- */
+
+.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.list li { border-bottom: 1px solid var(--rule); }
+.list button {
+  width: 100%; min-height: 0; margin: 0; padding: 15px 0;
+  border: 0; border-radius: 0; background: none; color: var(--ink);
+  display: grid; grid-template-columns: 1fr auto; gap: 4px 14px;
+  align-items: center; text-align: left;
+}
+.list .name { font: 600 17px/1.25 var(--serif); letter-spacing: -0.01em; }
+.list .locus { font: 400 13px/1.4 var(--sans); color: var(--muted); grid-column: 1; }
+.list .right { grid-row: 1 / span 2; grid-column: 2; display: flex; align-items: center; }
+.list button:hover .name { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- positions ---------- */
+
+.axis-block { margin-top: 30px; }
+.axis-block > h3 {
+  padding-bottom: 8px; margin-bottom: 4px;
+  border-bottom: 1px solid var(--ink);
+}
+.axis-q { font: 400 13.5px/1.5 var(--sans); color: var(--muted); margin: 10px 0 16px; }
+
+.position { margin-bottom: 18px; }
+.position .who {
+  font: 500 10px/1 var(--mono); letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 8px;
+}
+.position.a .who { color: var(--a); }
+.position.b .who { color: var(--b); }
+.position .what { margin: 0 0 12px; font-size: 16.5px; line-height: 1.55; }
+
+.position .why {
+  margin: 0; font: 400 15px/1.58 var(--serif);
+  background: var(--sunk); border-left: 2px solid var(--rule);
+  padding: 12px 14px; border-radius: 0 3px 3px 0;
+}
+.position.a .why { background: var(--a-wash); border-left-color: var(--a); }
+.position.b .why { background: var(--b-wash); border-left-color: var(--b); }
+.position .why b {
+  display: block; font: 500 9.5px/1 var(--mono); letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+}
+
+.apparatus { margin-top: 10px; }
+.apparatus dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; }
+.apparatus dt {
+  font: 500 9.5px/1.6 var(--mono); letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); white-space: nowrap;
+}
+.apparatus dd {
+  margin: 0; font: 400 11.5px/1.6 var(--mono); color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.apparatus dd + dd { margin-top: 1px; }
+
+.note {
+  font: 400 12.5px/1.5 var(--sans); color: var(--muted);
+  border-top: 1px solid var(--hair); padding-top: 9px; margin: 11px 0 0;
+}
+.note b {
+  font: 500 9.5px/1 var(--mono); letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint);
+  display: block; margin-bottom: 5px;
+}
+
+.unwritten {
+  font: 400 13.5px/1.55 var(--sans); color: var(--muted);
+  border: 1px dashed var(--rule); border-radius: 3px;
+  padding: 14px; margin: 0;
+}
+.unwritten b {
+  display: block; font: 500 9.5px/1 var(--mono); letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 6px;
+}
+
+/* ---------- compare ---------- */
+
+.seats { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 8px; }
+.seat-label {
+  font: 500 10px/1 var(--mono); letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.seat-label.a { color: var(--a); }
+.seat-label.b { color: var(--b); }
+
+.vs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin: 16px 0 0;
+}
+.vs > div { min-width: 0; }
+
+/* The authority comparison needs the full width per side on a phone:
+   two of these columns at 375px cramps the level words into two lines. */
+.vs-auth { display: grid; grid-template-columns: 1fr; gap: 4px; margin: 16px 0 0; }
+.vs-auth > div { min-width: 0; }
+.vs-auth > div + div { margin-top: 18px; }
+
+.swap { margin: 10px 0 0; }
+
+/* ---------- assessment ---------- */
+
+.progress {
+  display: flex; align-items: baseline; justify-content: space-between;
+  font: 500 10px var(--mono); letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+}
+.ptrack { display: flex; gap: 3px; margin-bottom: 26px; }
+.ptrack i {
+  display: block; height: 3px; flex: 1; border-radius: 1px; background: var(--rule);
+}
+.ptrack i.done { background: var(--ink); }
+.ptrack i.now  { background: var(--muted); }
+
+.q-axis { margin-bottom: 8px; }
+.choice {
+  min-height: 56px; padding: 15px 16px; margin-bottom: 8px;
+  border: 1px solid var(--rule); border-radius: 3px;
+  background: var(--card); color: var(--ink);
+  font: 400 16px/1.45 var(--serif);
+  justify-content: flex-start; text-align: left;
+}
+.choice:hover { border-color: var(--ink); }
+.choice.picked { border-color: var(--ink); background: var(--sunk); }
+
+/* ---------- result ---------- */
+
+.diverge { border-top: 1px solid var(--hair); padding: 14px 0; }
+.diverge:first-of-type { border-top: 1px solid var(--rule); }
+.diverge .k {
+  font: 500 9.5px/1 var(--mono); letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--faint);
+}
+.diverge p { margin: 4px 0 11px; font-size: 15.5px; line-height: 1.45; }
+.diverge p:last-child { margin-bottom: 0; }
+.diverge .also { font: 400 12.5px/1.5 var(--sans); color: var(--muted); }
+
+.locked { padding: 26px 0; border-top: 1px solid var(--rule); }
+
+.footnote { font: 400 11.5px/1.5 var(--sans); color: var(--faint); margin-top: 22px; }
+
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+@media (min-width: 520px) {
+  .seats { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+@media (min-width: 620px) {
+  body { font-size: 17.5px; }
+  h2 { font-size: 30px; }
+  .hero h2 { font-size: 34px; }
+  .auth-row .seg i { width: 10px; height: 10px; }
+  .vs-auth { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .vs-auth > div + div { margin-top: 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>Doctrinal Compass</h1>
+    <span class="folio" id="folio"></span>
+  </div>
+</header>
+
+<main class="wrap" id="app"></main>
+
+<nav class="tabs" aria-label="Sections">
+  <a href="#/"><span class="dot"></span>Home</a>
+  <a href="#/explore"><span class="dot"></span>Explore</a>
+  <a href="#/compare"><span class="dot"></span>Compare</a>
+  <a href="#/test"><span class="dot"></span>Assess</a>
+  <a href="#/terms"><span class="dot"></span>Terms</a>
+</nav>
+
+<dialog class="glossary" id="glossary-dialog" aria-label="Definition"></dialog>
+
+<noscript><div class="wrap" style="padding:24px 0"><p>This site needs JavaScript.</p></div></noscript>
+
+<script>
+/* ============================================================
+   ==                                                        ==
+   ==   E D I T   B E L O W   T H I S   L I N E              ==
+   ==                                                        ==
+   ==   Everything you add to the site lives in this block:  ==
+   ==   glossary terms, axes, traditions, positions, and     ==
+   ==   the assessment questions.                            ==
+   ==                                                        ==
+   ==   Rules that keep the site honest:                     ==
+   ==   - State each position in its own words.              ==
+   ==   - `why` is the reasoning from INSIDE that tradition. ==
+   ==   - `texts` are scripture ADDRESSES, never quotations. ==
+   ==   - Keep entries a similar length across traditions.   ==
+   ==   - Never add a source you have not seen yourself.     ==
+   ==                                                        ==
+   ==   Every comma, quote and brace matters. If the site    ==
+   ==   goes blank after an edit, you dropped one — use      ==
+   ==   GitHub's History to revert the last commit.          ==
+   ==                                                        ==
+   ============================================================ */
+
+window.DATA = (function () {
+  'use strict';
+
+  /* ================= GLOSSARY =================
+     Written in plain English on purpose. `body` is the everyday
+     explanation; `also` is the finer point for someone who wants it.
+     If a definition needs a second technical term to make sense,
+     the definition is wrong — rewrite it, don't cross-reference it. */
+
+  var glossary = {
+    'sola-scriptura': {
+      term: 'Sola scriptura',
+      body: 'The Bible is the only authority that cannot be wrong. Creeds, councils and church teaching still carry real weight — but if any of them ever contradicts Scripture, Scripture wins.',
+      also: 'Latin for "by Scripture alone." Not the same as solo scriptura, which throws the creeds out entirely.'
+    },
+    'solo-scriptura': {
+      term: 'Solo scriptura',
+      body: 'Just me and my Bible. No creed, no council and no church has any binding say at all — every reader stands alone in front of the text.',
+      also: 'A stricter position than sola scriptura, though people often use the two words as if they meant the same thing.'
+    },
+    'prima-scriptura': {
+      term: 'Prima scriptura',
+      body: 'The Bible comes first, but it is not the only voice. Church tradition, human reason and personal experience count as real authorities too — just ranked underneath Scripture.',
+      also: 'Latin for "Scripture first."'
+    },
+    'magisterium': {
+      term: 'Magisterium',
+      body: 'The Catholic Church\u2019s official teaching office: the bishops together with the Pope. Its job is to say what the faith actually means when the meaning is disputed.',
+      also: 'Catholic teaching is that this office serves the word of God and does not sit above it.'
+    },
+    'sacred-tradition': {
+      term: 'Sacred Tradition',
+      body: 'The apostles\u2019 teaching as it was handed down by being preached and lived, rather than written down. Catholics and Orthodox do not see this as extra facts bolted onto the Bible — it is the same message travelling by a second route.',
+      also: 'Different from "traditions" with a small t, meaning local customs, which both churches agree can change.'
+    },
+    'norma-normans': {
+      term: 'Norma normans / norma normata',
+      body: 'A two-tier ranking. Scripture is the ruler that everything else gets measured against. The creeds are themselves measured by that ruler — so they are binding, but only because and insofar as they match it.',
+      also: 'Standard Lutheran vocabulary. It is how a confession can be genuinely binding without ever rivalling Scripture.'
+    },
+    'deuterocanon': {
+      term: 'Deuterocanonical books',
+      body: 'Books that are in Catholic and Orthodox Bibles but not Protestant ones — Tobit, Judith, Wisdom, Sirach, Baruch and 1\u20132 Maccabees, plus extra sections of Esther and Daniel. Protestants call them the Apocrypha and do not count them as Scripture.',
+      also: 'The name means "second canon" — second in the order they were settled, not second in authority.'
+    },
+    'anagignoskomena': {
+      term: 'Anagignoskomena',
+      body: 'The Orthodox name for the extra books beyond the Protestant Old Testament. It means "the ones that are read" — they are read in church and received as Scripture, though sometimes held at a slightly different rank.',
+      also: 'Exactly which books are included varies between local Orthodox churches.'
+    },
+    'material-sufficiency': {
+      term: 'Material and formal sufficiency',
+      body: 'Two different claims that often get mixed up. First: everything you need for salvation is in the Bible. Second: the Bible is also clear enough that you can work it out correctly without an official interpreter. Some traditions say yes to the first and no to the second.',
+      also: 'Spotting which of the two is being claimed resolves a lot of arguments that otherwise talk past each other.'
+    },
+    'perspicuity': {
+      term: 'Perspicuity of Scripture',
+      body: 'The idea that the Bible is clear — at least on what you need for salvation. An ordinary person reading it with ordinary effort can get that much right.',
+      also: 'It is not a claim that every passage is easy. Nobody thinks that.'
+    },
+    'adiaphora': {
+      term: 'Adiaphora',
+      body: 'Things the Bible neither commands nor forbids, so the church is free to decide them for itself. Music, furniture, calendars, that kind of thing.',
+      also: 'Where a tradition draws this line tells you most of what you need to know about how much freedom it allows.'
+    },
+    'ceni': {
+      term: 'CENI',
+      body: 'A rule for reading the Bible: a practice is allowed only if Scripture commands it, shows an example of it, or clearly implies it. Short for Command, Example and Necessary Inference.',
+      also: 'Its partner rule is the law of silence — if the Bible does not mention something, neither do we.'
+    },
+    'regulative-principle': {
+      term: 'Regulative principle of worship',
+      body: 'Worship may only include what the Bible positively tells you to do. The opposite rule — the normative principle — allows anything the Bible does not forbid.',
+      also: 'Two churches can agree completely about the Bible and still worship in totally different ways because of this one difference.'
+    },
+    'apostolic-succession': {
+      term: 'Apostolic succession',
+      body: 'An unbroken chain of ordination running back to the apostles, passed on by the laying on of hands. The point is not the chain itself — it is that the chain is meant to guarantee the teaching has not drifted.',
+      also: 'Held by Catholic, Orthodox and Anglican churches, and understood somewhat differently in each.'
+    },
+    'ecumenical-council': {
+      term: 'Ecumenical council',
+      body: 'A council understood to speak for the whole church rather than one region. The first seven, from 325 to 787, are accepted by both Catholics and Orthodox.',
+      also: 'Rome counts a number of later councils as ecumenical too. The Orthodox do not.'
+    },
+    'homoousios': {
+      term: 'Homoousios',
+      body: 'A Greek word meaning "the same stuff." Nicaea used it to say the Son is not merely similar to the Father — he is the same being.',
+      also: 'One word, and it is the historic dividing line on the nature of God.'
+    },
+    'filioque': {
+      term: 'Filioque',
+      body: 'Latin for "and the Son." The Western church added it to the Nicene Creed, so it reads that the Spirit proceeds from the Father and the Son. The East kept the original wording: from the Father.',
+      also: 'The argument is about the doctrine and about whether one part of the church had the right to edit a shared creed on its own.'
+    },
+    'modalism': {
+      term: 'Modalism',
+      body: 'The view that Father, Son and Spirit are not three persons, but one person in three roles — the same single individual acting in three ways.',
+      also: 'Groups described this way by others usually reject the label and prefer their own terms.'
+    },
+    'subordinationism': {
+      term: 'Subordinationism',
+      body: 'The view that the Son, and often the Spirit, is a lesser being than the Father rather than an equal.',
+      also: 'Different from saying the Son willingly takes a lower role while still being fully God — most Trinitarians affirm that second thing without any problem.'
+    },
+    'continuing-revelation': {
+      term: 'Continuing revelation',
+      body: 'The belief that God still gives new binding revelation today — through a living prophet, a governing body, or direct inspiration.',
+      also: 'A separate question from the canon. A group can hold that the Bible is closed and still expect ongoing guidance.'
+    },
+    'inner-light': {
+      term: 'Inner Light',
+      body: 'The Quaker term for Christ teaching a person directly and inwardly — no priest, no preacher and no book standing in between.',
+      also: 'Also called the Inward Light, or "that of God in everyone."'
+    },
+    'inerrancy': {
+      term: 'Inerrancy',
+      body: 'The belief that the Bible, as originally written, gets nothing wrong in what it actually asserts.',
+      also: 'Its defenders are careful to say this is not the same as reading every line woodenly. Other traditions prefer the phrase "infallible in matters of faith and practice."'
+    }
+  };
+
+  /* ================= AXES ================= */
+
+  var axes = [
+    {
+      id: 'authority',
+      name: 'Where authority sits',
+      question: 'When Christians disagree about what is true, what settles it? This is the deepest division on the site, and most other disagreements run downstream of it.',
+      written: true
+    },
+    {
+      id: 'canon',
+      name: 'Which books count',
+      question: 'Before you can ask what Scripture teaches, you have to know what Scripture is. Which books belong, and is the list closed?',
+      written: true
+    },
+    {
+      id: 'godhead',
+      name: 'The nature of God',
+      question: 'Is God three persons in one being, one person in three modes, or three beings united in purpose? The historic creeds answer one way; several later groups answer differently.',
+      written: true
+    },
+    { id: 'baptism',    name: 'Baptism',                 question: 'Who is baptised, by what mode, and what does the act accomplish?', written: false },
+    { id: 'supper',     name: 'The Lord\u2019s Supper',  question: 'In what sense, if any, is Christ present in the bread and cup?', written: false },
+    { id: 'salvation',  name: 'Salvation and election',  question: 'How is a person justified, and what part do God and the human will each play?', written: false },
+    { id: 'governance', name: 'Church governance',       question: 'Who decides, and by what right? Bishops, elders, the congregation, or a central body?', written: false }
+  ];
+
+  /* ================= TRADITIONS =================
+     `locus` is the one-line answer to "where does authority sit".
+     `auth` rates how much weight each tradition actually gives to four
+     places authority can be put, 0 to 5:
+       s = Scripture
+       c = the church, or a teaching office
+       t = tradition
+       r = direct or continuing revelation
+     These describe where a tradition puts its weight. They are not scores,
+     and nothing here ranks one tradition above another. Every row is
+     rated on the same four questions so the rows can be read side by side. */
+
+  var AUTH_KEYS = [
+    { k: 's', label: 'Scripture' },
+    { k: 'c', label: 'The church' },
+    { k: 't', label: 'Tradition' },
+    { k: 'r', label: 'Direct revelation' }
+  ];
+
+  /* The words that go with each level. The site prints the word, not a number. */
+  var AUTH_WORDS = [
+    'No formal role',
+    'Minor weight',
+    'Real weight',
+    'Substantial',
+    'Near-decisive',
+    'Decisive'
+  ];
+
+  var traditions = [
+    { id: 'restoration', name: 'Churches of Christ',              family: 'Restoration Movement',      locus: 'Scripture alone, no creeds',                          auth: { s: 5, c: 0, t: 0, r: 0 } },
+    { id: 'baptist',     name: 'Baptist',                         family: 'Free Church',               locus: 'Scripture alone; confessions advisory',               auth: { s: 5, c: 1, t: 0, r: 0 } },
+    { id: 'nondenom',    name: 'Non-denominational evangelical',  family: 'Evangelical',               locus: 'Scripture alone; little formal tradition',            auth: { s: 5, c: 1, t: 0, r: 0 } },
+    { id: 'reformed',    name: 'Reformed / Presbyterian',         family: 'Magisterial Reformation',   locus: 'Scripture alone; confessions subordinate',            auth: { s: 5, c: 1, t: 1, r: 0 } },
+    { id: 'lutheran',    name: 'Lutheran',                        family: 'Magisterial Reformation',   locus: 'Scripture norms the confessions',                     auth: { s: 5, c: 1, t: 2, r: 0 } },
+    { id: 'oneness',     name: 'Oneness Pentecostal',             family: 'Pentecostal',               locus: 'Scripture alone, read through the apostolic pattern', auth: { s: 5, c: 1, t: 0, r: 1 } },
+    { id: 'adventist',   name: 'Seventh-day Adventist',           family: 'Adventist',                 locus: 'Scripture the standard; a prophetic gift under it',   auth: { s: 5, c: 1, t: 0, r: 3 } },
+    { id: 'anabaptist',  name: 'Anabaptist / Mennonite',          family: 'Radical Reformation',       locus: 'Scripture read by the gathered congregation',         auth: { s: 5, c: 3, t: 1, r: 1 } },
+    { id: 'pentecostal', name: 'Pentecostal',                     family: 'Pentecostal',               locus: 'Scripture first; the Spirit still speaks under it',   auth: { s: 4, c: 1, t: 1, r: 3 } },
+    { id: 'methodist',   name: 'Methodist / Wesleyan',            family: 'Wesleyan',                  locus: 'Scripture first; tradition, reason, experience follow', auth: { s: 4, c: 2, t: 3, r: 2 } },
+    { id: 'anglican',    name: 'Anglican / Episcopal',            family: 'English Reformation',       locus: 'Scripture supreme; tradition and reason under it',    auth: { s: 4, c: 3, t: 3, r: 0 } },
+    { id: 'jw',          name: 'Jehovah\u2019s Witnesses',        family: 'Bible Student movement',    locus: 'Scripture, interpreted by the Governing Body',        auth: { s: 4, c: 5, t: 0, r: 1 } },
+    { id: 'orthodox',    name: 'Eastern Orthodox',                family: 'Eastern Christianity',      locus: 'Scripture within Holy Tradition',                     auth: { s: 3, c: 4, t: 5, r: 0 } },
+    { id: 'catholic',    name: 'Roman Catholic',                  family: 'Western Catholicism',       locus: 'Scripture and Tradition, read by the Magisterium',    auth: { s: 3, c: 5, t: 5, r: 0 } },
+    { id: 'lds',         name: 'Latter-day Saints',               family: 'Latter Day Saint movement', locus: 'Open canon and living prophets',                      auth: { s: 3, c: 5, t: 1, r: 5 } },
+    { id: 'quaker',      name: 'Quaker (Friends)',                family: 'Radical Reformation',       locus: 'The Spirit speaking directly; Scripture secondary',   auth: { s: 2, c: 2, t: 1, r: 5 } }
+  ];
+
+  /* ================= POSITIONS =================
+     Key format: "traditionId:axisId"
+
+     `sources` are plain strings now. Every one below has been checked
+     against the actual document — title, date, and section number.
+     If you add one, check it first. An unchecked citation on a site
+     that claims rigour is worse than no citation at all. */
+
+  var P = {};
+
+  function set(trad, axis, obj) { P[trad + ':' + axis] = obj; }
+
+  /* ---------- AXIS: authority ---------- */
+
+  set('catholic', 'authority', {
+    what: 'Scripture and <span data-term="sacred-tradition">Sacred Tradition</span> are two modes of transmitting one deposit of revelation, and the <span data-term="magisterium">Magisterium</span> is charged with interpreting it authentically. Catholic teaching describes the teaching office as serving the Word of God, not standing above it.',
+    why: 'The Church existed and preached before a single New Testament book was written, and it was the Church that recognised which books were apostolic. On this reading, a Bible detached from the community that produced and canonised it has no way to settle disputed readings, and the history of division is taken as evidence of that.',
+    texts: ['2 Thessalonians 2:15', '1 Timothy 3:15', 'Matthew 16:18\u201319', 'Acts 15:1\u201329'],
+    sources: ['Dei Verbum 9\u201310 (Second Vatican Council, 1965)', 'Catechism of the Catholic Church 80\u201387'],
+    caution: 'Frequently caricatured as "the Bible plus extra rules." That is a two-source theory the Church itself rejected in the drafting of Dei Verbum. State it as one source in two modes.'
+  });
+
+  set('orthodox', 'authority', {
+    what: 'Scripture exists <em>within</em> Holy Tradition rather than alongside it. Tradition is the whole life of the Spirit in the Church \u2014 Scripture, the seven <span data-term="ecumenical-council">ecumenical councils</span>, the Fathers, the liturgy and the icons \u2014 and Scripture is the Church\u2019s own book, read inside that life.',
+    why: 'If the Church, guided by the Spirit, is what recognised the canon, then the Church\u2019s continuing mind is the natural context for reading it. Orthodoxy resists locating final authority in any single office, holding instead that the whole body of the faithful guards the faith, which is why a council is received as true rather than true by decree.',
+    texts: ['2 Thessalonians 2:15', 'John 16:13', '1 Timothy 3:15', 'Acts 15:28'],
+    sources: ['Confession of Dositheus (Synod of Jerusalem, 1672)', 'Encyclical of the Eastern Patriarchs (1848), \u00a717'],
+    caution: 'Not "Scripture plus councils." Tradition is the interpretive matrix, not a supplement.'
+  });
+
+  set('lutheran', 'authority', {
+    what: 'Scripture is the <span data-term="norma-normans">norma normans</span> \u2014 the only rule and norm by which all teachers and teachings are judged. The ecumenical creeds and the Lutheran confessions are binding as normed norms: authoritative because, and insofar as, they agree with Scripture.',
+    why: 'Confessions exist so that "Scripture alone" does not collapse into "my reading alone." A public, subscribable statement of what the church teaches lets a congregation hold its pastors accountable to something checkable, while leaving the confession itself answerable to the text.',
+    texts: ['2 Timothy 3:15\u201317', 'Galatians 1:8\u20139', 'John 5:39'],
+    sources: ['Formula of Concord, Epitome, "Of the Comprehensive Summary, Rule and Norm"', 'Book of Concord (1580)'],
+    caution: 'The Latin pair norma normans / norma normata is the tradition\u2019s own shorthand for this teaching, not a phrase printed in the Formula itself.'
+  });
+
+  set('reformed', 'authority', {
+    what: 'Scripture is the only infallible rule of faith and practice, and its authority rests on God as its author rather than on the church\u2019s testimony. What is necessary is either stated in Scripture or may be deduced from it by good and necessary consequence.',
+    why: 'The church can err and has erred, so an authority that could correct the church has to stand outside it. The inward witness of the Spirit, not an institutional ruling, is what finally persuades a reader that Scripture is God\u2019s word \u2014 which keeps the ultimate authority from being an office that could itself go wrong.',
+    texts: ['2 Timothy 3:16\u201317', 'Isaiah 8:20', 'Acts 17:11', '1 Corinthians 4:6'],
+    sources: ['Westminster Confession of Faith 1.4\u20131.6, 1.10 (completed 1646; adopted in Scotland 1647)']
+  });
+
+  set('anglican', 'authority', {
+    what: 'Scripture contains all things necessary to salvation, so nothing may be required as an article of faith that cannot be proved from it. The Church has authority in controversies of faith and may order rites and ceremonies, but may not decree anything contrary to Scripture, and councils may err.',
+    why: 'This leaves a deliberately wide field of <span data-term="adiaphora">adiaphora</span> \u2014 matters Scripture does not settle, where the church may order its common life by reason and received custom. The aim is a church that can hold real internal disagreement without either binding consciences beyond Scripture or dissolving into private judgement.',
+    texts: ['2 Timothy 3:16\u201317', 'Acts 15:28', '1 Corinthians 14:40'],
+    sources: ['Thirty-Nine Articles VI, XX, XXI (final form 1571)', 'Richard Hooker, Of the Laws of Ecclesiastical Polity (Books I\u2013IV 1593, Book V 1597)'],
+    caution: 'The "three-legged stool" of equal legs is a 20th-century popularisation. Hooker ordered them, with Scripture supreme.'
+  });
+
+  set('baptist', 'authority', {
+    what: 'Scripture is the sole authority for faith and practice, with no binding creed above it. Confessions are published as testimony of what a body of churches believes, but they are advisory, and each congregation is finally answerable to the text itself.',
+    why: 'Baptists came out of a conviction that neither state nor bishop may bind a conscience, and that a church is a gathered body of believers who have read and responded for themselves. Making any confession binding would recreate the very authority they left, so the text alone is left standing over every congregation equally.',
+    texts: ['2 Timothy 3:16\u201317', 'Acts 17:11', 'Matthew 15:6\u20139'],
+    sources: ['Second London Baptist Confession 1.1\u20131.10 (printed 1677; adopted 1689)', 'Baptist Faith and Message, Article I (1925, rev. 1963, 2000)']
+  });
+
+  set('methodist', 'authority', {
+    what: '<span data-term="prima-scriptura">Prima scriptura</span>: Scripture is primary, and tradition, reason and experience are genuine but subordinate authorities used to read and apply it. This is often called the Wesleyan Quadrilateral.',
+    why: 'A doctrine that cannot be recognised in Christian history, cannot survive examination, and has no answering witness in a believer\u2019s life is treated as suspect for that reason. The three secondary sources are not rival authorities but the ordinary means by which Scripture is understood rather than merely quoted.',
+    texts: ['2 Timothy 3:16\u201317', 'Acts 15:28', 'Romans 8:16', 'Luke 24:32'],
+    sources: ['Articles of Religion V (1784)', 'United Methodist Book of Discipline, "Our Theological Task"'],
+    caution: 'The term "quadrilateral" was coined by Albert Outler, not by Wesley, and Outler later wrote that he regretted it because it implied four equal sides. Scripture is primary.'
+  });
+
+  set('anabaptist', 'authority', {
+    what: 'Scripture is authoritative, read through a Christ-centred and New-Testament-prioritising lens, and interpreted by the gathered congregation rather than by scholars or officials. Discipleship is treated as the key that unlocks the text.',
+    why: 'On this reading the New Testament fulfils and reinterprets the Old, so Christ\u2019s teaching and example govern how earlier commands apply. Interpretation belongs to the assembled community because a text meant to be lived is tested by whether a body of people can actually live it together.',
+    texts: ['Matthew 5:17\u201348', 'Matthew 18:15\u201320', '1 Corinthians 14:29', 'John 13:34\u201335'],
+    sources: ['Schleitheim Confession (1527)', 'Dordrecht Confession (1632)']
+  });
+
+  set('restoration', 'authority', {
+    what: 'Scripture alone, with creeds and post-apostolic tradition explicitly rejected as authoritative. The classic hermeneutic is <span data-term="ceni">command, example and necessary inference</span>, paired with a law of silence: where Scripture does not speak, the church does not either.',
+    why: 'Every creed in history was written by someone, and each one became a new test of fellowship that divided Christians further. Restoring the practice of the New Testament church exactly \u2014 and adding nothing to it \u2014 is understood as the only ground on which all Christians could unite, because it is the only ground nobody invented.',
+    texts: ['1 Peter 4:11', 'Colossians 3:17', 'Revelation 22:18\u201319', '2 John 9'],
+    sources: ['Thomas Campbell, Declaration and Address (1809)'],
+    caution: 'The motto "where the Scriptures speak, we speak; where the Scriptures are silent, we are silent" is reported of Campbell by his biographer Robert Richardson rather than printed as a line inside the Declaration and Address.'
+  });
+
+  set('pentecostal', 'authority', {
+    what: 'Scripture is the infallible and authoritative rule of faith and conduct. Prophecy, tongues and other gifts are expected to continue, but are explicitly tested by and subordinate to Scripture, so they guide and confirm rather than add doctrine.',
+    why: 'The book of Acts is read as descriptive of normal church life rather than of a closed apostolic era, so a church without the gifts looks truncated. Because a subjective impression can be wrong, Scripture is kept as the fixed standard against which every claimed word is weighed.',
+    texts: ['Acts 2:17\u201318', '1 Corinthians 14:29\u201333', '1 Thessalonians 5:19\u201321', 'Joel 2:28'],
+    sources: ['Assemblies of God, Statement of Fundamental Truths, Truth 1 ("The Scriptures Inspired")']
+  });
+
+  set('nondenom', 'authority', {
+    what: 'Scripture alone, usually with a short statement of faith and no formal confessional tradition. Authority in practice sits with the local congregation and its teaching pastor rather than with any denominational body.',
+    why: 'Denominational machinery is seen as an accumulation of human decisions that obscures a plain text and divides Christians over matters the Bible does not require. A short doctrinal basis is meant to secure the essentials while leaving everything else free.',
+    texts: ['2 Timothy 3:16\u201317', 'Acts 17:11', 'Ephesians 4:4\u20136'],
+    sources: [],
+    caution: 'No single normative document exists for this entry, so none is cited. This is the least uniform group on the site \u2014 individual churches range from near-Reformed to near-Pentecostal.'
+  });
+
+  set('quaker', 'authority', {
+    what: 'The primary rule is the immediate revelation of the Spirit \u2014 the <span data-term="inner-light">Inner Light</span> \u2014 speaking to the individual and the gathered meeting. Scripture is received as a true declaration of the fountain, and as a secondary rule subordinate to the Spirit who gave it.',
+    why: 'The reasoning is that the Spirit who inspired the text must be present to open it, or reading produces only the letter. Since the same Spirit does not contradict himself, a leading is tested against Scripture and against the discernment of the meeting rather than taken as private licence.',
+    texts: ['John 1:9', 'John 16:13', 'Jeremiah 31:33\u201334', '1 John 2:27'],
+    sources: ['Robert Barclay, Apology, Propositions 2\u20133 (Latin 1676; English 1678)'],
+    caution: 'Uniquely among the groups here, this places immediate revelation above the written text in formal rank.'
+  });
+
+  set('adventist', 'authority', {
+    what: 'Scripture is affirmed as the sole standard by which all teaching is tested. Alongside this, the writings of Ellen G. White are recognised as an authoritative expression of the prophetic gift \u2014 described within the tradition as a lesser light leading to the greater light of Scripture.',
+    why: 'If the gift of prophecy is listed among the gifts given to the church, then its presence is expected rather than surprising, and its function is to apply and confirm Scripture rather than to supply new doctrine. Scripture is deliberately retained as the court of appeal so the prophetic gift remains testable.',
+    texts: ['Isaiah 8:20', 'Revelation 12:17', 'Revelation 19:10', 'Joel 2:28', '1 Thessalonians 5:20\u201321'],
+    sources: ['28 Fundamental Beliefs, 1 (The Holy Scriptures) and 18 (The Gift of Prophecy)'],
+    caution: 'The "lesser light" phrase is Ellen White\u2019s own. The relationship between formal sola scriptura and a functioning prophetic authority is discussed and disputed inside the tradition itself, not only by outsiders.'
+  });
+
+  set('oneness', 'authority', {
+    what: 'Scripture is the sole authority, read through what is understood as the apostolic pattern \u2014 that the practice recorded in Acts shows how the apostles actually applied Christ\u2019s commands, and is therefore normative.',
+    why: 'On this reading, later creeds introduced philosophical categories the apostles never used, so the way to recover apostolic Christianity is to return to what the apostles are recorded as doing. Acts is treated as the interpretive key to the epistles rather than the reverse.',
+    texts: ['Acts 2:38', 'Acts 4:12', 'John 5:39', 'Colossians 3:17'],
+    sources: ['United Pentecostal Church International, Articles of Faith']
+  });
+
+  set('jw', 'authority', {
+    what: 'The Bible is held to be the sole authority, published in the New World Translation. Authoritative understanding of it is provided by the Governing Body, identified as the faithful and discreet slave appointed to give spiritual food at the proper time.',
+    why: 'The argument is that Scripture itself shows people needing a guide to understand what they read, and that Christ promised an appointed channel to feed his household. A single teaching channel is understood as the means by which the congregation stays united in doctrine rather than fragmenting.',
+    texts: ['Matthew 24:45\u201347', 'Acts 8:30\u201331', '1 Corinthians 1:10'],
+    sources: ['"Who Really Is the Faithful and Discreet Slave?", The Watchtower, Study Edition, 15 July 2013'],
+    caution: 'Formally biblicist, functionally magisterial. State both; the site does not adjudicate whether that is a contradiction.'
+  });
+
+  set('lds', 'authority', {
+    what: 'An open canon and <span data-term="continuing-revelation">continuing revelation</span> through living prophets. The Bible is received as the word of God as far as it is translated correctly, alongside the Book of Mormon, the Doctrine and Covenants and the Pearl of Great Price.',
+    why: 'The reasoning is that God has always dealt with his people through prophets, and that nothing in Scripture announces the practice would stop. A living prophetic office is understood as the way God addresses circumstances the ancient text does not speak to, and as the reason the canon was never formally closed.',
+    texts: ['Amos 3:7', 'Ephesians 2:20', 'James 1:5', 'Revelation 14:6'],
+    sources: ['Articles of Faith 8\u20139 (Wentworth Letter, 1842)']
+  });
+
+  /* ---------- AXIS: canon ---------- */
+
+  set('catholic', 'canon', {
+    what: '73 books: the 66 received by Protestants plus the <span data-term="deuterocanon">deuterocanonical</span> books, defined at the Council of Trent. The canon is closed; public revelation ended with the apostolic age.',
+    why: 'These books were in the Greek Old Testament used by the early Church and were read as Scripture for centuries before anyone proposed removing them. Trent\u2019s definition is understood as ratifying long-standing use rather than inventing a canon.',
+    texts: [],
+    sources: ['Council of Trent, Session IV (8 April 1546), Decree Concerning the Canonical Scriptures']
+  });
+
+  set('orthodox', 'canon', {
+    what: 'A wider Old Testament than the Protestant canon, including the <span data-term="anagignoskomena">anagignoskomena</span>. Lists vary somewhat between local churches; the Ethiopian Orthodox canon is broader still. The New Testament of 27 books is universally received and the canon is closed.',
+    why: 'The canon is understood as settled by the Church\u2019s use in worship over time rather than by a single defining decree, which is why some variation between local churches is tolerated without alarm.',
+    texts: [],
+    sources: ['Confession of Dositheus (Synod of Jerusalem, 1672)', 'Canons received via the Council in Trullo (692)'],
+    caution: 'There is no single pan-Orthodox conciliar canon list. The two sources above are the closest thing to one; the variation between local churches is real and is not treated as a problem inside the tradition.'
+  });
+
+  set('lutheran', 'canon', {
+    what: '66 books. The Apocrypha are valued as useful and good to read but are not held to be Scripture and cannot establish doctrine. The canon is closed.',
+    why: 'The distinction preserves the historic Christian practice of reading these books while denying them the power to settle a doctrinal dispute, on the ground that the Hebrew canon is the Old Testament the apostles treated as Scripture.',
+    texts: [],
+    sources: ['Luther\u2019s Bible (1534), the Apocrypha gathered between the Testaments under a heading describing them as not equal to Scripture yet useful and good to read']
+  });
+
+  set('reformed', 'canon', {
+    what: '66 books, with the Apocrypha explicitly excluded and given no authority in the Church beyond that of other human writings. The canon is closed.',
+    why: 'If the canon\u2019s authority comes from God rather than from the Church\u2019s recognition, then books that the Hebrew Scriptures never included cannot be added to it by later ecclesiastical decision.',
+    texts: [],
+    sources: ['Westminster Confession of Faith 1.2\u20131.3 (completed 1646; adopted in Scotland 1647)']
+  });
+
+  set('anglican', 'canon', {
+    what: '66 books as the doctrinal canon. The Apocrypha are read for example of life and instruction of manners, but not used to establish any doctrine. The canon is closed.',
+    why: 'This keeps the ancient lectionary practice of reading these books publicly while limiting their function, which is characteristic of the wider Anglican approach to inherited custom.',
+    texts: [],
+    sources: ['Thirty-Nine Articles VI (final form 1571)']
+  });
+
+  set('baptist', 'canon', {
+    what: '66 books. The Apocrypha are not Scripture and carry no authority in the church. The canon is closed.',
+    why: 'The Reformed settlement on the canon is followed closely, on the same ground: a book\u2019s place in the canon rests on its divine authorship, not on a later ecclesiastical decision to receive it.',
+    texts: [],
+    sources: ['Second London Baptist Confession 1.2\u20131.3 (printed 1677; adopted 1689)']
+  });
+
+  set('methodist', 'canon', {
+    what: '66 books as the canon of doctrine, listed by name in the article on the sufficiency of Scripture. The canon is closed.',
+    why: 'Wesley abridged the Thirty-Nine Articles for the American church and kept the article on sufficiency, with its canon list, largely intact \u2014 so the Anglican settlement on which books count carries straight over.',
+    texts: [],
+    sources: ['Articles of Religion V (1784)']
+  });
+
+  set('anabaptist', 'canon', {
+    what: '66 books, with a working priority given to the New Testament where the two Testaments appear to point in different directions. The canon is closed.',
+    why: 'The Old Testament is read as fulfilled and reinterpreted in Christ, so his teaching governs how earlier commands \u2014 especially about the sword and the oath \u2014 apply now.',
+    texts: ['Matthew 5:38\u201348'],
+    sources: ['Schleitheim Confession (1527)'],
+    caution: 'No Anabaptist confession of this period enumerates a canon list. The 66-book canon is the received Protestant one; the New Testament priority described here comes from the Christ-centred reading set out at Schleitheim, not from a statement about which books belong.'
+  });
+
+  set('restoration', 'canon', {
+    what: '66 books, with a strong working distinction between the Old Testament as history and the New Testament as the church\u2019s law. The canon is closed.',
+    why: 'The old covenant is understood to have ended at the cross, so authority for church practice is drawn from the New Testament, and specifically from Acts and the epistles.',
+    texts: ['Colossians 2:14', 'Hebrews 9:15\u201317'],
+    sources: ['Thomas Campbell, Declaration and Address (1809)']
+  });
+
+  set('pentecostal', 'canon', {
+    what: '66 books, closed. Continuing prophecy is affirmed but is explicitly not canonical and never adds to Scripture.',
+    why: 'Keeping the canon closed is what allows the gifts to be tested; a prophecy that could amend Scripture would leave nothing fixed to test it against.',
+    texts: ['1 Thessalonians 5:20\u201321'],
+    sources: ['Assemblies of God, Statement of Fundamental Truths, Truth 1 ("The Scriptures Inspired")']
+  });
+
+  set('nondenom', 'canon', {
+    what: '66 books, closed. Typically stated briefly in a short statement of faith without further elaboration.',
+    why: 'The Protestant canon is assumed rather than argued, since these congregations generally inherit it without a confessional tradition that debates it.',
+    texts: [],
+    sources: [],
+    caution: 'No single normative document exists for this entry, so none is cited.'
+  });
+
+  set('quaker', 'canon', {
+    what: '66 books, closed as a canon. But because Scripture is a secondary rule under the Spirit, the boundary of the canon carries less weight here than in traditions where the text is the final authority.',
+    why: 'If the Spirit is the primary rule, then settling the exact list of books is less decisive than discerning what the Spirit is saying through them now.',
+    texts: [],
+    sources: ['Robert Barclay, Apology, Proposition 3, "Concerning the Scriptures" (Latin 1676; English 1678)']
+  });
+
+  set('adventist', 'canon', {
+    what: '66 books, closed. Ellen G. White\u2019s writings are explicitly not added to the canon and are described within the tradition as a lesser light pointing to the greater.',
+    why: 'The canon is kept closed precisely so that the prophetic gift remains subject to a fixed standard rather than becoming a rival to it.',
+    texts: ['Isaiah 8:20'],
+    sources: ['28 Fundamental Beliefs, 1 (The Holy Scriptures) and 18 (The Gift of Prophecy)']
+  });
+
+  set('oneness', 'canon', {
+    what: '66 books, closed \u2014 the same Protestant canon received by most of the traditions on this page, with no deuterocanonical books and no additional modern scripture.',
+    why: 'The Protestant canon is shared without dispute; the distinctive commitments lie in how Acts is used to interpret the rest, not in which books are received.',
+    texts: [],
+    sources: ['United Pentecostal Church International, Articles of Faith'],
+    caution: 'The Articles of Faith affirm the Bible as the only God-given authority but do not enumerate the books or use the figure 66. The 66-book canon is the church\u2019s settled practice rather than a numbered clause in that document.'
+  });
+
+  set('jw', 'canon', {
+    what: '66 books, closed, published as the New World Translation. The divine name is restored in the text at many points where other translations render it LORD.',
+    why: 'Restoring the divine name is understood as recovering something obscured in transmission, and as central to worship rather than a matter of translation preference.',
+    texts: ['Psalm 83:18', 'Exodus 3:15'],
+    sources: ['New World Translation (2013 revision), Appendix A4 and A5 on the divine name']
+  });
+
+  set('lds', 'canon', {
+    what: 'An open canon. The standard works are the Bible (King James Version), the Book of Mormon, the Doctrine and Covenants and the Pearl of Great Price, and further revelation may yet be added.',
+    why: 'If God speaks through living prophets, then a permanently closed list would foreclose what he might still say. The canon is treated as the record of revelation rather than as its boundary.',
+    texts: ['Amos 3:7', 'Revelation 14:6'],
+    sources: ['Articles of Faith 8\u20139 (Wentworth Letter, 1842)']
+  });
+
+  /* ---------- AXIS: godhead ---------- */
+
+  var NICENE_WHY = 'The reasoning is that Scripture calls Father, Son and Spirit God while insisting God is one, and addresses them as distinct \u2014 the Son prays to the Father, the Spirit is sent. <span data-term="homoousios">Homoousios</span> was adopted to hold both without collapsing the distinctions or dividing the being.';
+  var NICENE_TEXTS = ['Matthew 28:19', 'John 1:1\u201314', 'John 17:5', '2 Corinthians 13:14', 'Deuteronomy 6:4'];
+
+  function nicene(extraWhat, source, caution) {
+    return {
+      what: 'One God in three coequal, coeternal persons \u2014 Father, Son and Holy Spirit \u2014 of one being. ' + (extraWhat || ''),
+      why: NICENE_WHY,
+      texts: NICENE_TEXTS,
+      sources: source ? [source] : [],
+      caution: caution
+    };
+  }
+
+  set('catholic', 'godhead', nicene('The creed is confessed with the <span data-term="filioque">filioque</span>: the Spirit proceeds from the Father and the Son.', 'Catechism of the Catholic Church 232\u2013267 (the dogma itself at 253\u2013256)', null));
+  set('orthodox', 'godhead', nicene('The creed is confessed without the <span data-term="filioque">filioque</span>: the Spirit proceeds from the Father.', 'Nicene-Constantinopolitan Creed (First Council of Constantinople, 381), original Greek form', 'The dispute is both about the doctrine and about whether any part of the Church may amend an ecumenical creed unilaterally.'));
+  set('lutheran', 'godhead', nicene('The three ecumenical creeds \u2014 Apostles\u2019, Nicene and Athanasian \u2014 are received and printed at the head of the confessions.', 'Book of Concord (1580), the three ecumenical creeds', null));
+  set('reformed', 'godhead', nicene('', 'Westminster Confession of Faith 2.3 (completed 1646; adopted in Scotland 1647)', null));
+  set('anglican', 'godhead', nicene('', 'Thirty-Nine Articles I and V (final form 1571)', null));
+  set('baptist', 'godhead', nicene('', 'Baptist Faith and Message, Article II ("God")', null));
+  set('methodist', 'godhead', nicene('', 'Articles of Religion I, "Of Faith in the Holy Trinity" (1784)', null));
+  set('anabaptist', 'godhead', nicene('', 'Dordrecht Confession, Article I, "Of God and the Creation" (1632)', null));
+  set('restoration', 'godhead', nicene('Affirmed from Scripture directly; the creed itself is not used as a test of fellowship.', null, 'Held from Scripture rather than by creedal subscription, so there is no confessional document to cite here.'));
+  set('pentecostal', 'godhead', nicene('', 'Assemblies of God, Statement of Fundamental Truths, Truth 2 ("The One True God")', null));
+  set('nondenom', 'godhead', nicene('', null, 'Stated in each congregation\u2019s own short statement of faith; there is no single document to cite.'));
+  set('quaker', 'godhead', nicene('Historically affirmed, though some unprogrammed meetings today hold a range of views and do not require subscription.', 'Robert Barclay, Apology (Latin 1676; English 1678)', 'Modern liberal Friends vary considerably, including non-creedal and non-Trinitarian views. Both the historic position and the present range are stated.'));
+  set('adventist', 'godhead', nicene('', '28 Fundamental Beliefs, 2\u20135 (the Godhead, the Father, the Son, the Holy Spirit)', null));
+
+  set('oneness', 'godhead', {
+    what: 'One God who is one person, revealed in three <span data-term="modalism">modes or manifestations</span> \u2014 as Father in creation, Son in redemption, Spirit in the church. Jesus is understood as the name of the one God in the flesh, so Father, Son and Spirit are titles of one indivisible person.',
+    why: 'The reasoning is that the Old Testament is emphatic that God is one and alone, that the fullness of deity is said to dwell bodily in Christ, and that the apostles baptised in the single name of Jesus rather than reciting a formula of three. On this reading, three persons is the philosophical import the apostles never made.',
+    texts: ['Deuteronomy 6:4', 'Isaiah 9:6', 'Colossians 2:9', 'John 14:9', 'Acts 2:38'],
+    sources: ['United Pentecostal Church International, Articles of Faith \u2014 "The One True God" and the Fundamental Doctrine'],
+    caution: 'Oneness believers generally reject the label "modalist" as a description imported by critics, and self-describe as Oneness. The historic bodies classify this as outside the Nicene consensus; the group disputes that classification. The site reports both and renders no verdict.'
+  });
+
+  set('lds', 'godhead', {
+    what: 'The Godhead is three distinct beings \u2014 the Father, the Son and the Holy Ghost \u2014 perfectly one in purpose, will and glory but not one in substance. The Father and the Son are held to have glorified physical bodies; the Holy Ghost is a personage of spirit.',
+    why: 'The reasoning rests on passages where the Son is seen as distinct from and addressing the Father, on the account of the First Vision, and on a reading of scriptural oneness as unity of will rather than unity of substance. Nicene language is regarded as a later philosophical construction rather than an apostolic teaching.',
+    texts: ['John 17:20\u201323', 'Acts 7:55\u201356', 'Matthew 3:16\u201317', 'John 14:28'],
+    sources: ['Articles of Faith 1 (Wentworth Letter, 1842)', 'Doctrine and Covenants 130:22'],
+    caution: 'The historic bodies classify this as outside the Nicene consensus; Latter-day Saints self-identify as Christian and dispute that classification. The site reports both and renders no verdict.'
+  });
+
+  set('jw', 'godhead', {
+    what: 'Jehovah alone is God. Jesus is his first and only direct creation, the one through whom all other things were made, and is not equal to the Father. The holy spirit is God\u2019s active force rather than a person.',
+    why: 'The reasoning rests on texts where the Son is called firstborn of creation and beginning of the creation of God, where he states the Father is greater than he is, and where he is shown subject to the Father. The absence of the word "Trinity" from Scripture is treated as significant, and the doctrine is understood as a post-apostolic development.',
+    texts: ['John 14:28', 'Colossians 1:15', 'Revelation 3:14', '1 Corinthians 15:28', 'John 17:3'],
+    sources: ['"Who Is Jesus Christ?", What Does the Bible Really Teach? (Watch Tower Bible and Tract Society)'],
+    caution: 'The historic bodies classify this as outside the Nicene consensus; Jehovah\u2019s Witnesses self-identify as Christian and dispute that classification. The site reports both and renders no verdict.'
+  });
+
+  /* ================= ASSESSMENT =================
+     Each option lists the traditions whose stated position it matches.
+     Keep options descriptive, never evaluative, and never use loaded words.
+     An option a reader would be embarrassed to pick is a broken option. */
+
+  var questions = [
+    {
+      id: 'q-auth-final',
+      axis: 'authority',
+      text: 'Two sincere Christians read the same passage and reach opposite conclusions. What finally settles it?',
+      options: [
+        { label: 'Scripture itself, read more carefully \u2014 nothing outside it can overrule it', t: ['reformed','baptist','lutheran','restoration','nondenom','oneness','adventist'] },
+        { label: 'Scripture read within the continuous teaching of the historic Church', t: ['orthodox','catholic','anglican','methodist'] },
+        { label: 'The church\u2019s appointed teaching authority gives the binding reading', t: ['catholic','jw'] },
+        { label: 'The Spirit gives understanding directly, to a person or a gathered body', t: ['quaker','pentecostal','anabaptist','lds'] }
+      ]
+    },
+    {
+      id: 'q-auth-creeds',
+      axis: 'authority',
+      text: 'What standing do the historic creeds have?',
+      options: [
+        { label: 'Binding, as authentic statements of the faith', t: ['catholic','orthodox','lutheran','anglican'] },
+        { label: 'Authoritative but subordinate \u2014 correctable by Scripture', t: ['reformed','methodist','baptist','anabaptist','adventist','pentecostal','nondenom'] },
+        { label: 'Useful summaries with no authority at all', t: ['restoration'] },
+        { label: 'Not binding, and in some respects mistaken', t: ['quaker','lds','jw','oneness'] }
+      ]
+    },
+    {
+      id: 'q-auth-tradition',
+      axis: 'authority',
+      text: 'A practice has been held by the Church for many centuries but is not stated in Scripture. What follows?',
+      options: [
+        { label: 'It should be dropped \u2014 silence is prohibition', t: ['restoration','baptist'] },
+        { label: 'It is permitted but cannot be required of anyone', t: ['reformed','lutheran','anglican','methodist','nondenom','pentecostal','adventist','anabaptist','oneness'] },
+        { label: 'Long use in the Church is itself a form of authority', t: ['catholic','orthodox'] },
+        { label: 'It depends entirely on whether the Spirit leads to it now', t: ['quaker','lds','jw'] }
+      ]
+    },
+    {
+      id: 'q-auth-prophecy',
+      axis: 'authority',
+      text: 'Does God still give authoritative revelation today?',
+      options: [
+        { label: 'No \u2014 revelation closed with the apostles', t: ['reformed','lutheran','baptist','restoration','anglican','methodist','catholic','orthodox','anabaptist','nondenom','oneness'] },
+        { label: 'The Spirit still speaks, but never in a way that adds to Scripture', t: ['pentecostal','quaker'] },
+        { label: 'Yes, through a recognised prophetic gift under Scripture', t: ['adventist'] },
+        { label: 'Yes, through living prophets or an appointed channel', t: ['lds','jw'] }
+      ]
+    },
+    {
+      id: 'q-canon-books',
+      axis: 'canon',
+      text: 'Which books belong in the Bible?',
+      options: [
+        { label: '66 \u2014 the Protestant canon', t: ['reformed','lutheran','baptist','methodist','anglican','anabaptist','restoration','pentecostal','nondenom','quaker','adventist','oneness','jw'] },
+        { label: '73 \u2014 including the deuterocanonical books', t: ['catholic'] },
+        { label: 'A wider canon, as received in the Eastern churches', t: ['orthodox'] },
+        { label: 'The Bible together with additional modern scripture', t: ['lds'] }
+      ]
+    },
+    {
+      id: 'q-canon-closed',
+      axis: 'canon',
+      text: 'Is the canon closed?',
+      options: [
+        { label: 'Yes, permanently', t: ['reformed','lutheran','baptist','methodist','anglican','anabaptist','restoration','pentecostal','nondenom','catholic','orthodox','quaker','adventist','oneness','jw'] },
+        { label: 'No \u2014 God may yet add to it', t: ['lds'] }
+      ]
+    },
+    {
+      id: 'q-god-nature',
+      axis: 'godhead',
+      text: 'What is the relationship between Father, Son and Spirit?',
+      options: [
+        { label: 'Three coequal persons in one being', t: ['catholic','orthodox','lutheran','reformed','anglican','baptist','methodist','anabaptist','restoration','pentecostal','nondenom','quaker','adventist'] },
+        { label: 'One person revealed in three modes or manifestations', t: ['oneness'] },
+        { label: 'Three distinct beings, perfectly united in purpose', t: ['lds'] },
+        { label: 'The Father alone is God; the Son is his created agent', t: ['jw'] }
+      ]
+    },
+    {
+      id: 'q-god-christ',
+      axis: 'godhead',
+      text: 'What is Christ in relation to the Father?',
+      options: [
+        { label: 'Eternally begotten, of the same being as the Father', t: ['catholic','orthodox','lutheran','reformed','anglican','baptist','methodist','anabaptist','restoration','pentecostal','nondenom','quaker','adventist'] },
+        { label: 'The one God himself, in human flesh', t: ['oneness'] },
+        { label: 'A distinct divine being, subordinate to the Father in his beginning', t: ['lds'] },
+        { label: 'The first and only direct creation of God', t: ['jw'] }
+      ]
+    }
+  ];
+
+  return {
+    glossary: glossary,
+    axes: axes,
+    traditions: traditions,
+    authKeys: AUTH_KEYS,
+    authWords: AUTH_WORDS,
+    positions: P,
+    questions: questions
+  };
+})();
+
+</script>
+
+<script>
+/* ============================================================
+   ==                                                        ==
+   ==   E N G I N E  -  d o   n o t   e d i t                ==
+   ==                                                        ==
+   ==   Storage, rendering, routing, scoring.                ==
+   ==   Nothing below needs changing to add content.         ==
+   ==                                                        ==
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var D = window.DATA;
+  var app = document.getElementById('app');
+  var dlg = document.getElementById('glossary-dialog');
+  var folio = document.getElementById('folio');
+
+  var answers = [];
+  var step = 0;
+
+  /* ---------- storage ----------
+     Answers live in this browser and nowhere else. No server, no account,
+     no save code. Clearing site data clears the answers. */
+
+  var KEY = 'doctrinal-compass';
+
+  var Store = {
+    save: function () {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({
+          v: 1,
+          a: answers.slice(0, D.questions.length)
+                    .map(function (n) { return n < 0 ? '-' : String(n); }).join('')
+        }));
+      } catch (e) { /* private mode, quota, or storage disabled. Not fatal. */ }
+    },
+    load: function () {
+      try {
+        var raw = localStorage.getItem(KEY);
+        if (!raw) return null;
+        var o = JSON.parse(raw);
+        return (o && typeof o.a === 'string') ? o : null;
+      } catch (e) { return null; }
+    },
+    clear: function () {
+      try { localStorage.removeItem(KEY); } catch (e) { /* nothing to do */ }
+    }
+  };
+
+  /* ---------- helpers ---------- */
+
+  function byId(list, id) {
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  function trad(id) { return byId(D.traditions, id); }
+  function pos(t, a) { return D.positions[t + ':' + a] || null; }
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function go(h) { location.hash = h; }
+
+  function resetTest() {
+    answers = D.questions.map(function () { return -1; });
+    step = 0;
+  }
+
+  function taken() {
+    for (var i = 0; i < answers.length; i++) if (answers[i] >= 0) return true;
+    return false;
+  }
+
+  function answeredCount() {
+    var n = 0;
+    for (var i = 0; i < answers.length; i++) if (answers[i] >= 0) n++;
+    return n;
+  }
+
+  /* ---------- agreement ----------
+     Of the questions you answered, how many match this tradition.
+     The percentage is computed but never shown. It picks a band, and the
+     band is what the reader sees: a word, a colour, a five-step meter and
+     the raw count. Four ways of saying the same thing, so no one of them
+     has to carry it alone. */
+
+  var BANDS = [
+    { id: 'vclose', min: 90, steps: 5, word: 'Very close',
+      say: 'You answered almost exactly the way this tradition does.' },
+    { id: 'close',  min: 70, steps: 4, word: 'Close',
+      say: 'You agree with this tradition on most of what you answered.' },
+    { id: 'mixed',  min: 45, steps: 3, word: 'Mixed',
+      say: 'You agree on some points here and part ways on others.' },
+    { id: 'far',    min: 20, steps: 2, word: 'Some overlap',
+      say: 'You agree here and there, but differ on most of what you answered.' },
+    { id: 'vfar',   min: 0,  steps: 1, word: 'Far apart',
+      say: 'You and this tradition answered differently almost throughout.' }
+  ];
+
+  function agree(tId) {
+    var m = 0, n = 0;
+    D.questions.forEach(function (q, i) {
+      if (answers[i] < 0) return;
+      n++;
+      if (q.options[answers[i]].t.indexOf(tId) !== -1) m++;
+    });
+    return { matched: m, answered: n, pct: n ? Math.round(m / n * 100) : 0 };
+  }
+
+  function band(pct) {
+    for (var i = 0; i < BANDS.length; i++) if (pct >= BANDS[i].min) return BANDS[i];
+    return BANDS[BANDS.length - 1];
+  }
+
+  function meter(steps, total) {
+    var h = '';
+    for (var i = 0; i < (total || 5); i++) {
+      h += '<i' + (i < steps ? ' class="on"' : '') + '></i>';
+    }
+    return h;
+  }
+
+  /* Small inline chip, used in lists. */
+  function agChip(tId) {
+    var a = agree(tId), b = band(a.pct);
+    return '<span class="ag ag-' + b.id + '">' +
+      '<span class="meter">' + meter(b.steps) + '</span>' +
+      esc(b.word) +
+      '<span class="n">' + a.matched + '/' + a.answered + '</span>' +
+      '</span>';
+  }
+
+  /* Full block, used at the head of a tradition page and on the result. */
+  function agBlock(tId) {
+    var a = agree(tId), b = band(a.pct);
+    var bar = '';
+    for (var i = 0; i < 5; i++) {
+      bar += '<i class="' + (i < b.steps ? 'on ag-' + b.id : '') + '"></i>';
+    }
+    return '<div class="ag-big">' +
+      '<p class="eyebrow">How your answers line up</p>' +
+      '<span class="word ag-' + b.id + '">' + esc(b.word) + '</span>' +
+      '<div class="bar">' + bar + '</div>' +
+      '<p class="say">' + esc(b.say) + ' You matched ' + a.matched +
+      ' of the ' + a.answered + ' question' + (a.answered === 1 ? '' : 's') + ' you answered.</p>' +
+      '</div>';
+  }
+
+  /* ---------- authority ----------
+     Says it plainly. Every tradition is rated on the same four questions,
+     each answer printed as a word, with a five-step mark beside it so the
+     rows can be scanned against each other. */
+
+  function authProfile(t, seat) {
+    var rows = D.authKeys.map(function (k) {
+      var v = t.auth[k.k] || 0;
+      var cls = 'auth-row' + (seat ? ' ' + seat : '') + (v === 0 ? ' zero' : '');
+      return '<div class="' + cls + '">' +
+        '<span class="k">' + esc(k.label) + '</span>' +
+        '<span class="seg">' + meter(v) + '</span>' +
+        '<span class="v">' + esc(D.authWords[v]) + '</span>' +
+        '</div>';
+    }).join('');
+
+    return '<div class="auth">' +
+      '<div class="auth-head">' +
+        '<span class="lbl">Settled by</span>' +
+        '<span class="val">' + esc(t.locus) + '</span>' +
+      '</div>' + rows + '</div>';
+  }
+
+  /* The same four values, compressed to a mark you can learn to read at a
+     glance. It appears next to a tradition wherever the name appears. */
+  function fingerprint(t) {
+    return '<span class="fp" aria-hidden="true">' + D.authKeys.map(function (k) {
+      var v = t.auth[k.k] || 0, cells = '';
+      for (var i = 0; i < 5; i++) cells += '<i' + (i < v ? ' class="on"' : '') + '></i>';
+      return '<span>' + cells + '</span>';
+    }).join('') + '</span>';
+  }
+
+  /* ---------- glossary ---------- */
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-term]');
+    if (!el) return;
+    var g = D.glossary[el.getAttribute('data-term')];
+    if (!g) return;
+    dlg.innerHTML =
+      '<p class="eyebrow">In plain terms</p>' +
+      '<h4>' + esc(g.term) + '</h4>' +
+      '<p>' + g.body + '</p>' +
+      (g.also ? '<p class="also">' + g.also + '</p>' : '') +
+      '<button class="ghost small" data-close>Close</button>';
+    dlg.showModal();
+  });
+
+  dlg.addEventListener('click', function (e) {
+    if (e.target.hasAttribute('data-close') || e.target === dlg) dlg.close();
+  });
+
+  function wireTerms(root) {
+    root.querySelectorAll('[data-term]').forEach(function (el) {
+      el.className = 'term';
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); el.click(); }
+      });
+    });
+  }
+
+  /* ---------- position block ---------- */
+
+  function positionBlock(tId, aId, seat) {
+    var t = trad(tId), p = pos(tId, aId), ax = byId(D.axes, aId);
+    var cls = 'position' + (seat ? ' ' + seat : '');
+
+    if (!p) {
+      return '<div class="' + cls + '">' +
+        '<div class="who">' + esc(t.name) + '</div>' +
+        '<p class="unwritten"><b>Not written yet</b>' +
+        (ax ? esc(ax.question) + ' ' : '') +
+        'This axis has no entry for any tradition. It is left empty on purpose rather than filled with a plausible guess.</p>' +
+        '</div>';
+    }
+
+    var h = '<div class="' + cls + '">' +
+      '<div class="who">' + esc(t.name) + '</div>' +
+      '<p class="what">' + p.what + '</p>' +
+      '<p class="why"><b>Why they hold it</b>' + p.why + '</p>';
+
+    var dl = '';
+    if (p.texts && p.texts.length) {
+      dl += '<dt>Texts</dt><dd>' + p.texts.map(esc).join('  \u00b7  ') + '</dd>';
+    }
+    if (p.sources && p.sources.length) {
+      dl += '<dt>Source</dt>' + p.sources.map(function (s) {
+        return '<dd>' + esc(s) + '</dd>';
+      }).join('');
+    }
+    if (dl) h += '<div class="apparatus"><dl>' + dl + '</dl></div>';
+
+    if (p.caution) h += '<p class="note"><b>Read carefully</b>' + p.caution + '</p>';
+
+    return h + '</div>';
+  }
+
+  /* ---------- views ---------- */
+
+  function viewHome() {
+    var n = answeredCount(), total = D.questions.length;
+    var written = D.axes.filter(function (a) { return a.written; }).length;
+
+    return '<section class="hero">' +
+        '<h2>A comprehensive review of Christian doctrine, for Christians.</h2>' +
+        '<p class="lede">Explore what other traditions hold. Compare them against your own.</p>' +
+      '</section>' +
+      '<nav class="doors">' +
+        '<a class="door" href="#/explore">' +
+          '<span><span class="dt">Explore</span>' +
+          '<span class="dd">Read any tradition in its own words, with the reasoning from inside it.</span></span>' +
+          '<span class="meta">' + D.traditions.length + ' traditions<br>' + written + ' of ' + D.axes.length + ' questions</span>' +
+        '</a>' +
+        '<a class="door" href="#/compare">' +
+          '<span><span class="dt">Compare</span>' +
+          '<span class="dd">Put any two side by side and read where they part company, and why.</span></span>' +
+          '<span class="meta">Open<br>no answers needed</span>' +
+        '</a>' +
+        '<a class="door" href="#/test">' +
+          '<span><span class="dt">Assess</span>' +
+          '<span class="dd">' + (n
+            ? 'Your answers are saved in this browser. Retake or revise them any time.'
+            : 'Answer these and every tradition gets marked with how closely it lines up with you.') +
+          '</span></span>' +
+          '<span class="meta">' + (n ? n + ' of ' + total + '<br>answered' : total + ' questions<br>about 3 minutes') + '</span>' +
+        '</a>' +
+      '</nav>';
+  }
+
+  function viewExplore() {
+    var has = taken();
+    var list = D.traditions.slice();
+    if (has) list.sort(function (x, y) { return agree(y.id).pct - agree(x.id).pct; });
+
+    return '<p class="eyebrow">Explore</p>' +
+      '<h2>' + D.traditions.length + ' traditions</h2>' +
+      '<p class="lede">' + (has
+        ? 'Ordered by how closely each lines up with your answers. The mark beside each name is where that tradition puts its weight: Scripture, the church, tradition, direct revelation.'
+        : 'Ordered by where each places authority \u2014 Scripture at the top, direct revelation at the foot. The mark beside each name reads: Scripture, the church, tradition, direct revelation.') +
+      '</p>' +
+      '<ul class="list">' + list.map(function (t) {
+        return '<li><button onclick="location.hash=\'#/tradition/' + t.id + '\'">' +
+          '<span class="name">' + esc(t.name) + '</span>' +
+          '<span class="locus">' + esc(t.locus) + '</span>' +
+          '<span class="right">' + (has ? agChip(t.id) : fingerprint(t)) + '</span>' +
+          '</button></li>';
+      }).join('') + '</ul>' +
+      (has ? '' : '<p class="footnote">Take the assessment and this list re-sorts, showing how closely each tradition lines up with your own answers.</p>');
+  }
+
+  function viewTradition(id) {
+    var t = trad(id);
+    if (!t) return viewExplore();
+
+    var h = '<p class="eyebrow">' + esc(t.family) + '</p>' +
+            '<h2>' + esc(t.name) + '</h2>';
+
+    if (taken()) h += agBlock(t.id);
+
+    h += '<hr class="rule">' + authProfile(t);
+
+    D.axes.forEach(function (ax) {
+      h += '<div class="axis-block">' +
+        '<h3>' + esc(ax.name) + '</h3>' +
+        '<p class="axis-q">' + esc(ax.question) + '</p>' +
+        positionBlock(t.id, ax.id, 'a') +
+        '</div>';
+    });
+
+    return h + '<hr class="rule">' +
+      '<a class="btn ghost" href="#/compare?a=' + t.id + '">Compare ' + esc(t.name) + ' with another</a>';
+  }
+
+  function viewCompare(q) {
+    var aId = q.a || (taken() ? best() : 'catholic');
+    var bId = q.b || (aId === 'reformed' ? 'catholic' : 'reformed');
+    if (aId === bId) bId = (aId === 'reformed') ? 'catholic' : 'reformed';
+    var ta = trad(aId), tb = trad(bId);
+    if (!ta || !tb) { ta = trad('catholic'); tb = trad('reformed'); aId = 'catholic'; bId = 'reformed'; }
+
+    function sel(seat, cur) {
+      return '<select data-seat="' + seat + '" aria-label="Tradition ' + seat.toUpperCase() + '">' +
+        D.traditions.map(function (t) {
+          return '<option value="' + t.id + '"' + (t.id === cur ? ' selected' : '') + '>' +
+                 esc(t.name) + '</option>';
+        }).join('') + '</select>';
+    }
+
+    var h = '<p class="eyebrow">Compare</p>' +
+      '<div class="seats">' +
+        '<div><div class="seat-label a">Side A</div>' + sel('a', aId) + '</div>' +
+        '<div><div class="seat-label b">Side B</div>' + sel('b', bId) + '</div>' +
+      '</div>' +
+      '<button class="ghost small swap" data-swap>Swap sides</button>';
+
+    if (taken()) {
+      h += '<hr class="rule"><p class="eyebrow">Against your answers</p>' +
+        '<div class="vs">' +
+          '<div>' + agChip(aId) + '</div>' +
+          '<div>' + agChip(bId) + '</div>' +
+        '</div>';
+    }
+
+    h += '<hr class="rule"><p class="eyebrow">Where each puts its weight</p>' +
+      '<div class="vs-auth">' +
+        '<div><div class="seat-label a">' + esc(ta.name) + '</div>' + authProfile(ta, 'a') + '</div>' +
+        '<div><div class="seat-label b">' + esc(tb.name) + '</div>' + authProfile(tb, 'b') + '</div>' +
+      '</div>';
+
+    D.axes.forEach(function (ax) {
+      h += '<div class="axis-block">' +
+        '<h3>' + esc(ax.name) + '</h3>' +
+        '<p class="axis-q">' + esc(ax.question) + '</p>' +
+        positionBlock(aId, ax.id, 'a') +
+        positionBlock(bId, ax.id, 'b') +
+        '</div>';
+    });
+
+    if (!taken()) {
+      h += '<div class="locked" style="margin-top:26px">' +
+        '<p class="lede">Answer eight questions and every tradition on the site gets marked with how closely it lines up with you \u2014 including these two.</p>' +
+        '<div style="margin-top:14px"><a class="btn ghost" href="#/test">Take the assessment</a></div>' +
+        '</div>';
+    }
+
+    return h;
+  }
+
+  function best() {
+    var top = null, topScore = -1;
+    D.traditions.forEach(function (t) {
+      var s = agree(t.id).matched;
+      if (s > topScore) { topScore = s; top = t.id; }
+    });
+    return top;
+  }
+
+  function viewTest() {
+    if (!answers.length) resetTest();
+    if (step >= D.questions.length) { go('#/result'); return ''; }
+
+    var q = D.questions[step];
+    var ax = byId(D.axes, q.axis);
+
+    var track = '';
+    for (var i = 0; i < D.questions.length; i++) {
+      track += '<i class="' + (answers[i] >= 0 ? 'done' : (i === step ? 'now' : '')) + '"></i>';
+    }
+
+    return '<div class="progress">' +
+        '<span>Question ' + (step + 1) + ' of ' + D.questions.length + '</span>' +
+        '<span>' + esc(ax ? ax.name : '') + '</span>' +
+      '</div>' +
+      '<div class="ptrack">' + track + '</div>' +
+      '<h2>' + esc(q.text) + '</h2>' +
+      '<div style="margin-top:20px">' +
+      q.options.map(function (o, i) {
+        return '<button class="choice' + (answers[step] === i ? ' picked' : '') +
+               '" data-answer="' + i + '">' + esc(o.label) + '</button>';
+      }).join('') +
+      '</div>' +
+      '<div class="row" style="margin-top:14px">' +
+        (step > 0 ? '<button class="ghost small" data-back>Back</button>' : '') +
+        '<button class="ghost small" data-skip>Skip this one</button>' +
+      '</div>' +
+      '<p class="footnote">Nothing is sent anywhere. Your answers stay in this browser.</p>';
+  }
+
+  function viewResult() {
+    if (!taken()) {
+      return '<p class="eyebrow">Result</p><h2>Nothing answered yet.</h2>' +
+        '<p class="lede">Answer at least one question and the result appears here.</p>' +
+        '<div style="margin-top:18px"><a class="btn" href="#/test">Take the assessment</a></div>';
+    }
+
+    var bId = best(), bt = trad(bId);
+    var h = '<p class="eyebrow">Closest match</p>' +
+      '<h2>' + esc(bt.name) + '</h2>' +
+      '<p class="lede">' + esc(bt.locus) + '</p>' +
+      agBlock(bId);
+
+    var diff = [];
+    D.questions.forEach(function (q, i) {
+      if (answers[i] < 0) return;
+      if (q.options[answers[i]].t.indexOf(bId) === -1) diff.push({ q: q, i: i });
+    });
+
+    if (diff.length) {
+      h += '<hr class="rule"><p class="eyebrow">Where you part company</p>' +
+           '<p class="lede" style="margin-bottom:16px">Closest is not the same as agreed. These are the questions where you and ' +
+           esc(bt.name) + ' answered differently.</p>';
+
+      diff.forEach(function (d) {
+        var theirs = null;
+        d.q.options.forEach(function (o) { if (o.t.indexOf(bId) !== -1) theirs = o; });
+        var also = d.q.options[answers[d.i]].t.map(function (id) {
+          var t = trad(id); return t ? t.name : null;
+        }).filter(Boolean);
+
+        h += '<div class="diverge">' +
+          '<p class="axis-q" style="margin:0 0 10px">' + esc(d.q.text) + '</p>' +
+          '<span class="k">You answered</span>' +
+          '<p>' + esc(d.q.options[answers[d.i]].label) + '</p>' +
+          (theirs ? '<span class="k">' + esc(bt.name) + '</span><p>' + esc(theirs.label) + '</p>' : '') +
+          (also.length ? '<span class="k">Others answering as you did</span>' +
+            '<p class="also">' + also.map(esc).join(' \u00b7 ') + '</p>' : '') +
+          '</div>';
+      });
+    } else {
+      h += '<hr class="rule"><p class="lede">You answered exactly as ' + esc(bt.name) +
+           ' does on every question you completed.</p>';
+    }
+
+    h += '<hr class="rule">' +
+      '<a class="btn ghost" href="#/tradition/' + bId + '">Read ' + esc(bt.name) + ' in full</a>' +
+      '<a class="btn ghost" href="#/compare?a=' + bId + '">Compare it with another</a>' +
+      '<a class="btn ghost" href="#/test">Retake the assessment</a>' +
+      '<button class="ghost small" id="clear-answers" style="margin-top:14px">Clear my answers</button>' +
+      '<p class="footnote" id="clear-msg" hidden></p>' +
+      '<p class="footnote">Your answers are saved in this browser only. They are not sent anywhere, ' +
+      'and clearing your browser data clears them.</p>';
+
+    return h;
+  }
+
+  function viewTerms() {
+    var keys = Object.keys(D.glossary).sort(function (x, y) {
+      return D.glossary[x].term.localeCompare(D.glossary[y].term);
+    });
+
+    return '<p class="eyebrow">Terms</p>' +
+      '<h2>' + keys.length + ' terms, in plain English</h2>' +
+      '<p class="lede">These words come up throughout the site. Every one of them is tappable wherever it appears in the text.</p>' +
+      '<hr class="rule">' +
+      keys.map(function (k) {
+        var g = D.glossary[k];
+        return '<div class="axis-block" style="margin-top:22px">' +
+          '<h3>' + esc(g.term) + '</h3>' +
+          '<p style="font-size:16px">' + g.body + '</p>' +
+          (g.also ? '<p class="tiny" style="margin:0">' + g.also + '</p>' : '') +
+          '</div>';
+      }).join('');
+  }
+
+  /* ---------- routing ---------- */
+
+  var TITLES = {
+    '': 'Home', 'explore': 'Explore', 'tradition': 'Explore',
+    'compare': 'Compare', 'test': 'Assess', 'result': 'Result', 'terms': 'Terms'
+  };
+
+  function parseHash() {
+    var raw = location.hash.replace(/^#\/?/, ''), qs = {}, qi = raw.indexOf('?');
+    if (qi >= 0) {
+      raw.slice(qi + 1).split('&').forEach(function (p) {
+        var kv = p.split('=');
+        qs[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || '');
+      });
+      raw = raw.slice(0, qi);
+    }
+    return { parts: raw.split('/').filter(Boolean), qs: qs };
+  }
+
+  function render() {
+    var r = parseHash(), head = r.parts[0] || '', html;
+
+    switch (head) {
+      case '':          html = viewHome(); break;
+      case 'explore':   html = viewExplore(); break;
+      case 'tradition': html = viewTradition(r.parts[1]); break;
+      case 'compare':   html = viewCompare(r.qs); break;
+      case 'test':      html = viewTest(); break;
+      case 'result':    html = viewResult(); break;
+      case 'terms':     html = viewTerms(); break;
+      default:          html = viewHome();
+    }
+
+    app.innerHTML = html;
+    wireTerms(app);
+    folio.textContent = TITLES[head] || '';
+    window.scrollTo(0, 0);
+
+    document.querySelectorAll('nav.tabs a').forEach(function (link) {
+      var target = link.getAttribute('href').replace(/^#\/?/, '').split('/')[0];
+      var match = (target === head) ||
+                  (target === 'explore' && head === 'tradition') ||
+                  (target === 'test' && head === 'result');
+      if (match) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+
+    if (head === 'compare') wireCompare();
+    if (head === 'result') wireResult();
+  }
+
+  function wireCompare() {
+    function current() {
+      return {
+        a: app.querySelector('[data-seat="a"]').value,
+        b: app.querySelector('[data-seat="b"]').value
+      };
+    }
+    app.querySelectorAll('select[data-seat]').forEach(function (s) {
+      s.addEventListener('change', function () {
+        var c = current();
+        go('#/compare?a=' + c.a + '&b=' + c.b);
+      });
+    });
+    var swap = app.querySelector('[data-swap]');
+    if (swap) swap.addEventListener('click', function () {
+      var c = current();
+      go('#/compare?a=' + c.b + '&b=' + c.a);
+    });
+  }
+
+  function wireResult() {
+    var btn = document.getElementById('clear-answers');
+    var msg = document.getElementById('clear-msg');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      Store.clear();
+      resetTest();
+      if (msg) { msg.textContent = 'Answers cleared.'; msg.hidden = false; }
+      go('#/');
+    });
+  }
+
+  /* ---------- assessment interaction ---------- */
+
+  function showStep() {
+    app.innerHTML = viewTest();
+    wireTerms(app);
+    window.scrollTo(0, 0);
+  }
+
+  function advance() {
+    step++;
+    if (step >= D.questions.length) { go('#/result'); return; }
+    showStep();
+  }
+
+  app.addEventListener('click', function (e) {
+    if (step >= D.questions.length) return;
+    var c = e.target.closest('[data-answer]');
+    if (c) {
+      answers[step] = Number(c.getAttribute('data-answer'));
+      Store.save();
+      advance();
+      return;
+    }
+    if (e.target.closest('[data-skip]')) {
+      answers[step] = -1;
+      Store.save();
+      advance();
+      return;
+    }
+    if (e.target.closest('[data-back]')) {
+      step = Math.max(0, step - 1);
+      showStep();
+    }
+  });
+
+  /* ---------- boot ---------- */
+
+  resetTest();
+
+  var saved = Store.load();
+  if (saved) {
+    answers = saved.a.split('').map(function (ch) {
+      var n = (ch === '-') ? -1 : Number(ch);
+      return isNaN(n) ? -1 : n;
+    });
+    while (answers.length < D.questions.length) answers.push(-1);
+    answers.length = D.questions.length;
+  }
+
+  window.addEventListener('hashchange', render);
+  render();
+})();
+
+</script>
+</body>
+</html>
