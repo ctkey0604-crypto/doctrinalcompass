@@ -126,14 +126,15 @@ p:last-child{margin-bottom:0}
   border-bottom:1px solid var(--line);
 }
 .head-row{display:flex;align-items:center;gap:10px;height:60px}
-@media (max-width:440px){ .brand span{display:none} }
+@media (max-width:560px){ .brand span{display:none} }
+@media (max-width:400px){ .tab{padding:7px 8px;font-size:13px} }
 .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.028em;text-decoration:none;color:var(--ink);white-space:nowrap}
 .brand-mark{width:22px;height:22px;flex:none}
 
-.tabs{display:flex;gap:4px;background:var(--wash-2);padding:3px;border-radius:11px}
+.tabs{display:flex;gap:3px;background:var(--wash-2);padding:3px;border-radius:11px;margin-inline:auto}
 .tab{
   appearance:none;border:0;background:transparent;cursor:pointer;
-  padding:7px clamp(9px,1.6vw,17px);border-radius:8px;
+  padding:7px clamp(7px,1.5vw,15px);border-radius:8px;white-space:nowrap;
   font-size:14px;font-weight:600;color:var(--ink-2);letter-spacing:-.01em;
   transition:background .15s,color .15s;
 }
@@ -417,14 +418,7 @@ details.defn .body{font-size:14px;color:var(--ink-2);margin-top:9px;line-height:
 }
 
 /* ---------- nav badge + dropdown ---------- */
-.nav-badge-host{position:relative;margin-left:auto;display:flex;align-items:center}
-.nav-badge{
-  appearance:none;border:0;background:transparent;cursor:pointer;padding:3px;
-  border-radius:10px;display:grid;place-items:center;line-height:0;
-  transition:background .14s;
-}
-.nav-badge:hover{background:var(--wash-2)}
-.nav-badge[aria-expanded="true"]{background:var(--wash-2)}
+.acct-host{position:relative;display:flex;align-items:center;flex:none}
 .nav-pop{
   position:absolute;top:calc(100% + 9px);right:0;z-index:80;width:min(310px,calc(100vw - 28px));
   background:var(--paper);border:1px solid var(--line);border-radius:14px;
@@ -457,6 +451,53 @@ details.defn .body{font-size:14px;color:var(--ink-2);margin-top:9px;line-height:
 }
 .card-dark .exception .lbl{color:#D9A44F}
 .retake-note{margin-top:14px;padding:14px 16px;border-radius:12px;background:#FBEDE4;border:1px solid #F0CDB2}
+
+/* ---------- account + badges ---------- */
+.acct-btn{
+  appearance:none;border:1px solid var(--line-2);background:var(--paper);cursor:pointer;
+  padding:6px 12px 6px 8px;border-radius:99px;display:flex;align-items:center;gap:7px;
+  font-size:13.5px;font-weight:600;color:var(--ink);max-width:170px;
+  transition:border-color .14s,background .14s;
+}
+.acct-btn:hover{border-color:var(--ink-3);background:var(--wash)}
+.acct-btn .who{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acct-dot{width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--primary-wash);color:var(--primary-deep);font-family:var(--mono);font-size:11px;font-weight:700}
+.field{margin-bottom:11px}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.field input{
+  width:100%;padding:11px 13px;border-radius:10px;border:1.5px solid var(--line-2);
+  background:var(--paper);font:inherit;font-size:15.5px;color:var(--ink);
+}
+.field input:focus{border-color:var(--primary);outline:none}
+.field .hint{font-size:12px;color:var(--ink-3);margin-top:4px}
+.form-err{background:#FBE9EA;border:1px solid #F2C9CD;color:#8E2531;padding:10px 12px;
+  border-radius:9px;font-size:13.5px;margin-bottom:12px}
+.form-ok{background:#E4F4EC;border:1px solid #BEE3D2;color:#0A6448;padding:10px 12px;
+  border-radius:9px;font-size:13.5px;margin-bottom:12px}
+.code-box{
+  font-family:var(--mono);font-size:clamp(24px,6vw,32px);font-weight:700;letter-spacing:.22em;
+  color:var(--primary-deep);background:var(--primary-wash);border:1px dashed #B9C4FA;
+  border-radius:12px;padding:14px 10px;text-align:center;margin:10px 0;
+}
+.coll-grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.coll-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 14px;box-shadow:var(--shadow);text-align:center;cursor:pointer;width:100%;
+  transition:border-color .14s,box-shadow .14s;
+}
+.coll-card:hover{border-color:var(--line-2);box-shadow:var(--shadow-lg)}
+.coll-card .badge-svg{margin:0 auto}
+.coll-count{
+  display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;
+  border-radius:99px;background:var(--ink);color:#fff;font-family:var(--mono);font-size:11.5px;font-weight:700;
+  margin-left:6px;vertical-align:middle;
+}
+.coll-from{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line-2);text-align:left}
+.coll-from div{font-size:13px;color:var(--ink-2);padding:3px 0}
+.empty-note{border:1px dashed var(--line-2);border-radius:var(--r);padding:clamp(20px,4vw,32px);
+  text-align:center;background:var(--paper)}
 </style>
 </head>
 <body>
@@ -471,12 +512,13 @@ details.defn .body{font-size:14px;color:var(--ink-2);margin-top:9px;line-height:
       </svg>
       <span>Doctrinal Compass</span>
     </a>
-    <div class="nav-badge-host" id="nav-badge-host"></div>
     <nav class="tabs" role="tablist" aria-label="Sections">
       <button class="tab" role="tab" id="tab-assess"  aria-selected="true"  data-view="assess">Assess</button>
       <button class="tab" role="tab" id="tab-explore" aria-selected="false" data-view="explore">Explore</button>
       <button class="tab" role="tab" id="tab-compare" aria-selected="false" data-view="compare">Compare</button>
+      <button class="tab" role="tab" id="tab-badges"  aria-selected="false" data-view="badges">Badges</button>
     </nav>
+    <div class="acct-host" id="account-host"></div>
   </div>
 </header>
 
@@ -490,7 +532,7 @@ details.defn .body{font-size:14px;color:var(--ink-2);margin-top:9px;line-height:
     <div class="wrap section">
       <div class="card card-dark" style="padding:clamp(24px,4.6vw,48px)">
         <p class="eyebrow">Fourteen doctrines · Sixteen traditions</p>
-        <h1>Find out what you<br>actually believe.</h1>
+        <h1>Find and compare what<br>you actually believe.</h1>
         <p class="lede" style="margin-top:14px">Answer in plain language. You get one named tradition, an honest
         score for how firm that answer is, and every point where you differ from it.</p>
         <div class="btn-row" style="margin-top:22px">
@@ -635,6 +677,21 @@ details.defn .body{font-size:14px;color:var(--ink-2);margin-top:9px;line-height:
       down a column mean the same position, stated the same way.</p>
       <div id="full-matrix"></div>
     </div>
+  </div>
+</section>
+
+<!-- ============================ BADGES ============================ -->
+<section id="view-badges" class="view hidden" role="tabpanel" aria-labelledby="tab-badges">
+  <div class="wrap section">
+    <p class="eyebrow">Badges</p>
+    <h2 style="margin-bottom:6px">Your badge, and the ones you've collected</h2>
+    <p class="lede" style="margin-bottom:6px">A badge marks what someone believes, not what they belong to.</p>
+    <p class="meter-caption" style="margin-bottom:24px">Trade with a friend and you each end up holding the other's
+    badge. You keep one badge from each person — trade with them again and it updates to whatever they're wearing now.</p>
+
+    <div id="badges-mine"></div>
+    <div id="badges-trade" style="margin-top:var(--gap)"></div>
+    <div id="badges-coll" style="margin-top:var(--gap)"></div>
   </div>
 </section>
 
@@ -1004,6 +1061,7 @@ function setView(v){
   closeNavPop();
   if(v==='explore') renderExplore();
   if(v==='compare') renderCompare();
+  if(v==='badges')  renderBadgesView();
 }
 $$('.tab').forEach(t=>t.onclick=()=>setView(t.dataset.view));
 $$('[data-goto]').forEach(b=>b.onclick=()=>setView(b.dataset.goto));
@@ -1283,8 +1341,9 @@ function drawCompare(){
   const same=AXES.filter(a=>A.p[a.id]===B.p[a.id]);
   $('#cmp-summary').innerHTML=
     '<div style="display:flex;flex-wrap:wrap;gap:22px 34px;align-items:flex-start">'
-    +'<div><div class="stat-n">'+same.length+' of '+AXES.length+'</div>'
-    +'<div class="stat-l">doctrines where these two hold the same position</div></div>'
+    +'<div style="min-width:210px"><div class="stat-n">'+same.length+' of '+AXES.length+'</div>'
+    +'<div class="stat-l" style="margin-bottom:9px">doctrines where these two hold the same position</div>'
+    +bandMark(pct(same.length,AXES.length),same.length,AXES.length)+'</div>'
     +'<div style="flex:1;min-width:240px"><p class="eyebrow" style="margin-bottom:8px">'+esc(A.n)+' — what it leans on</p>'+authMark(A)+'</div>'
     +'<div style="flex:1;min-width:240px"><p class="eyebrow" style="margin-bottom:8px">'+esc(B.n)+' — what it leans on</p>'+authMark(B)+'</div>'
     +'</div><p class="meter-caption">'+AUTH_CAPTION+'</p>';
@@ -1340,7 +1399,7 @@ $('#btn-retake').onclick=()=>{ answers={}; save(); marks={}; saveMarks(); startQ
 $('#btn-clear').onclick=()=>{
   answers={}; save();
   marks={}; saveMarks();
-  badge=null; saveBadge(); renderNavBadge();
+  badge=null; saveBadge(); renderAccount();
   $('#assess-quiz').classList.add('hidden'); $('#assess-result').classList.add('hidden');
   $('#assess-start').classList.remove('hidden');
   setView('assess');
@@ -1355,7 +1414,7 @@ function finish(){
 }
 function reRender(){                       /* marks changed — everything downstream moves */
   const y=window.scrollY;
-  renderResult(); renderNavBadge();
+  renderResult(); renderAccount();
   window.scrollTo({top:y,behavior:'instant'});
 }
 function exceptionText(top,res){
@@ -1492,7 +1551,18 @@ function claimPanel(top,res,cf){
     +'<button class="btn btn-primary" id="btn-accept">Accept badge</button>'
     +'<button class="btn btn-ghost" onclick="closePanel()">Not now</button></div>');
 
-  $('#btn-accept').onclick=()=>{
+  $('#btn-accept').onclick=async()=>{
+    const b=$('#btn-accept');
+    if(signedIn()){
+      b.disabled=true; b.textContent='Claiming\u2026';
+      try{
+        acct=(await api('/badge',{id:top.t.id,exc:exc,pct:top.pc,band:cf.band.n})).user;
+      }catch(e){
+        b.disabled=false; b.textContent='Accept badge';
+        b.insertAdjacentHTML('beforebegin','<div class="form-err" style="width:100%">'+esc(e.message)+'</div>');
+        return;
+      }
+    }
     badge={id:top.t.id,m:top.m,total:res.total,pct:top.pc,conf:cf.score,band:cf.band.n,exc:exc,when:Date.now()};
     saveBadge(); closePanel(); reRender();
   };
@@ -1588,47 +1658,294 @@ function renderGap(top,res,diffs){
     $('#assess-result').classList.add('hidden'); startQuiz(); window.scrollTo({top:0,behavior:'instant'}); };
 }
 
-/* ---------- nav badge ---------- */
+/* ============================================================
+   ACCOUNTS
+   The browser never decides anything here. It asks the Worker,
+   the Worker decides, and this just draws the answer.
+   ============================================================ */
+const TSTORE='dc.token.v7';
+let token=null, acct=null;
+try{ token=localStorage.getItem(TSTORE)||null }catch(e){}
+
+async function api(path,body){
+  const h={'content-type':'application/json'};
+  if(token) h.authorization='Bearer '+token;
+  let r;
+  try{ r=await fetch('/api'+path,{method:'POST',headers:h,body:JSON.stringify(body||{})}); }
+  catch(e){ throw new Error('Could not reach the server. Check your connection.'); }
+  let d={}; try{ d=await r.json(); }catch(e){}
+  if(!r.ok){ const err=new Error(d.message||d.error||'Something went wrong.'); err.code=d.error; err.status=r.status; throw err; }
+  return d;
+}
+function setToken(t){ token=t; try{ t?localStorage.setItem(TSTORE,t):localStorage.removeItem(TSTORE) }catch(e){} }
+function signedIn(){ return !!(token&&acct); }
+
+async function refreshAccount(){
+  if(!token){ acct=null; return; }
+  try{ acct=(await api('/me')).user; }
+  catch(e){ if(e.status===401){ setToken(null); acct=null; } }
+}
+
+/* ---------- account dropdown ---------- */
 function closeNavPop(){
   const p=$('#nav-pop'); if(p) p.classList.add('hidden');
-  const b=$('#nav-badge-btn'); if(b) b.setAttribute('aria-expanded','false');
+  const b=$('#acct-btn'); if(b) b.setAttribute('aria-expanded','false');
 }
-function renderNavBadge(){
-  const host=$('#nav-badge-host'); if(!host) return;
-  const has = badge && BADGES[badge.id];
-  const t = has ? TR(badge.id) : null;
-  host.innerHTML='<button class="nav-badge'+(has?' has':'')+'" id="nav-badge-btn" aria-expanded="false" '
-      +'aria-label="'+(has?'Your doctrine badge: '+esc(t.n):'No doctrine badge yet')+'">'
-      +(has?badgeSVG(badge.id,30,true):blankBadgeSVG(30))
-    +'</button>'
-    +'<div class="nav-pop hidden" id="nav-pop">'
-      +(has
-        ? '<div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">'+badgeSVG(badge.id,54,true)
-          +'<div><p class="badge-claimed-tag">Your doctrine badge</p>'
-          +'<h4 style="margin-top:6px">'+esc(t.n)+'</h4></div></div>'
-          +(badge.exc?'<p class="small" style="margin-bottom:8px"><strong>Except on '+esc(badge.exc)+'.</strong></p>':'')
-          +'<p class="small">Closest match at '+badge.pct+'% · '+esc(String(badge.band).toLowerCase())+'. '
-          +'It marks what you believe, not what you belong to.</p>'
-          +'<button class="btn btn-ghost btn-block" id="nav-pop-view">See the full result</button>'
-        : '<h4>No badge yet</h4>'
-          +'<p class="small">Assess yourself to earn a doctrine badge. It marks what you believe, not what you belong to.</p>'
-          +'<button class="btn btn-primary btn-block" id="nav-pop-start">Start the assessment</button>')
-    +'</div>';
-
-  $('#nav-badge-btn').onclick=e=>{
+function renderAccount(){
+  const host=$('#account-host'); if(!host) return;
+  const inn=signedIn();
+  host.innerHTML='<button class="acct-btn" id="acct-btn" aria-expanded="false">'
+      +(inn?'<span class="acct-dot">'+esc(acct.username.slice(0,1).toUpperCase())+'</span>'
+            +'<span class="who">'+esc(acct.username)+'</span>'
+           :'<span class="who">Sign in</span>')
+    +'</button><div class="nav-pop hidden" id="nav-pop"></div>';
+  $('#acct-btn').onclick=e=>{
     e.stopPropagation();
     const p=$('#nav-pop'), open=p.classList.contains('hidden');
+    if(open) drawAccountPop();
     p.classList.toggle('hidden',!open);
-    $('#nav-badge-btn').setAttribute('aria-expanded',String(open));
+    $('#acct-btn').setAttribute('aria-expanded',String(open));
   };
-  const v=$('#nav-pop-view');
-  if(v) v.onclick=()=>{ closeNavPop(); setView('assess');
-    $('#assess-start').classList.add('hidden'); $('#assess-quiz').classList.add('hidden');
-    $('#assess-result').classList.remove('hidden'); renderResult(); };
-  const s=$('#nav-pop-start');
-  if(s) s.onclick=()=>{ closeNavPop(); setView('assess'); startQuiz(); };
 }
-document.addEventListener('click',e=>{ if(!e.target.closest('#nav-badge-host')) closeNavPop(); });
+function drawAccountPop(){
+  const p=$('#nav-pop');
+  if(signedIn()){
+    const t=acct.badge?TR(acct.badge.id):null;
+    p.innerHTML='<div style="display:flex;gap:11px;align-items:center;margin-bottom:12px">'
+      +(t?badgeSVG(acct.badge.id,44,true):blankBadgeSVG(44))
+      +'<div style="min-width:0"><h4 style="overflow:hidden;text-overflow:ellipsis">'+esc(acct.username)+'</h4>'
+      +'<div class="tiny">'+(t?esc(t.n):'No badge yet')+'</div></div></div>'
+      +(acct.code?'<p class="tiny" style="margin-bottom:4px">Your friend code</p>'
+        +'<div class="code-box" style="font-size:20px;padding:9px">'+esc(acct.code)+'</div>':'')
+      +'<button class="btn btn-ghost btn-block" id="pop-badges">Badges</button>'
+      +'<button class="btn btn-quiet btn-block" id="pop-out" style="margin-top:6px">Sign out</button>';
+    $('#pop-badges').onclick=()=>{ closeNavPop(); setView('badges'); };
+    $('#pop-out').onclick=async()=>{
+      try{ await api('/logout'); }catch(e){}
+      setToken(null); acct=null; closeNavPop(); renderAccount(); renderBadgesView();
+    };
+  } else {
+    p.innerHTML=authFormHTML('login');
+    wireAuthForm();
+  }
+}
+function authFormHTML(mode){
+  const up=mode==='signup';
+  return '<h4 style="margin-bottom:3px">'+(up?'Create an account':'Sign in')+'</h4>'
+    +'<p class="tiny" style="margin-bottom:12px">'+(up
+      ? 'So your badge and collection follow you between devices.'
+      : 'Welcome back.')+'</p>'
+    +'<div id="auth-msg"></div>'
+    +'<div class="field"><label for="au-user">Username</label>'
+      +'<input id="au-user" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="24">'
+      +(up?'<div class="hint">Six characters or more. Letters, numbers, _ and - only.</div>':'')+'</div>'
+    +'<div class="field"><label for="au-pass">Password</label>'
+      +'<input id="au-pass" type="password" autocomplete="'+(up?'new-password':'current-password')+'" maxlength="200">'
+      +(up?'<div class="hint">Six characters or more.</div>':'')+'</div>'
+    +'<button class="btn btn-primary btn-block" id="au-go">'+(up?'Create account':'Sign in')+'</button>'
+    +'<button class="btn btn-quiet btn-block" id="au-swap" style="margin-top:4px">'
+      +(up?'I already have an account':'Create an account instead')+'</button>'
+    +(up?'<p class="tiny" style="margin-top:10px">Use a password you don\u2019t use anywhere else. '
+        +'Your password is stored scrambled and can never be read back \u2014 which also means it can\u2019t be recovered if you forget it.</p>':'');
+}
+function wireAuthForm(){
+  const mode=$('#au-go').textContent==='Create account'?'signup':'login';
+  const go=async()=>{
+    const username=$('#au-user').value.trim(), password=$('#au-pass').value;
+    const msg=$('#auth-msg');
+    if(!username||!password){ msg.innerHTML='<div class="form-err">Fill in both fields.</div>'; return; }
+    if(mode==='signup'&&(username.length<6||password.length<6)){
+      msg.innerHTML='<div class="form-err">Username and password both need at least six characters.</div>'; return; }
+    $('#au-go').disabled=true; $('#au-go').textContent='Working\u2026';
+    try{
+      const d=await api('/'+mode,{username,password});
+      setToken(d.token); acct=d.user;
+      closeNavPop(); renderAccount();
+      await syncLocalBadge();
+      renderBadgesView();
+      if(!$('#view-badges').classList.contains('hidden')) renderBadgesView();
+    }catch(e){
+      msg.innerHTML='<div class="form-err">'+esc(e.message)+'</div>';
+      $('#au-go').disabled=false; $('#au-go').textContent=mode==='signup'?'Create account':'Sign in';
+    }
+  };
+  $('#au-go').onclick=go;
+  $('#au-pass').onkeydown=e=>{ if(e.key==='Enter') go(); };
+  $('#au-swap').onclick=()=>{ $('#nav-pop').innerHTML=authFormHTML(mode==='signup'?'login':'signup'); wireAuthForm(); };
+}
+
+/* If you claimed a badge signed out and then signed in, carry it up once. */
+async function syncLocalBadge(){
+  if(!signedIn()) return;
+  if(acct.badge){                       // the account wins; it is the shared record
+    badge={id:acct.badge.id,exc:acct.badge.exc,pct:acct.badge.pct,band:acct.badge.band,
+           m:0,total:AXES.length,when:acct.badge.at};
+    saveBadge(); return;
+  }
+  if(badge&&BADGES[badge.id]){
+    try{ acct=(await api('/badge',{id:badge.id,exc:badge.exc||null,pct:badge.pct,band:badge.band})).user; }catch(e){}
+  }
+}
+
+/* ---------- congratulations waiting from a trade ---------- */
+function showNotices(){
+  if(!signedIn()||!acct.notices||!acct.notices.length) return;
+  const list=acct.notices.slice();
+  openPanel('<div style="text-align:center">'
+    +'<div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">'
+    +list.slice(0,4).map(nt=>BADGES[nt.id]?badgeSVG(nt.id,84,true):'').join('')+'</div>'
+    +'<h3 style="margin:12px 0 6px">Congratulations</h3>'
+    +'<p class="small">'+list.map(nt=>{
+        const t=TR(nt.id);
+        return 'You earned the <strong>'+esc(t?t.n:nt.id)+'</strong> badge from <strong>'+esc(nt.from)+'</strong>.';
+      }).join('<br>')+'</p></div>'
+    +'<button class="btn btn-primary btn-block" style="margin-top:20px" id="nt-ok">See my collection</button>');
+  $('#nt-ok').onclick=async()=>{
+    try{ acct=(await api('/seen')).user; }catch(e){}
+    closePanel(); setView('badges');
+  };
+}
+
+/* ============================================================
+   BADGES VIEW
+   ============================================================ */
+function renderBadgesView(){
+  const mine=$('#badges-mine'); if(!mine) return;
+  const b = signedIn()&&acct.badge ? acct.badge : (badge&&BADGES[badge.id]?badge:null);
+  const t = b?TR(b.id):null;
+
+  /* --- your own badge --- */
+  mine.innerHTML='<div class="card">'
+    +'<p class="eyebrow">Your badge</p>'
+    +(t
+      ? '<div class="badge-hold" style="margin-top:10px">'+badgeSVG(b.id,120,true)
+        +'<div style="flex:1;min-width:200px"><h3 style="margin-bottom:5px">'+esc(t.n)+'</h3>'
+        +(b.exc?'<p class="small" style="margin-bottom:6px"><strong>Except on '+esc(b.exc)+'.</strong></p>':'')
+        +'<p class="small">'+(b.pct?'Closest match at '+b.pct+'%. ':'')
+        +'It marks what you believe, not what you belong to.</p>'
+        +(signedIn()&&acct.nextClaimAt&&Date.now()<acct.nextClaimAt
+          ? '<p class="tiny" style="margin-top:8px">You can change your badge again in '
+            +Math.ceil((acct.nextClaimAt-Date.now())/3600000)+' hour'
+            +(Math.ceil((acct.nextClaimAt-Date.now())/3600000)===1?'':'s')+'.</p>':'')
+        +'</div></div>'
+      : '<div class="empty-note" style="margin-top:12px">'+blankBadgeSVG(84)
+        +'<h3 style="margin:12px 0 5px">No badge yet</h3>'
+        +'<p class="small" style="margin:0 auto 14px;max-width:40ch">Take the assessment and you can claim the badge '
+        +'of whichever tradition your answers land closest to.</p>'
+        +'<button class="btn btn-primary" data-goto="assess">Start the assessment</button></div>')
+    +'</div>';
+  $$('#badges-mine [data-goto]').forEach(x=>x.onclick=()=>setView(x.dataset.goto));
+
+  renderTradeBox(!!t);
+  renderCollection();
+}
+
+function renderTradeBox(hasBadge){
+  const host=$('#badges-trade');
+  if(!signedIn()){
+    host.innerHTML='<div class="card"><p class="eyebrow">Trading</p>'
+      +'<h3 style="margin-bottom:5px">Sign in to trade badges</h3>'
+      +'<p class="small" style="margin-bottom:14px">Trading needs an account so your friend has somewhere to send '
+      +'their badge. Everything else on this site works without one.</p>'
+      +'<button class="btn btn-primary" id="trade-signin">Sign in or create an account</button></div>';
+    $('#trade-signin').onclick=()=>{ $('#acct-btn').click(); };
+    return;
+  }
+  if(!hasBadge||!acct.code){
+    host.innerHTML='<div class="card"><p class="eyebrow">Your friend code</p>'
+      +'<h3 style="margin-bottom:5px">Claim a badge to get your code</h3>'
+      +'<p class="small" style="margin:0">Your friend code appears once you\u2019re wearing a badge \u2014 there\u2019s nothing '
+      +'to trade until then.</p></div>';
+    return;
+  }
+  host.innerHTML='<div class="card"><p class="eyebrow">Trading</p>'
+    +'<div class="grid g-2" style="margin-top:6px">'
+      +'<div><h4 style="margin-bottom:4px">Your friend code</h4>'
+        +'<p class="tiny">Give this to a friend. It never changes.</p>'
+        +'<div class="code-box">'+esc(acct.code)+'</div>'
+        +'<button class="btn btn-ghost btn-block" id="code-copy">Copy code</button></div>'
+      +'<div><h4 style="margin-bottom:4px">Enter a friend\u2019s code</h4>'
+        +'<p class="tiny">You\u2019ll each end up holding the other\u2019s badge.</p>'
+        +'<div id="trade-msg" style="margin-top:10px"></div>'
+        +'<div class="field"><label for="trade-in" class="sr">Friend code</label>'
+        +'<input id="trade-in" maxlength="6" autocapitalize="characters" autocomplete="off" spellcheck="false" '
+        +'style="font-family:var(--mono);letter-spacing:.18em;text-transform:uppercase;text-align:center;font-size:20px"></div>'
+        +'<button class="btn btn-primary btn-block" id="trade-go">Trade badges</button></div>'
+    +'</div></div>';
+
+  $('#code-copy').onclick=()=>{
+    const done=()=>{ $('#code-copy').textContent='Copied'; setTimeout(()=>{$('#code-copy').textContent='Copy code';},1600); };
+    if(navigator.clipboard) navigator.clipboard.writeText(acct.code).then(done,()=>{});
+    else done();
+  };
+  const go=async()=>{
+    const code=$('#trade-in').value.trim().toUpperCase(), msg=$('#trade-msg');
+    if(code.length!==6){ msg.innerHTML='<div class="form-err">A friend code is six characters.</div>'; return; }
+    $('#trade-go').disabled=true; $('#trade-go').textContent='Trading\u2026';
+    try{
+      const d=await api('/trade',{code});
+      acct=d.user;
+      const t=TR(d.got.id);
+      closePanel();
+      openPanel('<div style="text-align:center">'+badgeSVG(d.got.id,110,true)
+        +'<h3 style="margin:12px 0 6px">Congratulations</h3>'
+        +'<p class="small">You '+(d.got.updated?'updated':'earned')+' the <strong>'+esc(t?t.n:d.got.id)
+        +'</strong> badge from <strong>'+esc(d.got.from)+'</strong>.'
+        +(d.got.updated?' They were already in your collection, so their slot now shows what they\u2019re wearing today.':'')
+        +'</p><p class="tiny" style="margin-top:8px">'+esc(d.got.from)+' now holds your badge too, and will see this '
+        +'next time they open the site.</p></div>'
+        +'<button class="btn btn-primary btn-block" style="margin-top:20px" onclick="closePanel()">Nice</button>');
+      renderBadgesView();
+    }catch(e){
+      msg.innerHTML='<div class="form-err">'+esc(e.message)+'</div>';
+    }
+    const g=$('#trade-go'); if(g){ g.disabled=false; g.textContent='Trade badges'; }
+  };
+  $('#trade-go').onclick=go;
+  $('#trade-in').onkeydown=e=>{ if(e.key==='Enter') go(); };
+}
+
+function renderCollection(){
+  const host=$('#badges-coll');
+  const coll = signedIn() ? (acct.collection||{}) : {};
+  const people = Object.keys(coll);
+
+  if(!people.length){
+    host.innerHTML='<div class="card"><p class="eyebrow">Your collection</p>'
+      +'<div class="empty-note" style="margin-top:12px;border:0;padding:18px 0">'
+      +'<p class="small" style="margin:0">'+(signedIn()
+        ? 'Nothing collected yet. Trade codes with someone and their badge shows up here.'
+        : 'Sign in to start a collection.')+'</p></div></div>';
+    return;
+  }
+  /* group by badge — several people can hold the same one */
+  const groups={};
+  people.forEach(who=>{ const g=coll[who]; (groups[g.id]=groups[g.id]||[]).push({who,...g}); });
+  const ids=Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length
+    ||(TR(a)?TR(a).n:a).localeCompare(TR(b)?TR(b).n:b));
+
+  host.innerHTML='<div class="card"><p class="eyebrow">Your collection</p>'
+    +'<h3 style="margin-bottom:4px">'+people.length+' badge'+(people.length===1?'':'s')
+    +' from '+people.length+' '+(people.length===1?'person':'people')+'</h3>'
+    +'<p class="meter-caption" style="margin-bottom:18px">Tap a badge to see who you got it from.</p>'
+    +'<div class="coll-grid">'+ids.map(id=>{
+      const g=groups[id], t=TR(id);
+      return '<button class="coll-card" data-id="'+esc(id)+'">'
+        +(BADGES[id]?badgeSVG(id,86,true):blankBadgeSVG(86))
+        +'<div style="font-weight:700;font-size:14px;letter-spacing:-.012em;margin-top:9px">'
+        +esc(t?t.n:id)+(g.length>1?'<span class="coll-count">'+g.length+'</span>':'')+'</div>'
+        +'<div class="coll-from hidden" id="from-'+esc(id)+'">'
+        +g.map(x=>'<div>'+esc(x.who)+(x.exc?' <span class="tiny">\u2014 except on '+esc(x.exc)+'</span>':'')+'</div>').join('')
+        +'</div></button>';
+    }).join('')+'</div></div>';
+
+  $$('#badges-coll .coll-card').forEach(c=>c.onclick=()=>{
+    const f=$('#from-'+c.dataset.id);
+    if(f) f.classList.toggle('hidden');
+  });
+}
+
+document.addEventListener('click',e=>{ if(!e.target.closest('#account-host')) closeNavPop(); });
 
 /* ---------- glossary ---------- */
 $('#glossary').innerHTML=Object.keys(DEFNS).map(k=>
@@ -1637,7 +1954,13 @@ $('#glossary').innerHTML=Object.keys(DEFNS).map(k=>
 
 /* ---------- boot ---------- */
 renderMatrix($('#home-matrix'), ['authority','god','salvation','baptism','supper','governance']);
-renderNavBadge();
+renderAccount();
+refreshAccount().then(async()=>{
+  await syncLocalBadge();
+  renderAccount();
+  if(!$('#view-badges').classList.contains('hidden')) renderBadgesView();
+  showNotices();
+});
 const done=answeredCount();
 if(done>=QUESTIONS.length){
   $('#assess-start').classList.add('hidden');
@@ -1652,7 +1975,7 @@ if(done>=QUESTIONS.length){
   $('#btn-start').parentNode.appendChild(b);
 }
 const h=(location.hash||'').replace('#','');
-setView(['assess','explore','compare'].includes(h)?h:'assess');
+setView(['assess','explore','compare','badges'].includes(h)?h:'assess');
 </script>
 </body>
 </html>
