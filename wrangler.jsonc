@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "doctrinalcompass",
+  "main": "src/index.js",
+  "compatibility_date": "2025-07-01",
+
+  // The static site. The Worker serves these for every non-/api/ request.
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+
+  // Accounts, friend codes and collections.
+  "kv_namespaces": [
+    {
+      "binding": "DC",
+      "id": "e6270bf5fece4b49a4efe8ec71c07fb7"
+    }
+  ]
+}
