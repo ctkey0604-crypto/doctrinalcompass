@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Christian Denomination Test — Doctrinal Compass</title>
+<meta name="description" content="A free reference and self-assessment for Christian doctrine. Compare what sixteen denominations teach, or take the test and find where you stand.">
+<link rel="canonical" href="https://doctrinalcompass.org/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#151A2E">
+<meta name="author" content="Doctrinal Compass">
+
+<!-- the mark Google shows beside the result. Needs to be a real file at a real
+     URL: Google will not read an inline data: icon. -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="/favicon-512.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- link previews -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctrinal Compass">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://doctrinalcompass.org/">
+<meta property="og:title" content="Christian Denomination Test — Doctrinal Compass">
+<meta property="og:description" content="A free reference and self-assessment for Christian doctrine. Compare what sixteen denominations teach, or take the test and find where you stand.">
+<meta property="og:image" content="https://doctrinalcompass.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctrinal Compass — compare Christian doctrine across sixteen traditions">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Christian Denomination Test — Doctrinal Compass">
+<meta name="twitter:description" content="A free reference and self-assessment for Christian doctrine. Compare what sixteen denominations teach, or take the test and find where you stand.">
+<meta name="twitter:image" content="https://doctrinalcompass.org/og-image.png">
+
+<!-- structured data: what this site is, in the form search engines parse.
+     Nothing here is a claim the site does not already make on the page. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://doctrinalcompass.org/#website",
+      "url": "https://doctrinalcompass.org/",
+      "name": "Doctrinal Compass",
+      "alternateName": "Christian Denomination Test",
+      "description": "A free reference and self-assessment for Christian doctrine. Compare what sixteen denominations teach, or take the test and find where you stand.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://doctrinalcompass.org/#app",
+      "name": "Christian Denomination Test",
+      "url": "https://doctrinalcompass.org/",
+      "isPartOf": { "@id": "https://doctrinalcompass.org/#website" },
+      "applicationCategory": "ReferenceApplication",
+      "operatingSystem": "Any web browser",
+      "browserRequirements": "Requires JavaScript",
+      "description": "A 42-question self-assessment that names which of sixteen Christian traditions your answers land closest to, alongside a doctrine-by-doctrine comparison of all sixteen.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "about": [
+        { "@type": "Thing", "name": "Christian denominations" },
+        { "@type": "Thing", "name": "Christian doctrine" },
+        { "@type": "Thing", "name": "Comparative theology" }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DOCTRINAL COMPASS — tokens
+   ============================================================ */
+:root{
+  /* surfaces + ink */
+  --ink:#151A2E;
+  --ink-2:#4B5372;
+  --ink-3:#7C849E;
+  --line:#E1E6F1;
+  --line-2:#CED6E7;
+  --paper:#FFFFFF;
+  --wash:#F4F7FC;
+  --wash-2:#EAEFF9;
+
+  /* brand */
+  --primary:#3B4FE0;
+  --primary-deep:#2334A8;
+  --primary-wash:#EDF0FE;
+  --gold:#B8781A;
+  --gold-wash:#FCF3E2;
+
+  /* authority locus — categorical, not a scale */
+  --auth-scripture:#3B4FE0;
+  --auth-tradition:#0C8AA3;
+  --auth-office:#8543C6;
+  --auth-revelation:#BE3B82;
+
+  /* agreement bands — ordered scale */
+  --band-1:#0C7F58;
+  --band-2:#5A932C;
+  --band-3:#B8781A;
+  --band-4:#CB6224;
+  --band-5:#B93544;
+
+  /* type */
+  --display:'Bricolage Grotesque','Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+
+  /* metrics — every one fluid so phone-desktop-mode still scales */
+  --wrap:1140px;
+  --gutter:clamp(16px,4.2vw,40px);
+  --pad-card:clamp(18px,3.6vw,28px);
+  --gap:clamp(12px,2.4vw,20px);
+  --sect:clamp(44px,7vw,86px);
+  --r:14px;
+  --r-sm:9px;
+  --shadow:0 1px 2px rgba(21,26,46,.05),0 6px 18px -8px rgba(21,26,46,.14);
+  --shadow-lg:0 2px 4px rgba(21,26,46,.06),0 18px 44px -18px rgba(21,26,46,.26);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--wash);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:clamp(15.5px,1.05vw + 13px,17.5px);
+  line-height:1.62;
+  letter-spacing:-.003em;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+a{color:var(--primary-deep);text-decoration-thickness:1px;text-underline-offset:2px}
+
+:focus-visible{outline:3px solid var(--primary);outline-offset:2px;border-radius:4px}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(30px,6.4vw,54px);letter-spacing:-.032em}
+h2{font-size:clamp(23px,3.4vw,34px);letter-spacing:-.026em}
+h3{font-size:clamp(18px,1.9vw,22px);letter-spacing:-.018em}
+h4{font-size:clamp(15.5px,1.3vw,17px);letter-spacing:-.012em}
+p{margin:0 0 .85em;max-width:68ch}
+p:last-child{margin-bottom:0}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11.5px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 10px;
+}
+.lede{font-size:clamp(16.5px,1.5vw,19.5px);color:var(--ink-2);line-height:1.55;max-width:60ch}
+.small{font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.tiny{font-size:12.5px;line-height:1.45;color:var(--ink-3)}
+
+/* caption that sits under every meter — says what is being measured */
+.meter-caption{
+  font-size:12.5px;line-height:1.4;color:var(--ink-3);
+  margin-top:6px;max-width:46ch;
+}
+
+/* ---------- layout ---------- */
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.stack>*+*{margin-top:var(--gap)}
+.section{padding-block:var(--sect)}
+.hr{height:1px;background:var(--line);border:0;margin:0}
+
+.grid{display:grid;gap:var(--gap)}
+@media (min-width:660px){ .g-2{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:960px){ .g-3{grid-template-columns:repeat(3,1fr)} .g-2{grid-template-columns:repeat(2,1fr)} }
+
+/* ---------- header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.head-row{display:flex;align-items:center;gap:10px;height:60px}
+@media (max-width:560px){ .brand span{display:none} }
+@media (max-width:400px){ .tab{padding:7px 8px;font-size:13px} }
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.028em;text-decoration:none;color:var(--ink);white-space:nowrap}
+.brand-mark{width:22px;height:22px;flex:none}
+
+.tabs{display:flex;gap:3px;background:var(--wash-2);padding:3px;border-radius:11px;margin-inline:auto}
+.tab{
+  appearance:none;border:0;background:transparent;cursor:pointer;
+  padding:7px clamp(7px,1.5vw,15px);border-radius:8px;white-space:nowrap;
+  font-size:14px;font-weight:600;color:var(--ink-2);letter-spacing:-.01em;
+  transition:background .15s,color .15s;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--paper);color:var(--primary-deep);box-shadow:0 1px 2px rgba(21,26,46,.1)}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--pad-card);box-shadow:var(--shadow);
+}
+.card-tight{padding:clamp(14px,2.6vw,20px)}
+.card-dark{
+  background:linear-gradient(158deg,#1B2140 0%,#151A2E 58%,#111629 100%);
+  border:1px solid #2A3157;color:#EEF1FA;
+}
+.card-dark h1,.card-dark h2,.card-dark h3{color:#fff}
+.card-dark .lede,.card-dark p{color:#B9C1DA}
+.card-dark .eyebrow{color:#7C88B4}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 22px;border-radius:11px;border:1px solid transparent;
+  font-weight:600;font-size:15.5px;letter-spacing:-.01em;
+  cursor:pointer;text-decoration:none;transition:transform .12s,background .15s,border-color .15s;
+  min-height:46px;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 1px 2px rgba(35,52,168,.3),0 8px 20px -10px rgba(59,79,224,.7)}
+.btn-primary:hover{background:var(--primary-deep)}
+.btn-ghost{background:var(--paper);border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink-3);background:var(--wash)}
+.btn-quiet{background:transparent;border-color:transparent;color:var(--ink-2);padding:9px 12px;min-height:38px;font-size:14px}
+.btn-quiet:hover{background:var(--wash-2);color:var(--ink)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px}
+.btn-block{width:100%}
+
+/* ---------- chips + pills ---------- */
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 10px;border-radius:999px;font-size:12.5px;font-weight:600;
+  background:var(--wash-2);color:var(--ink-2);white-space:nowrap;
+}
+.pill-dot{width:7px;height:7px;border-radius:50%;flex:none;background:currentColor}
+
+/* authority pill takes its colour from the locus */
+.pill-auth{background:color-mix(in srgb,currentColor 11%,transparent)}
+
+/* ---------- the authority mark (labelled, not a bare square) ---------- */
+.auth-mark{display:flex;gap:3px;align-items:center}
+.auth-seg{height:8px;flex:1;border-radius:2px;background:var(--line-2)}
+.auth-seg.on{background:currentColor}
+
+/* ---------- agreement band meter ---------- */
+.band{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.band-dots{display:flex;gap:4px}
+.band-dot{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.band-dot.on{background:currentColor}
+.band-name{font-weight:700;font-size:14.5px;letter-spacing:-.012em}
+.band-count{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);font-weight:600}
+
+/* ---------- matrix (the signature element) ---------- */
+.matrix-shell{
+  border:1px solid var(--line);border-radius:var(--r);background:var(--paper);
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.matrix-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+table.matrix{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:13px}
+table.matrix th,table.matrix td{padding:0;text-align:left}
+table.matrix thead th{
+  position:sticky;top:0;z-index:3;background:var(--wash-2);
+  font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-2);padding:11px 10px;border-bottom:1px solid var(--line-2);
+  white-space:nowrap;
+}
+table.matrix tbody th{
+  position:sticky;left:0;z-index:2;background:var(--paper);
+  padding:9px 12px;font-weight:600;font-size:13px;white-space:nowrap;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  text-align:left;letter-spacing:-.012em;
+}
+table.matrix thead th:first-child{left:0;z-index:4;background:var(--wash-2);border-right:1px solid var(--line-2)}
+table.matrix tbody td{border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:middle}
+table.matrix tbody tr:hover th,table.matrix tbody tr:hover td{background:var(--wash)}
+.cell{
+  display:block;width:100%;text-align:left;border:0;cursor:pointer;
+  padding:6px 9px;border-radius:7px;font-size:12px;font-weight:600;line-height:1.25;
+  letter-spacing:-.008em;min-width:104px;
+  transition:filter .12s;
+}
+.cell:hover{filter:brightness(.94)}
+.matrix-legend{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px var(--pad-card);border-top:1px solid var(--line);background:var(--wash)}
+.scroll-hint{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-3);padding:9px var(--pad-card) 0;
+}
+@media (min-width:900px){ .scroll-hint{display:none} }
+
+/* ---------- question flow ---------- */
+.q-progress{height:5px;background:var(--wash-2);border-radius:99px;overflow:hidden}
+.q-progress-fill{height:100%;background:var(--primary);border-radius:99px;transition:width .3s ease}
+.opt{
+  display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;
+  padding:14px 16px;border-radius:11px;border:1.5px solid var(--line);
+  background:var(--paper);cursor:pointer;transition:border-color .13s,background .13s;
+  font-size:15.5px;line-height:1.45;letter-spacing:-.008em;
+}
+.opt:hover{border-color:var(--line-2);background:var(--wash)}
+.opt[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-wash);box-shadow:inset 0 0 0 1px var(--primary)}
+.opt-key{
+  flex:none;width:24px;height:24px;border-radius:7px;background:var(--wash-2);
+  display:grid;place-items:center;font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--ink-2);
+  margin-top:1px;
+}
+.opt[aria-pressed="true"] .opt-key{background:var(--primary);color:#fff}
+.opt-list{display:grid;gap:9px}
+
+details.defn{border-top:1px dashed var(--line-2);margin-top:14px;padding-top:12px}
+details.defn summary{
+  cursor:pointer;font-size:13.5px;font-weight:600;color:var(--primary-deep);
+  list-style:none;display:inline-flex;align-items:center;gap:6px;
+}
+details.defn summary::-webkit-details-marker{display:none}
+details.defn summary::before{content:'+';font-family:var(--mono);font-weight:700}
+details.defn[open] summary::before{content:'–'}
+details.defn .body{font-size:14px;color:var(--ink-2);margin-top:9px;line-height:1.55}
+
+/* ---------- result ---------- */
+.verdict{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(28px,6vw,46px);line-height:1.05;letter-spacing:-.032em;color:#fff;
+  margin:6px 0 0;
+}
+.axis-row{
+  display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;
+  padding:13px 0;border-bottom:1px solid var(--line);
+}
+.axis-row:last-child{border-bottom:0}
+.tick{
+  width:22px;height:22px;border-radius:7px;display:grid;place-items:center;
+  font-size:13px;font-weight:800;flex:none;margin-top:1px;
+}
+.tick.yes{background:#E4F4EC;color:var(--band-1)}
+.tick.no{background:#FBE9EA;color:var(--band-5)}
+@media (min-width:700px){
+  .axis-row{grid-template-columns:auto 200px 1fr;align-items:center}
+}
+
+/* ---------- compare ---------- */
+.cmp-head{display:grid;gap:var(--gap)}
+@media (min-width:660px){ .cmp-head{grid-template-columns:1fr 1fr} }
+.select{
+  width:100%;padding:12px 14px;border-radius:11px;border:1.5px solid var(--line-2);
+  background:var(--paper);font-size:15.5px;font-weight:600;color:var(--ink);
+  appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237C849E' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
+}
+.cmp-row{
+  display:grid;gap:6px 14px;padding:16px 0;border-bottom:1px solid var(--line);
+  grid-template-columns:1fr;
+}
+.cmp-row:last-child{border-bottom:0}
+@media (min-width:700px){ .cmp-row{grid-template-columns:180px 1fr 1fr;align-items:start} }
+.cmp-axis{font-weight:700;font-size:14.5px;letter-spacing:-.014em}
+.cmp-side{padding:11px 13px;border-radius:10px;background:var(--wash);border:1px solid var(--line)}
+.cmp-side.same{background:#EDF7F2;border-color:#C9E6D8}
+.cmp-side-name{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+.cmp-pos{font-weight:700;font-size:14.5px;letter-spacing:-.012em;margin-bottom:3px}
+@media (min-width:700px){ .cmp-side-name{display:none} }
+
+/* ---------- tradition list ---------- */
+.trad-card{
+  display:block;width:100%;text-align:left;cursor:pointer;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(15px,2.6vw,20px);box-shadow:var(--shadow);
+  transition:border-color .14s,transform .14s,box-shadow .14s;
+}
+.trad-card:hover{border-color:var(--line-2);transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+.trad-name{font-family:var(--display);font-weight:700;font-size:17.5px;letter-spacing:-.02em;margin-bottom:5px}
+
+/* ---------- panel (cell + tradition detail) ---------- */
+.panel-back{
+  position:fixed;inset:0;z-index:90;background:rgba(21,26,46,.45);
+  display:grid;place-items:end center;padding:0;
+}
+.panel{
+  background:var(--paper);width:100%;max-width:640px;
+  border-radius:18px 18px 0 0;max-height:88vh;overflow-y:auto;
+  padding:var(--pad-card) var(--pad-card) calc(var(--pad-card) + env(safe-area-inset-bottom));
+  box-shadow:var(--shadow-lg);
+}
+@media (min-width:660px){
+  .panel-back{place-items:center}
+  .panel{border-radius:16px;max-height:82vh}
+}
+.panel-grab{width:38px;height:4px;border-radius:99px;background:var(--line-2);margin:0 auto 14px}
+@media (min-width:660px){ .panel-grab{display:none} }
+
+/* ---------- misc ---------- */
+.stat-strip{display:flex;flex-wrap:wrap;gap:10px 28px}
+.stat-n{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:-.03em;line-height:1}
+.stat-l{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.card-dark .stat-l{color:#8B95BE}
+.hidden{display:none !important}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,1px);white-space:nowrap;border:0}
+.scripture{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);letter-spacing:-.01em;line-height:1.55}
+.site-foot{background:var(--ink);color:#9AA3C4;padding-block:clamp(30px,5vw,52px);font-size:14px}
+.site-foot a{color:#C3CBE6}
+.site-foot h4{color:#fff;margin-bottom:8px}
+
+/* ---------- badges ---------- */
+.badge-svg{display:block;height:auto}
+.badge-hold{display:flex;gap:clamp(14px,3vw,26px);align-items:center;flex-wrap:wrap}
+.badge-hold .badge-svg{flex:none}
+.badge-unclaimed{opacity:.55}
+.badge-slot{
+  display:flex;gap:16px;align-items:center;width:100%;text-align:left;cursor:pointer;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(14px,2.4vw,20px);box-shadow:var(--shadow);
+  transition:border-color .14s,box-shadow .14s;
+}
+.badge-slot:hover{border-color:var(--line-2);box-shadow:var(--shadow-lg)}
+.badge-claimed-tag{
+  display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;
+  font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--gold-wash);color:var(--gold);
+}
+
+/* ---------- confidence ---------- */
+.conf{margin-top:18px}
+.conf-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.conf-n{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.03em;line-height:1}
+.conf-name{font-weight:700;font-size:14.5px;letter-spacing:-.012em}
+.conf-bar{height:8px;border-radius:99px;background:var(--wash-2);overflow:hidden;margin-top:9px}
+.card-dark .conf-bar{background:#2A3157}
+.conf-fill{height:100%;border-radius:99px;background:currentColor;transition:width .5s ease}
+.conf-why{margin-top:12px;display:grid;gap:6px}
+.conf-why li{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;list-style:none}
+.conf-why .m{flex:none;font-family:var(--mono);font-weight:700;font-size:13px;line-height:1.35}
+
+/* ---------- the gap: where you and a tradition differ ---------- */
+.db-card{border:1px solid var(--line);border-radius:12px;padding:15px 16px;background:var(--paper)}
+.db-sides{display:grid;gap:10px;margin:11px 0 0}
+@media (min-width:640px){ .db-sides{grid-template-columns:1fr 1fr} }
+.db-side{padding:10px 12px;border-radius:9px;background:var(--wash);border:1px solid var(--line)}
+.db-side.mine{background:var(--primary-wash);border-color:#C9D2FB}
+.db-label{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.db-pos{font-weight:700;font-size:14.5px;letter-spacing:-.012em;margin-bottom:3px}
+.db-out{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--wash-2);border:1px solid var(--line-2)}
+
+/* ---------- ranked rows ---------- */
+.rank-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:11px 0;border-bottom:1px solid var(--line)}
+.rank-row:last-child{border-bottom:0}
+.rank-pct{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.028em;min-width:52px}
+
+/* ---------- authority profile: four independent measures ---------- */
+.auth-grid{display:grid;gap:9px}
+.auth-row{display:grid;grid-template-columns:clamp(88px,26%,116px) 1fr auto;gap:10px;align-items:center}
+.auth-label{font-size:13px;font-weight:600;letter-spacing:-.012em;color:var(--ink-2);line-height:1.25}
+.auth-track{height:11px;border-radius:99px;background:var(--wash-2);overflow:hidden;position:relative}
+.card-dark .auth-track{background:#2A3157}
+.auth-fill{display:block;height:100%;border-radius:99px;background:currentColor;transition:width .4s ease}
+.auth-fill.none{background:repeating-linear-gradient(135deg,var(--line-2) 0 3px,transparent 3px 6px)}
+.auth-value{font-size:12px;font-weight:700;letter-spacing:-.008em;white-space:nowrap;min-width:82px;text-align:right}
+.auth-value.none{color:var(--ink-3);font-weight:600}
+.auth-legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:9px}
+.auth-legend span{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+@media (max-width:430px){
+  .auth-row{grid-template-columns:1fr auto;gap:4px 10px}
+  .auth-track{grid-column:1/-1;order:3}
+}
+
+/* ---------- nav badge + dropdown ---------- */
+.acct-host{position:relative;display:flex;align-items:center;flex:none}
+.nav-pop{
+  position:absolute;top:calc(100% + 9px);right:0;z-index:80;width:min(310px,calc(100vw - 28px));
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow-lg);padding:16px;
+}
+.nav-pop h4{margin-bottom:4px}
+.nav-pop .btn{margin-top:12px}
+.blank-badge{opacity:.5}
+
+/* ---------- owned: the badge is claimed, so it is stated, not scored ---------- */
+.owned-chip{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  background:var(--primary-wash);color:var(--primary);border:1px solid #C9D2FB;
+  font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+}
+.card-dark .owned-chip{background:#232A4E;border-color:#38427A;color:#B9C1FF}
+.rank-yours{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--primary);min-width:52px;
+}
+.retake-note{margin-top:14px;padding:14px 16px;border-radius:12px;background:#FBEDE4;border:1px solid #F0CDB2}
+
+/* ---------- account + badges ---------- */
+.acct-btn{
+  appearance:none;border:1px solid var(--line-2);background:var(--paper);cursor:pointer;
+  padding:6px 12px 6px 8px;border-radius:99px;display:flex;align-items:center;gap:7px;
+  font-size:13.5px;font-weight:600;color:var(--ink);max-width:170px;
+  transition:border-color .14s,background .14s;
+}
+.acct-btn:hover{border-color:var(--ink-3);background:var(--wash)}
+.acct-btn .who{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acct-dot{width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--primary-wash);color:var(--primary-deep);font-family:var(--mono);font-size:11px;font-weight:700}
+.field{margin-bottom:11px}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.field input{
+  width:100%;padding:11px 13px;border-radius:10px;border:1.5px solid var(--line-2);
+  background:var(--paper);font:inherit;font-size:15.5px;color:var(--ink);
+}
+.field input:focus{border-color:var(--primary);outline:none}
+.field .hint{font-size:12px;color:var(--ink-3);margin-top:4px}
+.form-err{background:#FBE9EA;border:1px solid #F2C9CD;color:#8E2531;padding:10px 12px;
+  border-radius:9px;font-size:13.5px;margin-bottom:12px}
+.form-ok{background:#E4F4EC;border:1px solid #BEE3D2;color:#0A6448;padding:10px 12px;
+  border-radius:9px;font-size:13.5px;margin-bottom:12px}
+.code-box{
+  font-family:var(--mono);font-size:clamp(24px,6vw,32px);font-weight:700;letter-spacing:.22em;
+  color:var(--primary-deep);background:var(--primary-wash);border:1px dashed #B9C4FA;
+  border-radius:12px;padding:14px 10px;text-align:center;margin:10px 0;
+}
+.coll-grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.coll-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 14px;box-shadow:var(--shadow);text-align:center;cursor:pointer;width:100%;
+  transition:border-color .14s,box-shadow .14s;
+}
+.coll-card:hover{border-color:var(--line-2);box-shadow:var(--shadow-lg)}
+.coll-card .badge-svg{margin:0 auto}
+.coll-count{
+  display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;
+  border-radius:99px;background:var(--ink);color:#fff;font-family:var(--mono);font-size:11.5px;font-weight:700;
+  margin-left:6px;vertical-align:middle;
+}
+.coll-from{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line-2);text-align:left}
+.coll-from div{font-size:13px;color:var(--ink-2);padding:3px 0}
+.empty-note{border:1px dashed var(--line-2);border-radius:var(--r);padding:clamp(20px,4vw,32px);
+  text-align:center;background:var(--paper)}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="#assess">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2.3V21.7M2.3 12H21.7" stroke="#CED6E7" stroke-width="1"/>
+        <circle cx="12" cy="12" r="10" stroke="#3B4FE0" stroke-width="1.7"/>
+        <path d="M12 3.1 15 12 9 12Z" fill="#B8781A"/>
+        <path d="M12 20.9 15 12 9 12Z" fill="#3B4FE0"/>
+        <circle cx="12" cy="12" r="1.15" fill="#151A2E"/>
+      </svg>
+      <span>Doctrinal Compass</span>
+    </a>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab" role="tab" id="tab-assess"  aria-selected="true"  data-view="assess">Assess</button>
+      <button class="tab" role="tab" id="tab-explore" aria-selected="false" data-view="explore">Explore</button>
+      <button class="tab" role="tab" id="tab-compare" aria-selected="false" data-view="compare">Compare</button>
+      <button class="tab" role="tab" id="tab-badges"  aria-selected="false" data-view="badges">Badges</button>
+    </nav>
+    <div class="acct-host" id="account-host"></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ ASSESS ============================ -->
+<section id="view-assess" class="view" role="tabpanel" aria-labelledby="tab-assess">
+
+  <!-- start screen -->
+  <div id="assess-start">
+    <div class="wrap section">
+      <div class="card card-dark" style="padding:clamp(24px,4.6vw,48px)">
+        <p class="eyebrow">Fourteen doctrines · Sixteen traditions</p>
+        <h1>Find and compare what<br>you actually believe.</h1>
+        <p class="lede" style="margin-top:14px">Answer in plain language. You get one named tradition, an honest
+        score for how firm that answer is, and every point where you differ from it.</p>
+        <div class="btn-row" style="margin-top:22px">
+          <button class="btn btn-primary" id="btn-start">Start the assessment</button>
+          <button class="btn btn-ghost" data-goto="compare">Compare doctrine instead</button>
+        </div>
+        <div class="stat-strip" style="margin-top:30px;padding-top:24px;border-top:1px solid #2A3157">
+          <div><div class="stat-n">42</div><div class="stat-l">questions</div></div>
+          <div><div class="stat-n">14</div><div class="stat-l">doctrines</div></div>
+          <div><div class="stat-n">16</div><div class="stat-l">traditions</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding-bottom:var(--sect)">
+      <p class="eyebrow">The whole map</p>
+      <h2 style="margin-bottom:6px">Every tradition, every doctrine</h2>
+      <p class="small" style="margin-bottom:18px;max-width:62ch">Cells sharing a colour hold the same position.
+      Tap any cell to read what that position means and which passages it rests on.</p>
+      <div id="home-matrix"></div>
+    </div>
+  </div>
+
+  <!-- question flow -->
+  <div id="assess-quiz" class="hidden">
+    <div class="wrap section" style="max-width:760px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px">
+        <span class="eyebrow" id="q-counter" style="margin:0"></span>
+        <button class="btn btn-quiet" id="btn-quit" style="margin-left:auto">Save &amp; exit</button>
+      </div>
+      <div class="q-progress"><div class="q-progress-fill" id="q-fill" style="width:0%"></div></div>
+
+      <div class="card" style="margin-top:22px">
+        <p class="eyebrow" id="q-axis"></p>
+        <h2 id="q-text" style="margin-bottom:18px"></h2>
+        <div class="opt-list" id="q-options"></div>
+        <div id="q-defn"></div>
+      </div>
+
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn btn-ghost" id="btn-back">Back</button>
+        <button class="btn btn-quiet" id="btn-skip">Not sure — skip</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- result -->
+  <div id="assess-result" class="hidden">
+    <div class="wrap section">
+      <div class="card card-dark" style="padding:clamp(24px,4.6vw,44px)">
+        <p class="eyebrow">Your result</p>
+        <h1 class="verdict" id="res-name"></h1>
+        <p class="lede" id="res-line" style="margin-top:14px"></p>
+        <div id="res-tie" class="hidden" style="margin-top:16px;padding:13px 15px;background:#232A4E;border-radius:11px">
+          <p class="small" id="res-tie-text" style="color:#C3CBE6"></p>
+        </div>
+        <div id="res-conf" style="margin-top:20px;padding-top:20px;border-top:1px solid #2A3157"></div>
+        <div class="btn-row" style="margin-top:24px">
+          <button class="btn btn-ghost" data-goto="compare">Compare doctrine side by side</button>
+          <button class="btn btn-quiet" id="btn-retake" style="color:#B9C1DA">Retake</button>
+        </div>
+      </div>
+
+      <div class="card" id="res-badge-card" style="margin-top:var(--gap)">
+        <p class="eyebrow">Your doctrine badge</p>
+        <h3 style="margin-bottom:4px">Something to mark where you landed</h3>
+        <p class="meter-caption" style="margin-bottom:16px">A badge records what you believe, not what you belong to.
+        Nobody joins a church by taking a quiz. You can hold one at a time, and swap it whenever you like.</p>
+        <div id="res-badge"></div>
+      </div>
+
+      <div class="card" style="margin-top:var(--gap)">
+        <p class="eyebrow" id="res-axes-eyebrow">Doctrine by doctrine</p>
+        <h3 style="margin-bottom:4px" id="res-axes-h">Where you match, and where you don't</h3>
+        <p class="meter-caption" style="margin-bottom:10px" id="res-axes-cap">Your settled position on each doctrine, set against
+        the one named above. A cross is a real disagreement, not a near miss.</p>
+        <div id="res-axes"></div>
+      </div>
+
+      <div class="card hidden" id="res-db-card" style="margin-top:var(--gap)">
+        <p class="eyebrow">The gap</p>
+        <h3 style="margin-bottom:4px">Where you and this tradition part company</h3>
+        <p class="meter-caption" style="margin-bottom:18px">Each one below is a doctrine where your answers and this
+        tradition genuinely differ, in plain words on both sides. Read them before you claim the badge. If one of
+        them doesn't sound like you, that is nearly always a question that was read a different way than it was
+        meant &mdash; and the fix is to answer again, not to carry an asterisk around.</p>
+        <div id="res-db" class="stack" style="--gap:12px"></div>
+        <div id="res-db-out"></div>
+      </div>
+
+      <div class="card" style="margin-top:var(--gap)">
+        <p class="eyebrow">Everyone else</p>
+        <h3 style="margin-bottom:4px">How the other fifteen line up</h3>
+        <p class="meter-caption" style="margin-bottom:14px" id="res-rank-cap">The percentage is how many of the doctrines you settled
+        line up with that tradition — a measure of overlap, not a claim that you are part of it.</p>
+        <div id="res-rank" class="stack"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EXPLORE ============================ -->
+<section id="view-explore" class="view hidden" role="tabpanel" aria-labelledby="tab-explore">
+  <div class="wrap section">
+    <p class="eyebrow">Explore</p>
+    <h2 style="margin-bottom:6px">Sixteen traditions</h2>
+    <p class="lede" style="margin-bottom:6px">Each one stated the way someone inside it would state it.</p>
+    <p class="meter-caption" style="margin-bottom:22px">Each card rates four sources of authority separately, so you
+    can see not just where a tradition lands but what it actually leans on.</p>
+    <div id="explore-grid" class="grid g-2 g-3"></div>
+  </div>
+</section>
+
+<!-- ============================ COMPARE ============================ -->
+<section id="view-compare" class="view hidden" role="tabpanel" aria-labelledby="tab-compare">
+  <div class="wrap section">
+    <p class="eyebrow">Compare</p>
+    <h2 style="margin-bottom:6px">Doctrine, side by side</h2>
+    <p class="lede" style="margin-bottom:22px">Two traditions set against each other doctrine by doctrine. Your own
+    answers play no part in it, and you don't need to have taken the assessment.</p>
+
+    <div class="cmp-head">
+      <div>
+        <label class="eyebrow" for="cmp-a">First tradition</label>
+        <select class="select" id="cmp-a"></select>
+      </div>
+      <div>
+        <label class="eyebrow" for="cmp-b">Second tradition</label>
+        <select class="select" id="cmp-b"></select>
+      </div>
+    </div>
+
+    <div class="card" id="cmp-summary" style="margin-top:var(--gap)"></div>
+    <div class="card" id="cmp-table-card" style="margin-top:var(--gap)">
+      <div id="cmp-table"></div>
+    </div>
+
+    <div style="margin-top:var(--sect)">
+      <p class="eyebrow">All sixteen</p>
+      <h2 style="margin-bottom:6px">The full map</h2>
+      <p class="meter-caption" style="margin-bottom:18px">Every tradition against every doctrine. Matching colours
+      down a column mean the same position, stated the same way.</p>
+      <div id="full-matrix"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BADGES ============================ -->
+<section id="view-badges" class="view hidden" role="tabpanel" aria-labelledby="tab-badges">
+  <div class="wrap section">
+    <p class="eyebrow">Badges</p>
+    <h2 style="margin-bottom:6px">Your badge, and the ones you've collected</h2>
+    <p class="lede" style="margin-bottom:6px">A badge marks what someone believes, not what they belong to.</p>
+    <p class="meter-caption" style="margin-bottom:24px">Trade with a friend and you each end up holding the other's
+    badge. You keep one badge from each person — trade with them again and it updates to whatever they're wearing now.</p>
+
+    <div id="badges-mine"></div>
+    <div id="badges-trade" style="margin-top:var(--gap)"></div>
+    <div id="badges-coll" style="margin-top:var(--gap)"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="grid g-2" style="gap:clamp(24px,4vw,48px)">
+      <div>
+        <h4>What this is</h4>
+        <p style="color:#9AA3C4">A reference and self-assessment for Christian doctrine — built so you can explore
+        and compare doctrine, not only test yourself. It states each position and renders no verdict on it.</p>
+        <h4 style="margin-top:22px">How the result works</h4>
+        <p style="color:#9AA3C4">Each doctrine resolves to one position, never a blend. Your result is the tradition
+        holding the most of those same positions outright. The percentage counts how many doctrines line up; the
+        confidence score measures how firmly your answers point at that one tradition, weighing how exactly you
+        matched it against how close the runner-up finished. Matching a tradition on every doctrine you settled
+        identifies it outright, even where a neighbouring tradition finishes one doctrine behind. Answers stay in this browser and are never sent anywhere.</p>
+        <h4 style="margin-top:22px">About the badges</h4>
+        <p style="color:#9AA3C4">The badges were drawn for this site. None is any church's official emblem and none
+        is issued with anyone's permission or blessing. Holding one records what you answered, not what you belong
+        to — churches receive people on their own terms, and no quiz can do it for them.</p>
+        <div class="btn-row" style="margin-top:16px">
+          <button class="btn btn-ghost" id="btn-clear">Clear my answers</button>
+        </div>
+      </div>
+      <div>
+        <h4>Words you'll meet</h4>
+        <div id="glossary" class="stack" style="--gap:11px;margin-top:10px"></div>
+      </div>
+    </div>
+    <p class="tiny" style="color:#6F7899;margin-top:clamp(28px,4vw,44px)">Scripture references are addresses only —
+    look them up in your own Bible. Doctrinal Compass · doctrinalcompass.org</p>
+  </div>
+</footer>
+
+<div id="panel-root"></div>
+<script>
+/* ============================================================
+   DATA
+   Positions are shared vocabulary. Two traditions either hold
+   the same position id or they do not — that is what makes the
+   comparison outright rather than a similarity score.
+   ============================================================ */
+
+const PAL = [
+  {bg:'#EDF0FE',fg:'#2334A8'},
+  {bg:'#E2F3F7',fg:'#076276'},
+  {bg:'#F3EAFB',fg:'#6B2CA8'},
+  {bg:'#FCEDF4',fg:'#9E2A67'},
+  {bg:'#EEF6E5',fg:'#48761F'}
+];
+
+/* The four sources of authority, rated INDEPENDENTLY for each tradition.
+   A tradition can lean hard on more than one; these are not steps on a ramp. */
+const AUTHDIM = [
+  {n:'Scripture',        v:'--auth-scripture',  d:'The written word of God.'},
+  {n:'Tradition',        v:'--auth-tradition',  d:'The faith handed down \u2014 creeds, councils, the fathers, the confessions.'},
+  {n:'Church office',    v:'--auth-office',     d:'A standing body of leaders charged with settling what is taught.'},
+  {n:'Living revelation',v:'--auth-revelation', d:'God speaking now, through prophets or the Spirit.'}
+];
+const AUTHLVL = ['No formal role','Supporting','Major','Decisive'];
+
+/* Kept as the one-line summary of where FINAL authority rests. The four-part
+   profile above says what each source weighs; this says who wins a clash. */
+const LOCUS = [
+  {n:'Scripture',            v:'--auth-scripture',  seg:[1,0,0,0], d:'Scripture alone is the final court. Everything else is tested by it.'},
+  {n:'Scripture + tradition',v:'--auth-tradition',  seg:[1,1,0,0], d:'Scripture holds the final word, read inside the faith handed down from the apostles.'},
+  {n:'Teaching office',      v:'--auth-office',     seg:[1,1,1,0], d:'A living teaching office is charged with settling what Scripture and tradition mean.'},
+  {n:'Continuing revelation',v:'--auth-revelation', seg:[1,1,1,1], d:'God still speaks now, through prophets or the Spirit, alongside what is written.'}
+];
+
+const AXES = [
+{id:'authority', n:'Authority', q:'Where final authority rests', pos:{
+  SA:{n:'Scripture alone', c:0, g:'Scripture is the only final authority; every teaching, council and custom is tested against it.', s:'2 Timothy 3:16–17; Acts 17:11; Mark 7:6–13'},
+  ST:{n:'Scripture with tradition', c:1, g:'Scripture holds the final word, read within the faith the church has handed down from the apostles.', s:'2 Thessalonians 2:15; 1 Corinthians 11:2; Jude 3'},
+  CO:{n:"The church's teaching office", c:2, g:'Scripture and tradition are one deposit, and a living teaching office settles what they mean.', s:'Matthew 16:18–19; Acts 15:1–29; 1 Timothy 3:15'},
+  AR:{n:'Continuing revelation', c:3, g:'Scripture stands, and God still speaks now through prophets or the Spirit to guide his people.', s:'Amos 3:7; Joel 2:28–29; John 16:13'}}},
+
+{id:'canon', n:'Canon', q:'Which books belong in Scripture', pos:{
+  C66:{n:'Sixty-six books', c:0, g:'Thirty-nine Old Testament books and twenty-seven New; the extra books may be read but settle no doctrine.', s:'Romans 3:2; Luke 24:44; Revelation 22:18–19'},
+  C73:{n:'Seventy-three books', c:2, g:'The same New Testament with a longer Old, including Tobit, Judith, Wisdom, Sirach, Baruch and the Maccabees.', s:'2 Maccabees 12:43–46; Wisdom 2:12–20; Sirach 1:1'},
+  CW:{n:'A wider Old Testament', c:1, g:'A longer Old Testament still, settled by what the church has actually read and prayed rather than by a list.', s:'Psalm 151; 3 Maccabees 6:1–15; 2 Esdras 14:44–48'},
+  CP:{n:'Scripture given since', c:3, g:'The Bible remains Scripture, and God has given further scripture through prophets in the latter days.', s:'Ezekiel 37:15–20; John 10:16; Revelation 14:6'}}},
+
+{id:'god', n:'God', q:'The nature of God', pos:{
+  TRIN:{n:'Trinity', c:0, g:'One God who exists eternally as three distinct persons — Father, Son and Holy Spirit — equal in being.', s:'Matthew 28:19; John 1:1; 2 Corinthians 13:14'},
+  ONE:{n:'Oneness', c:1, g:'One God who is one person, revealed as Father in creation, Son in redemption and Spirit in the church.', s:'Deuteronomy 6:4; John 14:9; Colossians 2:9'},
+  SUB:{n:'The Father alone almighty', c:3, g:'The Father alone is Almighty God; the Son is his first creation and the Spirit is God\u2019s active force.', s:'John 14:28; Colossians 1:15; Revelation 3:14'},
+  SEP:{n:'Three united beings', c:4, g:'Father, Son and Holy Ghost are three distinct beings, perfectly one in mind, purpose and glory.', s:'Acts 7:55–56; John 17:21–22; Matthew 3:16–17'}}},
+
+{id:'assurance', n:'Assurance', q:'Whether a believer can be finally lost', pos:{
+  PER:{n:'Kept to the end', c:0, g:'Everyone God truly saves he also keeps; a real believer will persevere and cannot be finally lost.', s:'John 10:27–29; Romans 8:38–39; Philippians 1:6'},
+  FALL:{n:'Able to fall away', c:3, g:'A genuine believer keeps real freedom, and may turn from Christ and be lost if they do not endure.', s:'Hebrews 6:4–6; 2 Peter 2:20–22; Matthew 24:13'},
+  SAC:{n:'Kept through the sacraments', c:2, g:'Grace is held and renewed through the sacramental life; grave sin breaks it until a person is restored.', s:'John 6:53–56; 1 John 5:16–17; James 5:14–16'}}},
+
+{id:'salvation', n:'Salvation', q:'How a person is saved', pos:{
+  FA:{n:'Grace through faith alone', c:0, g:'God justifies the ungodly by grace through faith alone; good works follow as fruit and never as cause.', s:'Ephesians 2:8–9; Romans 4:4–5; Galatians 2:16'},
+  FW:{n:'Grace worked out in obedience', c:2, g:'Grace begins, sustains and completes salvation, received in the sacraments and cooperated with by faith and love.', s:'James 2:24; Philippians 2:12–13; Matthew 25:31–46'},
+  OF:{n:'Grace through an obeying faith', c:1, g:'Grace saves through a faith that obeys the gospel — hearing, believing, repenting, confessing and being baptised.', s:'Acts 2:38; Romans 6:3–4; Hebrews 5:9'}}},
+
+{id:'election', n:'Election', q:'Why one person believes and another does not', pos:{
+  UNC:{n:'Unconditional election', c:0, g:'God chose whom he would save before creation, not for anything foreseen in them, and gives them faith.', s:'Ephesians 1:4–5; Romans 9:15–16; John 6:44'},
+  PREV:{n:'Grace that goes first', c:1, g:'God\u2019s grace reaches everyone before they seek him and makes a real response possible; each person then answers.', s:'Titus 2:11; John 12:32; Philippians 2:13'},
+  FREE:{n:'A free response', c:4, g:'The gospel is offered to all alike and each person is genuinely able to accept or to refuse the offer.', s:'Joshua 24:15; Revelation 22:17; Acts 17:30'}}},
+
+{id:'baptism', n:'Baptism', q:'Who is baptised, and what it does', pos:{
+  IR:{n:'Infants; it gives new birth', c:2, g:'Infants and adults are baptised, and baptism itself washes away sin and joins a person to Christ.', s:'Acts 2:38–39; Titus 3:5; John 3:5'},
+  IC:{n:'Infants; a covenant sign', c:0, g:'Infants of believers are baptised as the sign and seal of God\u2019s covenant promise, which faith later receives.', s:'Genesis 17:7; Colossians 2:11–12; Acts 16:15'},
+  BS:{n:'Believers; a sign of what happened', c:1, g:'Only those old enough to believe are baptised, picturing a washing and new life already received by faith.', s:'Acts 8:36–38; Romans 6:4; 1 Peter 3:21'},
+  BR:{n:'Believers; for forgiveness', c:4, g:'Only believers are baptised, by immersion, and it is the appointed moment at which sins are forgiven.', s:'Acts 2:38; Acts 22:16; Mark 16:16'},
+  NOB:{n:'No outward baptism', c:3, g:'The one baptism that matters is Christ baptising the heart with his Spirit; no water rite is required.', s:'Matthew 3:11; 1 Corinthians 12:13; Ephesians 4:5'}}},
+
+{id:'supper', n:'Lord\u2019s Supper', q:'What happens at the Lord\u2019s Supper', pos:{
+  TRA:{n:'The elements are changed', c:2, g:'By God\u2019s act the bread and wine truly become the body and blood of Christ, offered and received.', s:'John 6:53–56; 1 Corinthians 10:16; Luke 22:19–20'},
+  REA:{n:'Christ truly present with them', c:1, g:'Christ\u2019s body and blood are truly given in and with the bread and wine, which remain bread and wine.', s:'1 Corinthians 11:27–29; Matthew 26:26–28; 1 Corinthians 10:16'},
+  SPI:{n:'Truly received by faith', c:0, g:'Christ is really given to those who believe, spiritually and by the Spirit, not by a change in the elements.', s:'John 6:63; 1 Corinthians 10:16; John 15:4'},
+  MEM:{n:'A remembrance', c:4, g:'The bread and cup remain bread and cup, and the supper proclaims Christ\u2019s death until he comes again.', s:'Luke 22:19; 1 Corinthians 11:24–26; Acts 20:7'},
+  NOS:{n:'No outward supper', c:3, g:'Communion with Christ is inward and continual, so no outward rite of bread and cup is observed.', s:'John 6:35; Revelation 3:20; Romans 14:17'}}},
+
+{id:'governance', n:'Governance', q:'Who governs the church', pos:{
+  PAP:{n:'One worldwide hierarchy', c:2, g:'Bishops govern in communion with the bishop of Rome, who holds a primacy of teaching and jurisdiction.', s:'Matthew 16:18–19; John 21:15–17; Luke 22:32'},
+  EPI:{n:'Bishops together', c:1, g:'Bishops in apostolic succession govern their churches and settle matters in council, with no single head over all.', s:'Acts 20:28; Titus 1:5; Acts 15:6'},
+  PRE:{n:'Elders in assemblies', c:0, g:'Elders govern each congregation and meet in graded assemblies, so that churches are accountable to one another.', s:'Acts 15:2–6; 1 Timothy 4:14; Acts 14:23'},
+  CON:{n:'Each congregation itself', c:4, g:'Every local congregation governs its own affairs under Christ, choosing its leaders and answering to no outside body.', s:'Matthew 18:17; Acts 6:3–5; 1 Peter 5:2–3'},
+  CEN:{n:'A central living leadership', c:3, g:'One central body of living leaders directs the whole church worldwide and settles doctrine and practice for it.', s:'Acts 15:22–29; Ephesians 4:11–13; Amos 3:7'}}},
+
+{id:'sabbath', n:'Sabbath', q:'Which day, and how it is kept', pos:{
+  LD:{n:'The Lord\u2019s Day', c:0, g:'Christians gather on Sunday because Christ rose then; it is the Lord\u2019s Day, not the Mosaic sabbath.', s:'Acts 20:7; 1 Corinthians 16:2; Revelation 1:10'},
+  SEV:{n:'The seventh day', c:4, g:'The seventh-day sabbath was set apart at creation and written in the commandments, and it was never moved.', s:'Genesis 2:2–3; Exodus 20:8–11; Luke 4:16'},
+  NOD:{n:'No commanded day', c:3, g:'No one day binds the conscience now; every day belongs to God and each believer is persuaded in their own mind.', s:'Romans 14:5–6; Colossians 2:16–17; Galatians 4:10–11'}}},
+
+{id:'dead', n:'The dead', q:'What happens between death and resurrection', pos:{
+  CON:{n:'Conscious with the Lord', c:0, g:'At death the soul is consciously with Christ, or apart from him, and waits there for the resurrection.', s:'2 Corinthians 5:8; Philippians 1:23; Luke 23:43'},
+  PUR:{n:'Purified first', c:2, g:'Those who die in grace but imperfect are purified before entering glory, and the prayers of the church assist them.', s:'1 Corinthians 3:13–15; 2 Maccabees 12:44–46; Matthew 12:32'},
+  SLP:{n:'Asleep until the resurrection', c:1, g:'The dead are unconscious, knowing nothing at all, until Christ raises them; Scripture calls this state sleep.', s:'Ecclesiastes 9:5; John 11:11–14; 1 Thessalonians 4:13–16'}}},
+
+{id:'final', n:'Final state', q:'The final state of the lost', pos:{
+  ETE:{n:'Punishment without end', c:0, g:'Those finally lost are consciously separated from God and punished for ever; the sentence never comes to an end.', s:'Matthew 25:46; Revelation 20:10; Mark 9:47–48'},
+  ANN:{n:'Destroyed for ever', c:1, g:'The lost are raised, judged and then destroyed; the punishment is eternal in its result, not in its duration.', s:'Malachi 4:1–3; Matthew 10:28; Romans 6:23'},
+  DEG:{n:'Degrees of glory', c:3, g:'Nearly everyone inherits some degree of glory after judgement, and only a very few are finally cast out.', s:'1 Corinthians 15:40–42; John 14:2; 1 Peter 3:18–20'}}},
+
+{id:'gifts', n:'Spiritual gifts', q:'Tongues, prophecy and healing today', pos:{
+  CNT:{n:'Still given', c:4, g:'The Spirit still gives tongues, prophecy and healing, and these belong to the normal life of the church.', s:'1 Corinthians 12:7–11; Acts 2:38–39; Mark 16:17–18'},
+  CEA:{n:'Belonged to the apostles', c:0, g:'These signs confirmed the apostles\u2019 message and ceased once the written revelation they served was complete.', s:'1 Corinthians 13:8–10; Hebrews 2:3–4; Ephesians 2:20'},
+  OPN:{n:'God may, but does not promise', c:1, g:'God can give any gift he chooses, but these are promised to no one and are no mark of a healthy church.', s:'1 Corinthians 12:11; James 5:14–15; Hebrews 13:8'}}},
+
+{id:'saints', n:'The saints', q:'Mary and the saints', pos:{
+  INV:{n:'Asked to pray for us', c:2, g:'The saints are alive in Christ and may be honoured and asked to pray for us, Mary above all the rest.', s:'Revelation 5:8; Luke 1:48; Hebrews 12:1'},
+  CHR:{n:'Christ alone is asked', c:0, g:'Christ is the one mediator, so prayer is offered to God through him alone and the saints are not invoked.', s:'1 Timothy 2:5; Matthew 6:9; Acts 10:25–26'}}}
+];
+
+const TRADITIONS = [
+{id:'catholic', n:'Roman Catholic', loc:2, au:[3,3,3,0],
+ b:'The church built on the apostles, holding Scripture and tradition as one deposit, guarded and interpreted by the bishops in communion with Rome.',
+ p:{authority:'CO',canon:'C73',god:'TRIN',assurance:'SAC',salvation:'FW',election:'PREV',baptism:'IR',supper:'TRA',governance:'PAP',sabbath:'LD',dead:'PUR',final:'ETE',gifts:'OPN',saints:'INV'}},
+
+{id:'orthodox', n:'Eastern Orthodox', loc:1, au:[3,3,2,0],
+ b:'The ancient churches of the East, keeping the faith of the seven councils unchanged, where doctrine is received through worship as much as through argument.',
+ p:{authority:'ST',canon:'CW',god:'TRIN',assurance:'SAC',salvation:'FW',election:'PREV',baptism:'IR',supper:'TRA',governance:'EPI',sabbath:'LD',dead:'CON',final:'ETE',gifts:'OPN',saints:'INV'}},
+
+{id:'anglican', n:'Anglican', loc:1, au:[3,2,2,0],
+ b:'A reformed catholic church ordering its life by Scripture read with the early church, by common prayer, and by the historic ministry of bishops.',
+ p:{authority:'ST',canon:'C66',god:'TRIN',assurance:'FALL',salvation:'FA',election:'PREV',baptism:'IR',supper:'SPI',governance:'EPI',sabbath:'LD',dead:'CON',final:'ETE',gifts:'OPN',saints:'CHR'}},
+
+{id:'lutheran', n:'Lutheran', loc:0, au:[3,1,1,0],
+ b:'A church of the Reformation confessing that a sinner is justified by grace through faith alone, and that God gives himself in word and sacrament.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'FALL',salvation:'FA',election:'UNC',baptism:'IR',supper:'REA',governance:'EPI',sabbath:'LD',dead:'CON',final:'ETE',gifts:'OPN',saints:'CHR'}},
+
+{id:'reformed', n:'Reformed / Presbyterian', loc:0, au:[3,1,1,0],
+ b:'A church holding that God is sovereign in salvation from first to last, and that Scripture alone rules doctrine, worship and the order of the church.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'PER',salvation:'FA',election:'UNC',baptism:'IC',supper:'SPI',governance:'PRE',sabbath:'LD',dead:'CON',final:'ETE',gifts:'CEA',saints:'CHR'}},
+
+{id:'methodist', n:'Methodist / Wesleyan', loc:0, au:[3,2,1,0],
+ b:'A movement for scriptural holiness, teaching that God\u2019s grace reaches every person first, and that saving faith works itself out in love.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'FALL',salvation:'FA',election:'PREV',baptism:'IC',supper:'SPI',governance:'EPI',sabbath:'LD',dead:'CON',final:'ETE',gifts:'OPN',saints:'CHR'}},
+
+{id:'baptist', n:'Baptist', loc:0, au:[3,0,0,0],
+ b:'Churches of baptised believers, each congregation governing itself under Christ, holding Scripture as the sole rule and the church as a company of the converted.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'PER',salvation:'FA',election:'PREV',baptism:'BS',supper:'MEM',governance:'CON',sabbath:'LD',dead:'CON',final:'ETE',gifts:'CEA',saints:'CHR'}},
+
+{id:'anabaptist', n:'Anabaptist / Mennonite', loc:0, au:[3,1,0,0],
+ b:'Churches of voluntary baptised disciples, marked by following Christ in daily life, by peace, and by keeping the church free of the sword of the state.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'FALL',salvation:'FA',election:'FREE',baptism:'BS',supper:'MEM',governance:'CON',sabbath:'LD',dead:'CON',final:'ETE',gifts:'OPN',saints:'CHR'}},
+
+{id:'cofc', n:'Churches of Christ', loc:0, au:[3,0,0,0],
+ b:'Congregations seeking to be simply the church of the New Testament, speaking where Scripture speaks and silent where it is silent, without creed or headquarters.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'FALL',salvation:'OF',election:'FREE',baptism:'BR',supper:'MEM',governance:'CON',sabbath:'LD',dead:'CON',final:'ETE',gifts:'CEA',saints:'CHR'}},
+
+{id:'pentecostal', n:'Pentecostal', loc:0, au:[3,0,0,2],
+ b:'Churches expecting the Spirit poured out as at Pentecost, with baptism in the Spirit, tongues, prophecy and healing given to the church today.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'FALL',salvation:'FA',election:'PREV',baptism:'BS',supper:'MEM',governance:'CON',sabbath:'LD',dead:'CON',final:'ETE',gifts:'CNT',saints:'CHR'}},
+
+{id:'oneness', n:'Oneness Pentecostal', loc:0, au:[3,0,0,2],
+ b:'Pentecostal churches teaching that God is one person who is Jesus Christ, and that new birth comes by repentance, baptism in his name and the Spirit.',
+ p:{authority:'SA',canon:'C66',god:'ONE',assurance:'FALL',salvation:'OF',election:'FREE',baptism:'BR',supper:'MEM',governance:'CON',sabbath:'LD',dead:'CON',final:'ETE',gifts:'CNT',saints:'CHR'}},
+
+{id:'evangelical', n:'Non-denominational', loc:0, au:[3,0,0,1],
+ b:'Independent congregations centred on the Bible, on personal conversion and on the cross, keeping structures light and doctrinal tests few.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'PER',salvation:'FA',election:'PREV',baptism:'BS',supper:'MEM',governance:'CON',sabbath:'LD',dead:'CON',final:'ETE',gifts:'CNT',saints:'CHR'}},
+
+{id:'adventist', n:'Seventh-day Adventist', loc:0, au:[3,0,1,2],
+ b:'A church keeping the seventh-day sabbath and looking for Christ\u2019s soon return, holding Scripture as its only creed and the whole person as mortal.',
+ p:{authority:'SA',canon:'C66',god:'TRIN',assurance:'FALL',salvation:'FA',election:'PREV',baptism:'BS',supper:'MEM',governance:'CEN',sabbath:'SEV',dead:'SLP',final:'ANN',gifts:'OPN',saints:'CHR'}},
+
+{id:'quaker', n:'Quaker (Friends)', loc:3, au:[2,0,0,3],
+ b:'Friends who wait on the inward light of Christ, worship without clergy or outward rites, and hold that God still speaks to the gathered meeting.',
+ p:{authority:'AR',canon:'C66',god:'TRIN',assurance:'FALL',salvation:'FA',election:'PREV',baptism:'NOB',supper:'NOS',governance:'CON',sabbath:'NOD',dead:'CON',final:'ETE',gifts:'CNT',saints:'CHR'}},
+
+{id:'jw', n:'Jehovah\u2019s Witnesses', loc:2, au:[3,0,3,1],
+ b:'Bible students of Jehovah, holding that the Father alone is Almighty God, that the dead sleep, and that Scripture is taught through a governing body.',
+ p:{authority:'CO',canon:'C66',god:'SUB',assurance:'FALL',salvation:'FW',election:'FREE',baptism:'BS',supper:'MEM',governance:'CEN',sabbath:'NOD',dead:'SLP',final:'ANN',gifts:'CEA',saints:'CHR'}},
+
+{id:'lds', n:'Latter-day Saints', loc:3, au:[3,0,3,3],
+ b:'A restored church led by living apostles and prophets, holding added scripture and priesthood authority given again in the latter days.',
+ p:{authority:'AR',canon:'CP',god:'SEP',assurance:'FALL',salvation:'FW',election:'FREE',baptism:'BR',supper:'MEM',governance:'CEN',sabbath:'LD',dead:'CON',final:'DEG',gifts:'CNT',saints:'CHR'}}
+];
+
+/* Questions. w:2 marks the core question for an axis — it lists every
+   position on that axis, so no tradition can be locked out of scoring. */
+const QUESTIONS = [
+{a:'authority',w:2,t:'When something your church teaches and something the Bible says seem to pull against each other, which one settles it?',o:[['The Bible, on its own','SA'],['The Bible \u2014 but read the way the church has always understood it','ST'],['The church\u2019s official teaching, which was given the job of reading it rightly','CO'],['What God is saying now, through living prophets or his Spirit','AR']]},
+{a:'authority',w:1,t:'Can a church require you to believe something the Bible never actually mentions?',o:[['No \u2014 if it is not in Scripture, nobody has to hold it','SA'],['Only if Christians have held it from the very beginning','ST'],['Yes \u2014 the church has the authority to settle doctrine','CO'],['Yes \u2014 when God gives new light through his servants today','AR']]},
+{a:'authority',w:1,t:'You hit a passage you cannot make sense of. Where do you go first?',o:[['To the rest of the Bible \u2014 the clear parts explain the hard parts','SA'],['To how Christians have read it down the centuries','ST'],['To the official teaching of the church','CO'],['To those God speaks through today','AR']]},
+
+{a:'canon',w:2,t:'How many books belong in the Bible?',d:'canon',o:[['Sixty-six','C66'],['Seventy-three \u2014 the extra ones include Tobit, Sirach and the Maccabees','C73'],['More than seventy-three \u2014 the longer Old Testament the Eastern churches kept','CW'],['The sixty-six, plus scripture God has given through prophets since','CP']]},
+{a:'canon',w:1,t:'Books like Sirach and 1 Maccabees are printed in some Bibles and not others. What are they?',d:'deutero',o:[['Worth reading, but not Scripture','C66'],['Scripture, and always have been','C73'],['Scripture \u2014 along with a few more the Eastern churches kept','CW'],['Beside the point. God has given more scripture since','CP']]},
+{a:'canon',w:1,t:'Could God give more Scripture today?',o:[['No \u2014 what is written is finished','C66'],['No \u2014 the church settled the list long ago','C73'],['No \u2014 the church received what it received','CW'],['Yes \u2014 and he already has','CP']]},
+
+{a:'god',w:2,t:'Which of these comes closest to how you understand God?',o:[['One God in three persons \u2014 Father, Son and Holy Spirit','TRIN'],['One God who is one person, who shows himself as Father, Son and Spirit','ONE'],['The Father alone is Almighty God; the Son was created by him','SUB'],['Three separate beings, completely united in mind and purpose','SEP']]},
+{a:'god',w:1,t:'Is Jesus God?',o:[['Yes \u2014 fully God, and a different person from the Father','TRIN'],['Yes \u2014 he is the one God himself, come in the flesh','ONE'],['He is God\u2019s Son and he is mighty, but he is not Almighty God','SUB'],['Yes \u2014 a divine being alongside the Father','SEP']]},
+{a:'god',w:1,t:'Is the Holy Spirit a person, or a power?',o:[['A person \u2014 equal with the Father and the Son','TRIN'],['The one God himself at work, not a separate person','ONE'],['God\u2019s active force, not a person at all','SUB'],['A person \u2014 a distinct being made of spirit','SEP']]},
+
+{a:'assurance',w:2,t:'Can someone who is genuinely saved end up lost in the end?',d:'perseverance',o:[['No \u2014 anyone God saves, he keeps','PER'],['Yes \u2014 a person can turn away and be lost','FALL'],['You stay in grace through the sacraments; serious sin cuts you off until you are restored','SAC']]},
+{a:'assurance',w:1,t:'How sure can you be about where you will end up?',o:[['Completely sure \u2014 it rests on God, not on me','PER'],['Sure while I keep following Christ \u2014 but I have to keep following','FALL'],['I trust God\u2019s mercy and stay in the life of the church','SAC']]},
+{a:'assurance',w:1,t:'Someone you knew walked away from the faith years ago. What happened?',o:[['They were never really converted in the first place','PER'],['They really did fall away \u2014 it was real, and they lost it','FALL'],['They have cut themselves off from grace and need to be restored','SAC']]},
+
+{a:'salvation',w:2,t:'How does a person get saved?',d:'justification',o:[['By grace through faith alone \u2014 good works follow, but they never earn it','FA'],['By grace, received through the sacraments and worked out in obedience','FW'],['By grace, through a faith that obeys \u2014 believing, repenting, confessing and being baptised','OF']]},
+{a:'salvation',w:1,t:'Do the things a person does have any part in whether they end up saved?',o:[['No \u2014 they are the fruit of being saved, never the cause','FA'],['Yes \u2014 grace makes them possible and God rewards them','FW'],['Obedience is how faith is completed, but it earns nothing','OF']]},
+{a:'salvation',w:1,t:'At what point are a person\u2019s sins forgiven?',o:[['The moment they put their trust in Christ','FA'],['At baptism, and afterwards through the church\u2019s ministry of forgiveness','FW'],['When they are baptised, having already believed and repented','OF']]},
+
+{a:'election',w:2,t:'Two people hear the same sermon. One believes and one does not. Why?',d:'election',o:[['God chose to save one of them, and gave that person faith','UNC'],['God\u2019s grace reached both of them first; each then accepted or refused','PREV'],['They were simply free to choose. God invites everyone the same way','FREE']]},
+{a:'election',w:1,t:'Did God decide who would be saved before the world was made?',o:[['Yes \u2014 he chose particular people, and not because of anything in them','UNC'],['He decided to save all who would come, and made coming possible','PREV'],['He set up the plan, not the individual names','FREE']]},
+{a:'election',w:1,t:'Can a person turn to God on their own?',d:'prevenient',o:[['No \u2014 God has to change the heart first','UNC'],['Only because God\u2019s grace is already at work in them','PREV'],['Yes \u2014 God has given everyone that ability','FREE']]},
+
+{a:'baptism',w:2,t:'Who should be baptised?',o:[['Babies and adults \u2014 and the baptism itself gives new birth','IR'],['Babies and adults \u2014 it is the sign of God\u2019s promise, not the thing that saves','IC'],['Only people old enough to believe \u2014 it pictures a change that already happened','BS'],['Only people old enough to believe \u2014 and it is the moment sins are washed away','BR'],['Nobody, with water \u2014 the only baptism that counts is inward','NOB']]},
+{a:'baptism',w:1,t:'What does baptism actually do?',d:'regeneration',o:[['It gives new birth and joins a person to Christ','IR'],['It marks and seals a promise God has already made','IC'],['It shows publicly an inward change that already happened','BS'],['It is the point at which sins are washed away','BR'],['Nothing outward \u2014 the Spirit does all of it','NOB']]},
+{a:'baptism',w:1,t:'Does baptism have to be full immersion?',o:[['No \u2014 pouring or sprinkling is fine','IR'],['No \u2014 how much water is used is not the point','IC'],['Immersion is the right picture, but the heart is what counts','BS'],['Yes \u2014 it is a burial and a rising, so it has to be immersion','BR'],['There is no water baptism to argue about','NOB']]},
+
+{a:'supper',w:2,t:'When your church takes communion, what are the bread and the cup?',d:'realpresence',o:[['They actually become Christ\u2019s body and blood','TRA'],['They stay bread and wine, but Christ\u2019s body and blood are truly given along with them','REA'],['They stay bread and wine, and Christ himself is received spiritually by everyone who believes','SPI'],['They stay bread and cup. The meal remembers his death; it is not how we receive him','MEM'],['We hold no outward supper at all','NOS']]},
+{a:'supper',w:1,t:'Is communion something the church offers up to God, or something given to us?',o:[['Christ\u2019s one sacrifice, made present again on the altar','TRA'],['A gift given to us \u2014 not something we offer','REA'],['A means of grace, received by faith','SPI'],['Neither \u2014 it is the church remembering what Christ already did','MEM'],['Neither \u2014 we have no such service','NOS']]},
+{a:'supper',w:1,t:'Who is allowed to lead the Lord\u2019s Supper?',o:[['A properly ordained priest','TRA'],['An ordained minister','REA'],['An ordained minister, serving within the congregation','SPI'],['Any faithful member the congregation appoints \u2014 no clergy required','MEM'],['Nobody \u2014 there is nothing to lead','NOS']]},
+
+{a:'governance',w:2,t:'Who has the final say over what your local church does?',o:[['A worldwide hierarchy of bishops under the Pope','PAP'],['Bishops, governing together \u2014 with no single head over them all','EPI'],['Elders meeting in regional and national assemblies above the local church','PRE'],['The local congregation and its own elders, with no outside body over it','CON'],['One central leadership that directs the whole church worldwide','CEN']]},
+{a:'governance',w:1,t:'Can any body outside your congregation overrule a decision it makes?',d:'succession',o:[['Yes \u2014 Rome, and the bishops under it','PAP'],['Yes \u2014 the bishops, acting together','EPI'],['Yes \u2014 the wider assembly of elders','PRE'],['No \u2014 the congregation answers to Christ and to nobody else','CON'],['Yes \u2014 the central leadership directs every congregation','CEN']]},
+{a:'governance',w:1,t:'Who decides who is allowed to preach and lead?',o:[['The hierarchy, in communion with Rome','PAP'],['The bishop who ordains him','EPI'],['The regional body of elders','PRE'],['The congregation itself','CON'],['The central leadership','CEN']]},
+
+{a:'sabbath',w:2,t:'Which day do Christians gather for worship, and why that day?',o:[['Sunday \u2014 the first day of the week, because that is when Christ rose','LD'],['Saturday \u2014 the seventh day, which God set apart and never moved','SEV'],['No day is required at all \u2014 meeting on Sunday is custom, not command','NOD']]},
+{a:'sabbath',w:1,t:'The fourth commandment says to keep the sabbath. Does it still apply?',o:[['Its principle carries over to Sunday, the Lord\u2019s Day','LD'],['Yes \u2014 exactly as written, on the seventh day','SEV'],['No \u2014 that command belonged to the old covenant','NOD']]},
+{a:'sabbath',w:1,t:'Is it wrong to work on your day of worship?',o:[['It should be kept for worship and rest as far as possible','LD'],['Yes \u2014 the day is set apart from ordinary work','SEV'],['That is between each person and God','NOD']]},
+
+{a:'dead',w:2,t:'A Christian dies today. What happens to them before the resurrection?',d:'intermediate',o:[['They are consciously with the Lord, waiting for the resurrection','CON'],['Many are purified first, and then enter God\u2019s presence','PUR'],['They rest with no awareness at all until Christ raises them','SLP']]},
+{a:'dead',w:1,t:'Do the dead know anything about what is going on?',o:[['Yes \u2014 they are alive and aware with God','CON'],['Yes \u2014 and prayers offered for them help them','PUR'],['No \u2014 Scripture calls death a sleep','SLP']]},
+{a:'dead',w:1,t:'Should Christians pray for people who have already died?',o:[['There is no need \u2014 they are already with Christ','CON'],['Yes \u2014 it genuinely helps them','PUR'],['No \u2014 they are asleep until the resurrection','SLP']]},
+
+{a:'final',w:2,t:'What finally happens to people who are lost?',o:[['Conscious punishment that never ends','ETE'],['They are destroyed and stop existing altogether','ANN'],['Almost everyone receives some level of glory; only a very few are finally lost','DEG']]},
+{a:'final',w:1,t:'When people say hell is eternal, what do you take that to mean?',o:[['The punishing itself goes on for ever','ETE'],['The result is for ever \u2014 death with no coming back','ANN'],['There are several destinies after judgement, and most are far better than that','DEG']]},
+{a:'final',w:1,t:'Is there any chance to respond to God after death?',o:[['No \u2014 judgement settles it','ETE'],['No \u2014 the dead sleep, then are raised and judged','ANN'],['Yes \u2014 the gospel is preached to the dead as well','DEG']]},
+
+{a:'gifts',w:2,t:'Do speaking in tongues, prophecy and miraculous healing still happen today?',d:'cessationism',o:[['Yes \u2014 and they belong in ordinary church life','CNT'],['No \u2014 they belonged to the apostles\u2019 time and stopped','CEA'],['God can do whatever he likes, but none of it is promised to anyone','OPN']]},
+{a:'gifts',w:1,t:'Should a church expect its members to speak in tongues?',o:[['Yes','CNT'],['No \u2014 that stopped long ago','CEA'],['It should be neither expected nor forbidden','OPN']]},
+{a:'gifts',w:1,t:'Can someone prophesy today?',o:[['Yes \u2014 the Spirit still speaks that way','CNT'],['No \u2014 the written revelation is complete','CEA'],['God may guide someone, but it carries no authority like Scripture does','OPN']]},
+
+{a:'saints',w:2,t:'Should Christians ask Mary and the saints to pray for them?',o:[['Yes \u2014 they are alive in Christ and they pray for us','INV'],['No \u2014 we come to God through Christ alone','CHR']]},
+{a:'saints',w:1,t:'What place does Mary have?',o:[['Mother of God, honoured above every other saint','INV'],['A faithful woman God chose \u2014 honoured, but not prayed to','CHR']]},
+{a:'saints',w:1,t:'Should there be icons or statues in a place of worship?',o:[['Yes \u2014 they are honoured, not worshipped','INV'],['No \u2014 worship should be without them','CHR']]}
+];
+
+const DEFNS = {
+ canon:['Canon','The list of books a church counts as Scripture. Everyone agrees on the New Testament; the argument is over parts of the Old.'],
+ deutero:['Deuterocanon','The books some churches include in the Old Testament and others print separately as the Apocrypha.'],
+ justification:['Justification','Being put right with God. The argument is whether that happens by faith alone or by faith working together with obedience.'],
+ election:['Election','God\u2019s choosing of who is saved — whether he chose unconditionally, or in view of a response he knew people would make.'],
+ prevenient:['Prevenient grace','Grace God gives before anyone starts looking for him, held to make a free response to the gospel possible.'],
+ perseverance:['Perseverance','The belief that everyone God truly saves he will keep, so that a real believer cannot finally be lost.'],
+ regeneration:['Regeneration','New birth — being made spiritually alive. Churches differ over whether baptism causes it or pictures it.'],
+ realpresence:['Real presence','The belief that Christ is genuinely given in the bread and cup, rather than only remembered there.'],
+ succession:['Apostolic succession','An unbroken line of bishops traced back to the apostles, held to carry their authority forward.'],
+ cessationism:['Cessationism','The view that miraculous gifts such as tongues and prophecy ended once the apostles had finished their work.'],
+ intermediate:['The intermediate state','What happens to a person between dying and the resurrection.'],
+ sacrament:['Sacrament','An act such as baptism or the Lord\u2019s Supper that a church believes God uses to give grace, not only to picture it.']
+};
+
+const BANDS = [
+ {n:'Very close',    v:'--band-1', dots:5, d:'You hold nearly the same positions across the board.'},
+ {n:'Close',         v:'--band-2', dots:4, d:'You agree on most doctrines and part company on a few.'},
+ {n:'Mixed',         v:'--band-3', dots:3, d:'You agree about as often as you differ.'},
+ {n:'Distant',       v:'--band-4', dots:2, d:'You differ on most doctrines, agreeing only here and there.'},
+ {n:'Very distant',  v:'--band-5', dots:1, d:'You hold different positions almost everywhere.'}
+];
+function bandFor(m,total){
+  const r=m/total;
+  if(r>=.9)return BANDS[0]; if(r>=.72)return BANDS[1];
+  if(r>=.5)return BANDS[2]; if(r>=.28)return BANDS[3];
+  return BANDS[4];
+}
+
+/* Confidence in the RESULT itself — not in any tradition. Driven mainly by
+   the margin between first and second place, because a 14/14 result with a
+   one-doctrine lead is a coin toss, not a certainty. */
+const CBANDS = [
+ {n:'High confidence', v:'--band-1', d:'Your answers point clearly at one tradition and not at its neighbours.'},
+ {n:'Fair confidence', v:'--band-2', d:'The result holds, but another tradition is not far behind it.'},
+ {n:'Low confidence',  v:'--band-3', d:'Several traditions fit you almost equally well. Treat this as a lead, not a label.'},
+ {n:'Provisional',     v:'--band-5', d:'There is not enough here yet to name one tradition with any confidence.'}
+];
+
+/* Badges. Drawn for this site — none of these is any church's official mark,
+   and wearing one is a note about what you believe, not a claim of membership. */
+const BADGES = {
+ catholic:{c:'#B8781A',d:'<circle cx=\'16\' cy=\'14\' r=\'4.2\'/><path d=\'M19.1 17.1 32 30\'/><path d=\'M28.4 30.6l3.6 3.6M32 27l3.6 3.6\'/><circle cx=\'32\' cy=\'14\' r=\'4.2\'/><path d=\'M28.9 17.1 16 30\'/><path d=\'M19.6 30.6 16 34.2M16 27l-3.6 3.6\'/>'},
+ orthodox:{c:'#A8442E',d:'<path d=\'M24 8v32\'/><path d=\'M18 14h12\'/><path d=\'M12.5 21h23\'/><path d=\'M17.5 32.5 30.5 27\'/>'},
+ anglican:{c:'#8E3A5E',d:'<path d=\'M24 12.5v23M12.5 24h23\'/><circle cx=\'24\' cy=\'10\' r=\'2.7\'/><circle cx=\'24\' cy=\'38\' r=\'2.7\'/><circle cx=\'10\' cy=\'24\' r=\'2.7\'/><circle cx=\'38\' cy=\'24\' r=\'2.7\'/>'},
+ lutheran:{c:'#B93544',d:'<circle cx=\'24\' cy=\'24\' r=\'14.5\'/><path d=\'M24 33.5c-5.4-4.3-8.6-6.9-8.6-10.6a4.5 4.5 0 0 1 8.6-1.8 4.5 4.5 0 0 1 8.6 1.8c0 3.7-3.2 6.3-8.6 10.6z\'/><path d=\'M24 16.5v8M20.7 20h6.6\'/>'},
+ reformed:{c:'#C05A1E',d:'<path d=\'M24 8.5c4.2 6.2 8 8.4 8 14a8 8 0 0 1-16 0c0-5.6 3.8-7.8 8-14z\'/><path d=\'M24 38.5V23M24 28l-4.8-3.6M24 32l4.8-3.6\'/><path d=\'M14 38.5h20\'/>'},
+ methodist:{c:'#C4531F',d:'<path d=\'M24 39.5c-7.4-5.8-11.6-9.4-11.6-14.6a6.1 6.1 0 0 1 11.6-2.4 6.1 6.1 0 0 1 11.6 2.4c0 5.2-4.2 8.8-11.6 14.6z\'/><path d=\'M24 17.6c2.5-3.2 4.2-4.4 4.2-7.3 0-2.3-1.7-3.8-4.2-5.3-2.5 1.5-4.2 3-4.2 5.3 0 2.9 1.7 4.1 4.2 7.3z\'/>'},
+ baptist:{c:'#1C6FA8',d:'<path d=\'M24 6.5v20M16.5 14h15\'/><path d=\'M9 31c3.75 0 3.75 3 7.5 3s3.75-3 7.5-3 3.75 3 7.5 3 3.75-3 7.5-3\'/><path d=\'M9 38c3.75 0 3.75 3 7.5 3s3.75-3 7.5-3 3.75 3 7.5 3 3.75-3 7.5-3\'/>'},
+ anabaptist:{c:'#4A7C3F',d:'<path d=\'M11 37C15 25 24 16 37 11\'/><path d=\'M20.5 24.5c-.4-3.4 1-6.2 3.6-7.6M20.5 24.5c-3.3-.9-6.2.1-7.9 2.4\'/><path d=\'M27 19c-.9-3.3.1-6.2 2.4-7.9M27 19c-3.4-.4-6.2 1-7.6 3.6\'/>'},
+ cofc:{c:'#3B4FE0',d:'<path d=\'M24 17v21\'/><path d=\'M24 17c-4.2-3-9.8-3.9-13.5-3.1v21c3.7-.8 9.3.1 13.5 3.1z\'/><path d=\'M24 17c4.2-3 9.8-3.9 13.5-3.1v21c-3.7-.8-9.3.1-13.5 3.1z\'/>'},
+ pentecostal:{c:'#C43B7A',d:'<path d=\'M24 8.5c2.9 3.9 4.9 5.6 4.9 9.2a4.9 4.9 0 0 1-9.8 0c0-3.6 2-5.3 4.9-9.2z\'/><path d=\'M12.8 18c2.2 2.9 3.7 4.2 3.7 6.9a3.7 3.7 0 0 1-7.4 0c0-2.7 1.5-4 3.7-6.9z\'/><path d=\'M35.2 18c2.2 2.9 3.7 4.2 3.7 6.9a3.7 3.7 0 0 1-7.4 0c0-2.7 1.5-4 3.7-6.9z\'/><path d=\'M11 37h26\'/>'},
+ oneness:{c:'#8543C6',d:'<circle cx=\'24\' cy=\'24\' r=\'15\'/><path d=\'M24 13.5c3.6 4.9 6 7 6 11.4a6 6 0 0 1-12 0c0-4.4 2.4-6.5 6-11.4z\'/>'},
+ evangelical:{c:'#5A6485',d:'<circle cx=\'24\' cy=\'24\' r=\'15\' stroke-dasharray=\'4.5 5.5\'/><path d=\'M24 12v24M15 21h18\'/>'},
+ adventist:{c:'#0C8AA3',d:'<path d=\'M24 30.5v9\'/><path d=\'M24 30.5c-3.6-2.5-8.6-3.2-11.4-2.5v9c2.8-.7 7.8.1 11.4 2.5z\'/><path d=\'M24 30.5c3.6-2.5 8.6-3.2 11.4-2.5v9c-2.8-.7-7.8.1-11.4 2.5z\'/><path d=\'M24 25V12M20.9 25.3 18.6 13.8M27.1 25.3l2.3-11.5M18.1 26.3 12.9 17.1M29.9 26.3l5.2-9.2M15.8 28.2 8.4 22.9M32.2 28.2l7.4-5.3\'/>'},
+ quaker:{c:'#6B7A2C',d:'<circle cx=\'24\' cy=\'19\' r=\'9.5\' stroke-dasharray=\'2.5 4.2\'/><path d=\'M24 12.5c2.6 3.4 4.3 4.9 4.3 7.9a4.3 4.3 0 0 1-8.6 0c0-3 1.7-4.5 4.3-7.9z\'/><path d=\'M24 24.5V37\'/><path d=\'M17.5 37h13\'/>'},
+ jw:{c:'#0C7F58',d:'<path d=\'M14 19.5c-2.2 0-2.2 3.2 0 3.2h20c2.2 0 2.2-3.2 0-3.2z\'/><path d=\'M14 22.7v12.6h20V22.7\'/><path d=\'M14 35.3c-2.2 0-2.2 3.2 0 3.2h20c2.2 0 2.2-3.2 0-3.2\'/><path d=\'M19 27h10M19 31h10\'/><path d=\'M24 15.5V8M17 16.5l-3.4-4.6M31 16.5l3.4-4.6\'/>'},
+ lds:{c:'#2B4FA8',d:'<path d=\'M24 26.5v13\'/><path d=\'M24 26.5c-3.9-2.7-9.3-3.5-12.4-2.7v13c3.1-.8 8.5-.1 12.4 2.7z\'/><path d=\'M24 26.5c3.9-2.7 9.3-3.5 12.4-2.7v13c-3.1-.8-8.5-.1-12.4 2.7z\'/><path d=\'M14.2 22c2.7-1.5 6.6-1.9 9.8-.7 3.2-1.2 7.1-.8 9.8.7\' opacity=\'.5\'/><path d=\'M24 17.5V8.5M16.6 19 12.4 12.6M31.4 19l4.2-6.4\'/>'}
+};
+</script>
+<script>
+/* ============================================================
+   APP
+   ============================================================ */
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const AX=id=>AXES.find(a=>a.id===id);
+const TR=id=>TRADITIONS.find(t=>t.id===id);
+const KEYS='ABCDE';
+const listWords=a=>a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+
+/* ---------- storage ---------- */
+const STORE='dc.answers.v4';
+let answers={};          // questionIndex -> positionId
+let cursor=0;
+function save(){ try{localStorage.setItem(STORE,JSON.stringify(answers))}catch(e){} }
+function load(){ try{answers=JSON.parse(localStorage.getItem(STORE))||{}}catch(e){answers={}} }
+load();
+const answeredCount=()=>Object.keys(answers).length;
+
+/* ---------- views ---------- */
+function setView(v){
+  $$('.view').forEach(s=>s.classList.add('hidden'));
+  $('#view-'+v).classList.remove('hidden');
+  $$('.tab').forEach(t=>t.setAttribute('aria-selected', t.dataset.view===v ? 'true':'false'));
+  if(location.hash!=='#'+v) history.replaceState(null,'','#'+v);
+  window.scrollTo({top:0,behavior:'instant'});
+  closeNavPop();
+  if(v==='explore') renderExplore();
+  if(v==='compare') renderCompare();
+  if(v==='badges')  renderBadgesView();
+}
+$$('.tab').forEach(t=>t.onclick=()=>setView(t.dataset.view));
+$$('[data-goto]').forEach(b=>b.onclick=()=>setView(b.dataset.goto));
+
+/* ---------- panel ---------- */
+function openPanel(html){
+  const root=$('#panel-root');
+  root.innerHTML='<div class="panel-back" role="dialog" aria-modal="true"><div class="panel"><div class="panel-grab"></div>'+html+'</div></div>';
+  const back=$('.panel-back',root);
+  back.onclick=e=>{ if(e.target===back) closePanel(); };
+  document.body.style.overflow='hidden';
+  document.addEventListener('keydown',escClose);
+}
+function closePanel(){
+  $('#panel-root').innerHTML='';
+  document.body.style.overflow='';
+  document.removeEventListener('keydown',escClose);
+}
+function escClose(e){ if(e.key==='Escape'){ closePanel(); closeNavPop(); } }
+window.closePanel=closePanel;
+
+/* ---------- the authority profile: four measures, each labelled ---------- */
+function authMark(t,dark){
+  const rows=AUTHDIM.map((dim,i)=>{
+    const lvl=t.au[i], none=lvl===0;
+    const w=[6,34,67,100][lvl];
+    return '<div class="auth-row" style="color:var('+dim.v+')">'
+      +'<span class="auth-label"'+(dark?' style="color:#B9C1DA"':'')+'>'+esc(dim.n)+'</span>'
+      +'<span class="auth-track"><span class="auth-fill'+(none?' none':'')+'" style="width:'+w+'%"></span></span>'
+      +'<span class="auth-value'+(none?' none':'')+'">'+esc(AUTHLVL[lvl])+'</span>'
+    +'</div>';
+  }).join('');
+  return '<div class="auth-grid">'+rows+'</div>';
+}
+const AUTH_CAPTION='How much weight this tradition gives each source of authority. Rated one at a time — a tradition can lean hard on more than one.';
+
+function bandForPct(p){
+  if(p>=90)return BANDS[0]; if(p>=72)return BANDS[1];
+  if(p>=50)return BANDS[2]; if(p>=28)return BANDS[3];
+  return BANDS[4];
+}
+function bandMark(pc,matched,total){
+  const b=bandForPct(pc);
+  return '<div style="color:var('+b.v+')"><div class="band">'
+    +'<span class="band-dots">'+[0,1,2,3,4].map(i=>'<span class="band-dot'+(i<b.dots?' on':'')+'"></span>').join('')+'</span>'
+    +'<span class="band-name">'+esc(b.n)+'</span>'
+    +'<span class="band-count">'+matched+' of '+total+'</span></div>'
+    +'<p class="meter-caption">'+esc(b.d)+'</p></div>';
+}
+const pct=(m,t)=>t?Math.round(m/t*100):0;
+
+/* ---------- storage: badge + how much each doctrine matters ---------- */
+const BSTORE='dc.badge.v5';
+let badge=null;
+function loadExtras(){
+  try{badge=JSON.parse(localStorage.getItem(BSTORE))||null}catch(e){badge=null}
+  try{localStorage.removeItem('dc.marks.v6')}catch(e){}   // v6/v7 dealbreaker weights — retired
+}
+function saveBadge(){ try{ badge?localStorage.setItem(BSTORE,JSON.stringify(badge)):localStorage.removeItem(BSTORE) }catch(e){} }
+loadExtras();
+
+/* A claimed badge is assent, not a score. `owned` is true when the badge you
+   hold is the tradition your answers land on — from then on the site states
+   the doctrine rather than measuring you against it. */
+const isOwned=topId => !!(badge && badge.id===topId);
+
+function badgeSVG(id,h,claimed){
+  const b=BADGES[id], c=claimed?b.c:'#9AA3C4';
+  return '<svg class="badge-svg'+(claimed?'':' badge-unclaimed')+'" viewBox="40 22 110 144" height="'+h+'" width="'+Math.round(h*0.764)+'" aria-hidden="true">'
+   +'<path d="M95 26 L146 44 V96 C146 128 124 150 95 162 C66 150 44 128 44 96 V44 Z" fill="'+c+'14" stroke="'+c+'" stroke-width="2.6"/>'
+   +'<g transform="translate(72.9,66) scale(.92)" fill="none" stroke="'+c+'" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">'+b.d+'</g></svg>';
+}
+function blankBadgeSVG(h){
+  return '<svg class="badge-svg blank-badge" viewBox="40 22 110 144" height="'+h+'" width="'+Math.round(h*0.764)+'" aria-hidden="true">'
+   +'<path d="M95 26 L146 44 V96 C146 128 124 150 95 162 C66 150 44 128 44 96 V44 Z" fill="none" stroke="#9AA3C4" stroke-width="3" stroke-dasharray="7 6"/></svg>';
+}
+
+/* ---------- scoring: every doctrine resolves to ONE position ---------- */
+function resolve(){
+  const pos={}, order=[], detail={};
+  AXES.forEach(a=>{
+    const tally={}; let coreAns=null;
+    QUESTIONS.forEach((q,i)=>{
+      if(q.a!==a.id) return;
+      const ans=answers[i]; if(ans===undefined) return;
+      tally[ans]=(tally[ans]||0)+q.w;
+      if(q.w===2) coreAns=ans;
+    });
+    const keys=Object.keys(tally);
+    if(!keys.length) return;
+    let best=keys[0];
+    keys.forEach(k=>{ if(tally[k]>tally[best]) best=k; });
+    const tied=keys.filter(k=>tally[k]===tally[best]);
+    if(tied.length>1) best = (coreAns && tied.includes(coreAns)) ? coreAns : tied[0];
+    pos[a.id]=best; order.push(a.id);
+    detail[a.id]={split:tied.length>1};
+  });
+  return {pos,order,total:order.length,detail};
+}
+
+/* A plain count. Every doctrine you settled counts once, and a tradition
+   either holds your position on it or it does not. */
+function rank(res){
+  const tw=res.total;
+  return TRADITIONS.map(t=>{
+    const hit=res.order.filter(id=>t.p[id]===res.pos[id]);
+    return { t, m:hit.length, w:hit.length, tw, pc: tw?Math.round(hit.length/tw*100):0 };
+  }).sort((x,y)=> y.m-x.m || x.t.n.localeCompare(y.t.n));
+}
+
+/* ---------- confidence in the result ---------- */
+function confidence(res,r){
+  const top=r[0], tied=r.filter(x=>Math.abs(x.w-top.w)<1e-9), next=r.find(x=>x.w<top.w-1e-9);
+  const margin = next ? top.m-next.m : top.m;
+  const miss = res.total-top.m;
+  const effMiss = miss;
+  const skipped = AXES.length-res.total;
+  const split = res.order.filter(id=>res.detail[id]&&res.detail[id].split).length;
+  const near = r.filter(x=>x!==top&&x.m>=top.m-1).length;
+  let s=100; const why=[];
+
+  if(tied.length>1){ s-=46;
+    why.push(['down',tied.length+' traditions are level at the top. Nothing in your answers separates them.']); }
+  else if(effMiss===0){
+    why.push(['up','You hold every one of '+top.t.n+'\u2019s positions on the doctrines you settled.']);
+    if(margin<=1){ s-=12; why.push(['down','One doctrine is all that stands between it and '+next.t.n+'.']); }
+    else if(margin===2){ s-=6; why.push(['down','Two doctrines separate it from the runner-up.']); }
+    else why.push(['up',margin+' doctrines clear of the next tradition.']);
+  }
+  else {
+    s-=Math.min(30,effMiss*7);
+    why.push(['down','You differ from '+top.t.n+' on '+effMiss+' doctrine'+(effMiss>1?'s':'')+', so this is a close fit rather than an exact one.']);
+    if(margin<=1){ s-=30;
+      why.push(['down','Only one doctrine separates '+top.t.n+' from '+next.t.n+'. Change a single answer and the result changes.']); }
+    else if(margin===2){ s-=15;
+      why.push(['down','Two doctrines separate this from the runner-up.']); }
+    else why.push(['up',margin+' doctrines clear of the next tradition.']);
+  }
+
+  if(near>=3){ s-=12; why.push(['down',near+' traditions sit within one doctrine of your result.']); }
+  if(skipped){ s-=Math.min(30,skipped*7);
+    why.push(['down',skipped+' doctrine'+(skipped>1?'s were':' was')+' left unanswered, so '+(skipped>1?'they are':'it is')+' not counted at all.']); }
+  if(split){ s-=Math.min(26,split*10);
+    why.push(['down','Your answers pulled in different directions on '+split+' doctrine'+(split>1?'s':'')+'.']); }
+  if(!skipped&&!split&&effMiss===0&&margin>=2){ why.push(['up','You answered everything, and your answers were internally consistent.']); }
+
+  /* Hard ceilings. A genuine tie can never be reported as a firm answer, and
+     neither can an unresolved near-miss that wins by a single doctrine. */
+  if(tied.length>2)                  s=Math.min(s,30);
+  else if(tied.length>1)             s=Math.min(s,40);
+  else if(margin<=1 && effMiss>0)    s=Math.min(s,55);
+
+  s=Math.max(3,Math.min(100,Math.round(s)));
+  const band = s>=78?CBANDS[0] : s>=58?CBANDS[1] : s>=36?CBANDS[2] : CBANDS[3];
+  return {score:s,band,why,margin,tied,skipped,split,miss,effMiss};
+}
+function confMark(cf,dark){
+  return '<div class="conf" style="color:var('+cf.band.v+')">'
+   +'<div class="conf-top"><span class="conf-n">'+cf.score+'%</span><span class="conf-name">'+esc(cf.band.n)+'</span></div>'
+   +'<div class="conf-bar"><div class="conf-fill" style="width:'+cf.score+'%"></div></div>'
+   +'<p class="meter-caption"'+(dark?' style="color:#8B95BE"':'')+'>How much weight this result carries — measured from how exactly you matched this tradition and how far clear of the next one it finished. '+esc(cf.band.d)+'</p>'
+   +'<ul class="conf-why" style="padding:0;margin:12px 0 0">'+cf.why.map(w=>
+      '<li'+(dark?' style="color:#C3CBE6"':' style="color:var(--ink-2)"')+'><span class="m" style="color:var('+(w[0]==='up'?'--band-1':'--band-4')+')">'+(w[0]==='up'?'▲':'▼')+'</span><span>'+esc(w[1])+'</span></li>').join('')
+   +'</ul></div>';
+}
+
+/* ---------- matrix (signature element) ---------- */
+function renderMatrix(host, axisIds){
+  const axes=axisIds.map(AX);
+  let h='<div class="matrix-shell"><div class="scroll-hint">Scroll sideways →</div><div class="matrix-scroll"><table class="matrix"><thead><tr><th>Tradition</th>';
+  axes.forEach(a=>{ h+='<th>'+esc(a.n)+'</th>'; });
+  h+='</tr></thead><tbody>';
+  TRADITIONS.forEach(t=>{
+    h+='<tr><th>'+esc(t.n)+'</th>';
+    axes.forEach(a=>{
+      const pid=t.p[a.id], p=a.pos[pid], c=PAL[p.c];
+      h+='<td><button class="cell" style="background:'+c.bg+';color:'+c.fg+'" data-ax="'+a.id+'" data-pos="'+pid+'">'+esc(p.n)+'</button></td>';
+    });
+    h+='</tr>';
+  });
+  h+='</tbody></table></div><div class="matrix-legend"><p class="tiny" style="margin:0">'
+   +'Colour groups positions <strong>within a column</strong> — two cells matching in the same column hold the same position. '
+   +'Tap any cell for what it means and the passages it rests on.</p></div></div>';
+  host.innerHTML=h;
+  $$('.cell',host).forEach(b=>b.onclick=()=>positionPanel(b.dataset.ax,b.dataset.pos));
+}
+function positionPanel(axId,posId){
+  const a=AX(axId), p=a.pos[posId];
+  const holders=TRADITIONS.filter(t=>t.p[axId]===posId);
+  openPanel(
+    '<p class="eyebrow">'+esc(a.q)+'</p>'
+    +'<h3 style="margin-bottom:10px">'+esc(p.n)+'</h3>'
+    +'<p style="color:var(--ink-2)">'+esc(p.g)+'</p>'
+    +'<p class="eyebrow" style="margin:18px 0 4px">Passages appealed to</p>'
+    +'<p class="scripture">'+esc(p.s)+'</p>'
+    +'<p class="eyebrow" style="margin:18px 0 8px">Held by</p>'
+    +'<div style="display:flex;flex-wrap:wrap;gap:6px">'+holders.map(t=>'<span class="pill">'+esc(t.n)+'</span>').join('')+'</div>'
+    +'<button class="btn btn-ghost btn-block" style="margin-top:22px" onclick="closePanel()">Close</button>');
+}
+
+/* ---------- explore ---------- */
+function renderExplore(){
+  const res=answeredCount()? resolve():null;
+  const r=res&&res.total? rank(res):null;
+  $('#explore-grid').innerHTML=TRADITIONS.map(t=>{
+    let extra='';
+    if(badge && badge.id===t.id){
+      /* You accepted this one, so it is stated, not scored. */
+      extra='<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">'
+        +'<span class="owned-chip">Your doctrine</span></div>';
+    } else if(r){
+      const x=r.find(y=>y.t.id===t.id);
+      extra='<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">'
+        +bandMark(x.pc,x.m,res.total)+'</div>';
+    }
+    return '<button class="trad-card" data-t="'+t.id+'">'
+      +'<div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:8px">'
+      +badgeSVG(t.id,52,true)
+      +'<div style="flex:1;min-width:0"><div class="trad-name" style="margin-bottom:2px">'+esc(t.n)+'</div>'
+      +'</div></div>'
+      +'<p class="small" style="margin-bottom:12px">'+esc(t.b)+'</p>'
+      +authMark(t)
+      +'<p class="meter-caption">'+AUTH_CAPTION+'</p>'
+      +extra+'</button>';
+  }).join('');
+  $$('#explore-grid .trad-card').forEach(b=>b.onclick=()=>traditionPanel(b.dataset.t));
+}
+function traditionPanel(id){
+  const t=TR(id);
+  const rows=AXES.map(a=>{
+    const p=a.pos[t.p[a.id]], c=PAL[p.c];
+    return '<div style="padding:11px 0;border-bottom:1px solid var(--line)">'
+      +'<div class="eyebrow" style="margin-bottom:4px">'+esc(a.q)+'</div>'
+      +'<div style="display:inline-block;padding:4px 10px;border-radius:7px;font-weight:700;font-size:14px;background:'+c.bg+';color:'+c.fg+'">'+esc(p.n)+'</div>'
+      +'<p class="small" style="margin-top:6px">'+esc(p.g)+'</p></div>';
+  }).join('');
+  openPanel('<div style="display:flex;gap:14px;align-items:center;margin-bottom:12px">'
+    +badgeSVG(id,64,true)
+    +'<div><h3 style="margin-bottom:2px">'+esc(t.n)+'</h3></div></div>'
+    +'<p style="color:var(--ink-2)">'+esc(t.b)+'</p>'
+    +'<p class="eyebrow" style="margin:18px 0 8px">What it leans on</p>'
+    +authMark(t)+'<p class="meter-caption">'+AUTH_CAPTION+'</p>'
+    +'<div style="margin-top:18px">'+rows+'</div>'
+    +'<button class="btn btn-ghost btn-block" style="margin-top:20px" onclick="closePanel()">Close</button>');
+}
+
+/* ---------- compare ---------- */
+function renderCompare(){
+  const a=$('#cmp-a'), b=$('#cmp-b');
+  if(!a.options.length){
+    const opts=TRADITIONS.map(t=>'<option value="'+t.id+'">'+esc(t.n)+'</option>').join('');
+    a.innerHTML=opts; b.innerHTML=opts;
+    a.value='baptist'; b.value='catholic';
+    a.onchange=drawCompare; b.onchange=drawCompare;
+    renderMatrix($('#full-matrix'), AXES.map(x=>x.id));
+  }
+  drawCompare();
+}
+function drawCompare(){
+  const A=TR($('#cmp-a').value), B=TR($('#cmp-b').value);
+  const same=AXES.filter(a=>A.p[a.id]===B.p[a.id]);
+  $('#cmp-summary').innerHTML=
+    '<div style="display:flex;flex-wrap:wrap;gap:22px 34px;align-items:flex-start">'
+    +'<div style="min-width:210px"><div class="stat-n">'+same.length+' of '+AXES.length+'</div>'
+    +'<div class="stat-l" style="margin-bottom:9px">doctrines where these two hold the same position</div>'
+    +bandMark(pct(same.length,AXES.length),same.length,AXES.length)+'</div>'
+    +'<div style="flex:1;min-width:240px"><p class="eyebrow" style="margin-bottom:8px">'+esc(A.n)+' — what it leans on</p>'+authMark(A)+'</div>'
+    +'<div style="flex:1;min-width:240px"><p class="eyebrow" style="margin-bottom:8px">'+esc(B.n)+' — what it leans on</p>'+authMark(B)+'</div>'
+    +'</div><p class="meter-caption">'+AUTH_CAPTION+'</p>';
+
+  $('#cmp-table').innerHTML=AXES.map(a=>{
+    const pa=a.pos[A.p[a.id]], pb=a.pos[B.p[a.id]], eq=A.p[a.id]===B.p[a.id];
+    const side=(t,p)=>'<div class="cmp-side'+(eq?' same':'')+'">'
+      +'<div class="cmp-side-name">'+esc(t.n)+'</div>'
+      +'<div class="cmp-pos">'+esc(p.n)+'</div>'
+      +'<div class="tiny">'+esc(p.g)+'</div></div>';
+    return '<div class="cmp-row"><div class="cmp-axis">'+esc(a.q)
+      +'<div class="tiny" style="font-weight:500;margin-top:2px">'+(eq?'Same position':'They differ')+'</div></div>'
+      +side(A,pa)+side(B,pb)+'</div>';
+  }).join('');
+}
+
+/* ---------- quiz ---------- */
+function startQuiz(){
+  cursor=0;
+  while(cursor<QUESTIONS.length && answers[cursor]!==undefined) cursor++;
+  if(cursor>=QUESTIONS.length) cursor=0;
+  $('#assess-start').classList.add('hidden');
+  $('#assess-result').classList.add('hidden');
+  $('#assess-quiz').classList.remove('hidden');
+  showQ();
+}
+function showQ(){
+  const q=QUESTIONS[cursor], a=AX(q.a);
+  $('#q-counter').textContent='Question '+(cursor+1)+' of '+QUESTIONS.length;
+  $('#q-fill').style.width=((cursor)/QUESTIONS.length*100)+'%';
+  $('#q-axis').textContent=a.q;
+  $('#q-text').textContent=q.t;
+  $('#q-options').innerHTML=q.o.map((o,i)=>
+    '<button class="opt" data-pos="'+o[1]+'" aria-pressed="'+(answers[cursor]===o[1])+'">'
+    +'<span class="opt-key">'+KEYS[i]+'</span><span>'+esc(o[0])+'</span></button>').join('');
+  $$('#q-options .opt').forEach(b=>b.onclick=()=>pick(b.dataset.pos));
+  $('#q-defn').innerHTML = q.d && DEFNS[q.d]
+    ? '<details class="defn"><summary>What does "'+esc(DEFNS[q.d][0])+'" mean?</summary><div class="body">'+esc(DEFNS[q.d][1])+'</div></details>'
+    : '';
+  $('#btn-back').disabled = cursor===0;
+  $('#btn-back').style.opacity = cursor===0?'.45':'1';
+}
+function pick(pos){ answers[cursor]=pos; save(); next(); }
+function next(){
+  if(cursor<QUESTIONS.length-1){ cursor++; showQ(); }
+  else finish();
+}
+$('#btn-start').onclick=startQuiz;
+$('#btn-back').onclick=()=>{ if(cursor>0){cursor--;showQ();} };
+$('#btn-skip').onclick=()=>{ delete answers[cursor]; save(); next(); };
+$('#btn-quit').onclick=()=>{ $('#assess-quiz').classList.add('hidden'); $('#assess-start').classList.remove('hidden'); };
+$('#btn-retake').onclick=()=>{ answers={}; save(); startQuiz(); };
+$('#btn-clear').onclick=()=>{
+  answers={}; save();
+  badge=null; saveBadge(); renderAccount();
+  $('#assess-quiz').classList.add('hidden'); $('#assess-result').classList.add('hidden');
+  $('#assess-start').classList.remove('hidden');
+  setView('assess');
+};
+
+/* ---------- result ---------- */
+function finish(){
+  $('#assess-quiz').classList.add('hidden');
+  $('#assess-result').classList.remove('hidden');
+  renderResult();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function reRender(){
+  const y=window.scrollY;
+  renderResult(); renderAccount();
+  window.scrollTo({top:y,behavior:'instant'});
+}
+function renderResult(){
+  const res=resolve();
+  if(!res.total){
+    $('#res-name').textContent='Nothing to go on yet';
+    $('#res-line').textContent='You skipped every question. Answer at least a few and a result will appear.';
+    $('#res-axes').innerHTML=''; $('#res-rank').innerHTML='';
+    $('#res-conf').innerHTML=''; $('#res-badge').innerHTML='';
+    $('#res-db-card').classList.add('hidden'); return;
+  }
+  const r=rank(res), top=r[0], ties=r.filter(x=>Math.abs(x.w-top.w)<1e-9), cf=confidence(res,r);
+  const owned=isOwned(top.t.id);
+
+  $('#res-name').textContent=top.t.n;
+  $('#res-line').textContent = owned
+    ? 'This is your doctrine. You accepted it, so what follows is a record of what you hold — not a score against it.'
+    : 'You hold its position outright on '+top.m+' of the '+res.total
+      +' doctrines you settled — '+top.pc+'% of them'
+      +(top.m===res.total?'. There is nothing you disagree with it on.':'.');
+
+  if(!owned && ties.length>1){
+    $('#res-tie').classList.remove('hidden');
+    $('#res-tie-text').textContent='This is a genuine tie with '
+      +ties.slice(1).map(x=>x.t.n).join(', ')+' — they come out level. '
+      +'Answering the questions you skipped, or marking what matters most to you below, would separate them.';
+  } else $('#res-tie').classList.add('hidden');
+
+  /* Claimed means agreed. No score is shown against a doctrine you have accepted. */
+  $('#res-conf').innerHTML = owned ? '' : confMark(cf,true);
+  $('#res-conf').style.display = owned ? 'none' : '';
+
+  const diffs=res.order.filter(id=>res.pos[id]!==top.t.p[id]);
+
+  if(owned){
+    $('#res-axes-eyebrow').textContent='Your doctrine, in full';
+    $('#res-axes-h').textContent='What you hold';
+    $('#res-axes-cap').textContent='The position '+top.t.n+' takes on each of the '+AXES.length
+      +' doctrines. Accepting the badge was accepting these.';
+    $('#res-axes').innerHTML=AXES.map(a=>{
+      const p=a.pos[top.t.p[a.id]];
+      return '<div class="axis-row">'
+        +'<span class="tick yes">✓</span>'
+        +'<div><div class="cmp-axis">'+esc(a.n)+'</div><div class="tiny">'+esc(a.q)+'</div></div>'
+        +'<div><div style="font-weight:700;font-size:14.5px">'+esc(p.n)+'</div>'
+        +'<div class="tiny">'+esc(p.g)+'</div></div></div>';
+    }).join('');
+  } else {
+    $('#res-axes-eyebrow').textContent='Doctrine by doctrine';
+    $('#res-axes-h').textContent="Where you match, and where you don't";
+    $('#res-axes-cap').textContent='Your settled position on each doctrine, set against the one named above. '
+      +'A cross is a real disagreement, not a near miss.';
+    $('#res-axes').innerHTML=res.order.map(id=>{
+      const a=AX(id), mine=a.pos[res.pos[id]], theirs=a.pos[top.t.p[id]];
+      const ok=res.pos[id]===top.t.p[id];
+      return '<div class="axis-row">'
+        +'<span class="tick '+(ok?'yes':'no')+'">'+(ok?'✓':'✕')+'</span>'
+        +'<div><div class="cmp-axis">'+esc(a.n)+'</div><div class="tiny">'+esc(a.q)+'</div></div>'
+        +'<div><div style="font-weight:700;font-size:14.5px">'+esc(mine.n)+'</div>'
+        +(ok?'<div class="tiny">Same as '+esc(top.t.n)+'.</div>'
+            :'<div class="tiny">'+esc(top.t.n)+' holds: '+esc(theirs.n)+'</div>')
+        +'</div></div>';
+    }).join('');
+  }
+
+  renderBadgeOffer(top,res,cf,owned);
+  renderGap(top,res,diffs,owned);
+
+  $('#res-rank-cap').textContent = owned
+    ? 'How the other fifteen line up against the answers you gave. Your own is marked as yours, not scored.'
+    : 'The percentage is how many of the doctrines you settled line up with that tradition — a measure of overlap, '
+      +'not a claim that you are part of it.';
+
+  $('#res-rank').innerHTML=r.map(x=>{
+    const mine = owned && x.t.id===top.t.id;
+    return '<div class="rank-row">'
+    +(mine?'<span class="rank-yours">Yours</span>'
+          :'<span class="rank-pct" style="color:var('+bandForPct(x.pc).v+')">'+x.pc+'%</span>')
+    +'<div style="flex:1;min-width:140px"><div style="font-weight:700;font-size:15px">'+esc(x.t.n)+'</div>'
+    +'<div class="tiny">'+esc(AUTHLVL[x.t.au[0]])+' Scripture · '+esc(AUTHLVL[x.t.au[2]])+' church office</div></div>'
+    +'<div style="min-width:190px">'+(mine?'<span class="owned-chip">Your doctrine</span>':bandMark(x.pc,x.m,res.total))+'</div></div>';
+  }).join('');
+}
+
+/* ---------- the badge offer + claim ---------- */
+function renderBadgeOffer(top,res,cf,owned){
+  if(badge && !TR(badge.id)){ badge=null; saveBadge(); }   // stale id from an older build
+  const held = badge && badge.id===top.t.id;
+  const other = badge && badge.id!==top.t.id;
+  $('#res-badge').innerHTML=
+    '<div class="badge-hold">'+badgeSVG(top.t.id,132,!!held)
+    +'<div style="flex:1;min-width:210px">'
+      +'<h3 style="margin:0 0 7px">'+esc(top.t.n)+'</h3>'
+      +'<p class="small" style="margin-bottom:12px">'
+      +(held
+        ? 'You have accepted this, which means you hold '+esc(top.t.n)+' doctrine. It records what you believe, not what you belong to.'
+        : 'Offered because your answers landed closest to '+esc(top.t.n)+'. Claiming it is agreeing with its doctrine, and it records what you believe, not what you belong to.')
+      +'</p>'
+      +(held
+        ? '<p class="badge-claimed-tag">Claimed</p>'
+          +'<div class="btn-row" style="margin-top:12px"><button class="btn btn-ghost" id="btn-badge-view">View badge</button>'
+          +'<button class="btn btn-quiet" id="btn-badge-drop">Release it</button></div>'
+        : '<button class="btn btn-primary" id="btn-badge-claim">Review and claim this badge</button>'
+          +(other?'<p class="tiny" style="margin-top:9px">You are currently wearing the '+esc(TR(badge.id).n)+' badge. Claiming this one replaces it.</p>':'')
+          +'<p class="tiny" style="margin-top:9px">You will see exactly what you are agreeing to before you accept it.</p>')
+    +'</div></div>';
+
+  if(held){
+    $('#btn-badge-view').onclick=()=>badgePanel(top.t.id);
+    $('#btn-badge-drop').onclick=()=>{ badge=null; saveBadge(); reRender(); };
+  } else {
+    $('#btn-badge-claim').onclick=()=>claimPanel(top,res,cf);
+  }
+}
+
+function claimPanel(top,res,cf){
+  const diffs=res.order.filter(id=>res.pos[id]!==top.t.p[id]);
+  openPanel(
+    '<div style="text-align:center;margin-bottom:6px">'+badgeSVG(top.t.id,120,true)
+    +'<h3 style="margin:10px 0 0">'+esc(top.t.n)+'</h3></div>'
+
+    +'<p class="eyebrow" style="margin:20px 0 6px">Why this one was offered</p>'
+    +'<p class="small">You were closest to '+esc(top.t.n)+'. You hold its position outright on '
+    +top.m+' of the '+res.total+' doctrines you settled'
+    +' — '+top.pc+'%'
+    +' — and that was more than any other tradition on the list. It was not chosen because your answers were right, '
+    +'and no one has judged them. This is the last place a number appears: once you accept the badge it is your '
+    +'doctrine, and the site stops scoring you against it.</p>'
+
+    +'<div style="margin-top:16px;padding:13px 15px;background:var(--wash-2);border-radius:11px">'
+      +'<div style="color:var('+cf.band.v+')"><span class="conf-name">'+esc(cf.band.n)+' · '+cf.score+'%</span></div>'
+      +'<p class="small" style="margin-top:5px">'+esc(cf.band.d)+'</p>'
+    +'</div>'
+
+    +(diffs.length
+      ? '<p class="eyebrow" style="margin:20px 0 6px">What you do not share with it</p>'
+        +'<ul style="padding-left:19px;margin:0">'+diffs.map(id=>{
+            const a=AX(id);
+            return '<li class="small" style="margin-bottom:5px"><strong>'+esc(a.n)+'</strong> — you answered '
+              +esc(a.pos[res.pos[id]].n)+'; it holds '+esc(a.pos[top.t.p[id]].n)+'.</li>';
+          }).join('')+'</ul>'
+        +'<p class="small" style="margin-top:9px">Accepting the badge means taking '+esc(top.t.n)+'\u2019s position on '
+        +'those too. If that is not what you meant, close this and answer those questions again instead.</p>'
+      : '<p class="small" style="margin-top:20px">There is nothing on the list you disagree with it on.</p>')
+
+    +'<p class="eyebrow" style="margin:20px 0 6px">What the badge means</p>'
+    +'<p class="small">Claiming it is agreeing with '+esc(top.t.n)+'\u2019s doctrine as it is set out on this site. '
+    +'It marks what you believe, not what you belong to. It is not a membership, a baptism or a '
+    +'profession of faith, and this site cannot give you any of those — churches do that, in person, on their own terms. '
+    +'Someone who has never set foot in a '+esc(top.t.n)+' congregation can hold this badge honestly, and someone who '
+    +'has been in one all their life might score somewhere else entirely. It is a note about where your answers landed.</p>'
+
+    +'<div class="btn-row" style="margin-top:22px">'
+    +'<button class="btn btn-primary" id="btn-accept">Accept badge</button>'
+    +'<button class="btn btn-ghost" onclick="closePanel()">Not now</button></div>');
+
+  $('#btn-accept').onclick=async()=>{
+    const b=$('#btn-accept');
+    if(signedIn()){
+      b.disabled=true; b.textContent='Claiming\u2026';
+      try{
+        acct=(await api('/badge',{id:top.t.id,exc:null,pct:top.pc,band:cf.band.n})).user;
+      }catch(e){
+        b.disabled=false; b.textContent='Accept badge';
+        b.insertAdjacentHTML('beforebegin','<div class="form-err" style="width:100%">'+esc(e.message)+'</div>');
+        return;
+      }
+    }
+    badge={id:top.t.id,when:Date.now()};
+    saveBadge(); closePanel(); reRender();
+  };
+}
+
+function badgePanel(id){
+  const t=TR(id);
+  const mine = badge && badge.id===id;
+  openPanel(
+    '<div style="text-align:center">'+badgeSVG(id,124,true)
+    +'<h3 style="margin:10px 0 0">'+esc(t.n)+'</h3>'
+    +(mine?'<p style="margin-top:8px"><span class="owned-chip">Accepted</span></p>':'')+'</div>'
+    +(mine
+      ? '<p class="eyebrow" style="margin:20px 0 6px">What it says</p>'
+        +'<p class="small">You accepted this badge, so it says you hold '+esc(t.n)+'\u2019s doctrine. '
+        +'It marks what you believe, not what you belong to — no church has been joined and nothing has been judged. '
+        +'You can release it or take the assessment again at any time.</p>'
+        +'<p class="eyebrow" style="margin:20px 0 6px">What that means you hold</p>'
+        +'<div>'+AXES.map(a=>{
+            const p=a.pos[t.p[a.id]];
+            return '<div style="padding:9px 0;border-bottom:1px solid var(--line)">'
+              +'<div class="tiny">'+esc(a.q)+'</div>'
+              +'<div style="font-weight:700;font-size:14.5px">'+esc(p.n)+'</div></div>';
+          }).join('')+'</div>'
+      :'')
+    +'<button class="btn btn-ghost btn-block" style="margin-top:22px" onclick="closePanel()">Close</button>');
+}
+
+/* ---------- the gap: what you do not share, and what it is worth ---------- */
+function renderGap(top,res,diffs,owned){
+  const card=$('#res-db-card');
+  if(!diffs.length || owned){ card.classList.add('hidden'); return; }
+  card.classList.remove('hidden');
+
+  $('#res-db').innerHTML=diffs.map(id=>{
+    const a=AX(id), mine=a.pos[res.pos[id]], theirs=a.pos[top.t.p[id]];
+    return '<div class="db-card" data-ax="'+id+'">'
+      +'<div class="cmp-axis">'+esc(a.n)+'</div><div class="tiny">'+esc(a.q)+'</div>'
+      +'<div class="db-sides">'
+        +'<div class="db-side mine"><div class="db-label">You</div><div class="db-pos">'+esc(mine.n)+'</div>'
+        +'<div class="tiny">'+esc(mine.g)+'</div></div>'
+        +'<div class="db-side"><div class="db-label">'+esc(top.t.n)+'</div><div class="db-pos">'+esc(theirs.n)+'</div>'
+        +'<div class="tiny">'+esc(theirs.g)+'</div></div>'
+      +'</div></div>';
+  }).join('');
+
+  /* No marking, no re-solving. If a line below is wrong, the answer is wrong. */
+  $('#res-db-out').innerHTML='<div class="retake-note">'
+    +'<p class="small" style="margin:0 0 10px"><strong>Does one of those not sound like you?</strong> '
+    +'Then a question was almost certainly read a different way than it was meant. That is a wording problem, '
+    +'not a change of belief — answer again and the result will follow you. Differing on a doctrine or two does '
+    +'not put anyone outside a tradition, but a badge here means agreeing with all of it, so it is worth getting right.</p>'
+    +'<button class="btn btn-ghost" id="btn-retake-2">Take it again</button></div>';
+
+  $('#btn-retake-2').onclick=()=>{ answers={}; save();
+    $('#assess-result').classList.add('hidden'); startQuiz(); window.scrollTo({top:0,behavior:'instant'}); };
+}
+
+/* ============================================================
+   ACCOUNTS
+   The browser never decides anything here. It asks the Worker,
+   the Worker decides, and this just draws the answer.
+   ============================================================ */
+const TSTORE='dc.token.v7';
+let token=null, acct=null;
+try{ token=localStorage.getItem(TSTORE)||null }catch(e){}
+
+async function api(path,body){
+  const h={'content-type':'application/json'};
+  if(token) h.authorization='Bearer '+token;
+  let r;
+  try{ r=await fetch('/api'+path,{method:'POST',headers:h,body:JSON.stringify(body||{})}); }
+  catch(e){ throw new Error('Could not reach the server. Check your connection.'); }
+  let d={}; try{ d=await r.json(); }catch(e){}
+  if(!r.ok){ const err=new Error(d.message||d.error||'Something went wrong.'); err.code=d.error; err.status=r.status; throw err; }
+  return d;
+}
+function setToken(t){ token=t; try{ t?localStorage.setItem(TSTORE,t):localStorage.removeItem(TSTORE) }catch(e){} }
+function signedIn(){ return !!(token&&acct); }
+
+async function refreshAccount(){
+  if(!token){ acct=null; return; }
+  try{ acct=(await api('/me')).user; }
+  catch(e){ if(e.status===401){ setToken(null); acct=null; } }
+}
+
+/* ---------- account dropdown ---------- */
+function closeNavPop(){
+  const p=$('#nav-pop'); if(p) p.classList.add('hidden');
+  const b=$('#acct-btn'); if(b) b.setAttribute('aria-expanded','false');
+}
+function renderAccount(){
+  const host=$('#account-host'); if(!host) return;
+  const inn=signedIn();
+  host.innerHTML='<button class="acct-btn" id="acct-btn" aria-expanded="false">'
+      +(inn?'<span class="acct-dot">'+esc(acct.username.slice(0,1).toUpperCase())+'</span>'
+            +'<span class="who">'+esc(acct.username)+'</span>'
+           :'<span class="who">Sign in</span>')
+    +'</button><div class="nav-pop hidden" id="nav-pop"></div>';
+  $('#acct-btn').onclick=e=>{
+    e.stopPropagation();
+    const p=$('#nav-pop'), open=p.classList.contains('hidden');
+    if(open) drawAccountPop();
+    p.classList.toggle('hidden',!open);
+    $('#acct-btn').setAttribute('aria-expanded',String(open));
+  };
+}
+function drawAccountPop(){
+  const p=$('#nav-pop');
+  if(signedIn()){
+    const t=acct.badge?TR(acct.badge.id):null;
+    p.innerHTML='<div style="display:flex;gap:11px;align-items:center;margin-bottom:12px">'
+      +(t?badgeSVG(acct.badge.id,44,true):blankBadgeSVG(44))
+      +'<div style="min-width:0"><h4 style="overflow:hidden;text-overflow:ellipsis">'+esc(acct.username)+'</h4>'
+      +'<div class="tiny">'+(t?esc(t.n):'No badge yet')+'</div></div></div>'
+      +(acct.code?'<p class="tiny" style="margin-bottom:4px">Your friend code</p>'
+        +'<div class="code-box" style="font-size:20px;padding:9px">'+esc(acct.code)+'</div>':'')
+      +'<button class="btn btn-ghost btn-block" id="pop-badges">Badges</button>'
+      +'<button class="btn btn-quiet btn-block" id="pop-out" style="margin-top:6px">Sign out</button>';
+    $('#pop-badges').onclick=()=>{ closeNavPop(); setView('badges'); };
+    $('#pop-out').onclick=async()=>{
+      try{ await api('/logout'); }catch(e){}
+      setToken(null); acct=null; closeNavPop(); renderAccount(); renderBadgesView();
+    };
+  } else {
+    p.innerHTML=authFormHTML('login');
+    wireAuthForm();
+  }
+}
+function authFormHTML(mode){
+  const up=mode==='signup';
+  return '<h4 style="margin-bottom:3px">'+(up?'Create an account':'Sign in')+'</h4>'
+    +'<p class="tiny" style="margin-bottom:12px">'+(up
+      ? 'So your badge and collection follow you between devices.'
+      : 'Welcome back.')+'</p>'
+    +'<div id="auth-msg"></div>'
+    +'<div class="field"><label for="au-user">Username</label>'
+      +'<input id="au-user" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="24">'
+      +(up?'<div class="hint">Six characters or more. Letters, numbers, _ and - only.</div>':'')+'</div>'
+    +'<div class="field"><label for="au-pass">Password</label>'
+      +'<input id="au-pass" type="password" autocomplete="'+(up?'new-password':'current-password')+'" maxlength="200">'
+      +(up?'<div class="hint">Six characters or more.</div>':'')+'</div>'
+    +'<button class="btn btn-primary btn-block" id="au-go">'+(up?'Create account':'Sign in')+'</button>'
+    +'<button class="btn btn-quiet btn-block" id="au-swap" style="margin-top:4px">'
+      +(up?'I already have an account':'Create an account instead')+'</button>'
+    +(up?'<p class="tiny" style="margin-top:10px">Use a password you don\u2019t use anywhere else. '
+        +'Your password is stored scrambled and can never be read back \u2014 which also means it can\u2019t be recovered if you forget it.</p>':'');
+}
+function wireAuthForm(){
+  const mode=$('#au-go').textContent==='Create account'?'signup':'login';
+  const go=async()=>{
+    const username=$('#au-user').value.trim(), password=$('#au-pass').value;
+    const msg=$('#auth-msg');
+    if(!username||!password){ msg.innerHTML='<div class="form-err">Fill in both fields.</div>'; return; }
+    if(mode==='signup'&&(username.length<6||password.length<6)){
+      msg.innerHTML='<div class="form-err">Username and password both need at least six characters.</div>'; return; }
+    $('#au-go').disabled=true; $('#au-go').textContent='Working\u2026';
+    try{
+      const d=await api('/'+mode,{username,password});
+      setToken(d.token); acct=d.user;
+      closeNavPop(); renderAccount();
+      await syncLocalBadge();
+      renderBadgesView();
+      if(!$('#view-badges').classList.contains('hidden')) renderBadgesView();
+    }catch(e){
+      msg.innerHTML='<div class="form-err">'+esc(e.message)+'</div>';
+      $('#au-go').disabled=false; $('#au-go').textContent=mode==='signup'?'Create account':'Sign in';
+    }
+  };
+  $('#au-go').onclick=go;
+  $('#au-pass').onkeydown=e=>{ if(e.key==='Enter') go(); };
+  $('#au-swap').onclick=e=>{ e.stopPropagation();
+    $('#nav-pop').innerHTML=authFormHTML(mode==='signup'?'login':'signup'); wireAuthForm(); };
+}
+
+/* If you claimed a badge signed out and then signed in, carry it up once. */
+async function syncLocalBadge(){
+  if(!signedIn()) return;
+  if(acct.badge){                       // the account wins; it is the shared record
+    badge={id:acct.badge.id,when:acct.badge.at};
+    saveBadge(); return;
+  }
+  if(badge&&BADGES[badge.id]){
+    try{ acct=(await api('/badge',{id:badge.id,exc:null,pct:null,band:null})).user; }catch(e){}
+  }
+}
+
+/* ---------- congratulations waiting from a trade ---------- */
+function showNotices(){
+  if(!signedIn()||!acct.notices||!acct.notices.length) return;
+  const list=acct.notices.slice();
+  openPanel('<div style="text-align:center">'
+    +'<div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">'
+    +list.slice(0,4).map(nt=>BADGES[nt.id]?badgeSVG(nt.id,84,true):'').join('')+'</div>'
+    +'<h3 style="margin:12px 0 6px">Congratulations</h3>'
+    +'<p class="small">'+list.map(nt=>{
+        const t=TR(nt.id);
+        return 'You earned the <strong>'+esc(t?t.n:nt.id)+'</strong> badge from <strong>'+esc(nt.from)+'</strong>.';
+      }).join('<br>')+'</p></div>'
+    +'<button class="btn btn-primary btn-block" style="margin-top:20px" id="nt-ok">See my collection</button>');
+  $('#nt-ok').onclick=async()=>{
+    try{ acct=(await api('/seen')).user; }catch(e){}
+    closePanel(); setView('badges');
+  };
+}
+
+/* ============================================================
+   BADGES VIEW
+   ============================================================ */
+function renderBadgesView(){
+  const mine=$('#badges-mine'); if(!mine) return;
+  const b = signedIn()&&acct.badge ? acct.badge : (badge&&BADGES[badge.id]?badge:null);
+  const t = b?TR(b.id):null;
+
+  /* --- your own badge --- */
+  mine.innerHTML='<div class="card">'
+    +'<p class="eyebrow">Your badge</p>'
+    +(t
+      ? '<div class="badge-hold" style="margin-top:10px">'+badgeSVG(b.id,120,true)
+        +'<div style="flex:1;min-width:200px"><h3 style="margin-bottom:5px">'+esc(t.n)+'</h3>'
+        +'<p style="margin-bottom:8px"><span class="owned-chip">Accepted</span></p>'
+        +'<p class="small">You hold '+esc(t.n)+'\u2019s doctrine. It marks what you believe, not what you belong to.</p>'
+        +(signedIn()&&acct.nextClaimAt&&Date.now()<acct.nextClaimAt
+          ? '<p class="tiny" style="margin-top:8px">You can change your badge again in '
+            +Math.ceil((acct.nextClaimAt-Date.now())/3600000)+' hour'
+            +(Math.ceil((acct.nextClaimAt-Date.now())/3600000)===1?'':'s')+'.</p>':'')
+        +'</div></div>'
+      : '<div class="empty-note" style="margin-top:12px">'+blankBadgeSVG(84)
+        +'<h3 style="margin:12px 0 5px">No badge yet</h3>'
+        +'<p class="small" style="margin:0 auto 14px;max-width:40ch">Take the assessment and you can claim the badge '
+        +'of whichever tradition your answers land closest to.</p>'
+        +'<button class="btn btn-primary" data-goto="assess">Start the assessment</button></div>')
+    +'</div>';
+  $$('#badges-mine [data-goto]').forEach(x=>x.onclick=()=>setView(x.dataset.goto));
+
+  renderTradeBox(!!t);
+  renderCollection();
+}
+
+function renderTradeBox(hasBadge){
+  const host=$('#badges-trade');
+  if(!signedIn()){
+    host.innerHTML='<div class="card"><p class="eyebrow">Trading</p>'
+      +'<h3 style="margin-bottom:5px">Sign in to trade badges</h3>'
+      +'<p class="small" style="margin-bottom:14px">Trading needs an account so your friend has somewhere to send '
+      +'their badge. Everything else on this site works without one.</p>'
+      +'<button class="btn btn-primary" id="trade-signin">Sign in or create an account</button></div>';
+    $('#trade-signin').onclick=e=>{ e.stopPropagation(); $('#acct-btn').click(); };
+    return;
+  }
+  if(!hasBadge||!acct.code){
+    host.innerHTML='<div class="card"><p class="eyebrow">Your friend code</p>'
+      +'<h3 style="margin-bottom:5px">Claim a badge to get your code</h3>'
+      +'<p class="small" style="margin:0">Your friend code appears once you\u2019re wearing a badge \u2014 there\u2019s nothing '
+      +'to trade until then.</p></div>';
+    return;
+  }
+  host.innerHTML='<div class="card"><p class="eyebrow">Trading</p>'
+    +'<div class="grid g-2" style="margin-top:6px">'
+      +'<div><h4 style="margin-bottom:4px">Your friend code</h4>'
+        +'<p class="tiny">Give this to a friend. It never changes.</p>'
+        +'<div class="code-box">'+esc(acct.code)+'</div>'
+        +'<button class="btn btn-ghost btn-block" id="code-copy">Copy code</button></div>'
+      +'<div><h4 style="margin-bottom:4px">Enter a friend\u2019s code</h4>'
+        +'<p class="tiny">You\u2019ll each end up holding the other\u2019s badge.</p>'
+        +'<div id="trade-msg" style="margin-top:10px"></div>'
+        +'<div class="field"><label for="trade-in" class="sr">Friend code</label>'
+        +'<input id="trade-in" maxlength="6" autocapitalize="characters" autocomplete="off" spellcheck="false" '
+        +'style="font-family:var(--mono);letter-spacing:.18em;text-transform:uppercase;text-align:center;font-size:20px"></div>'
+        +'<button class="btn btn-primary btn-block" id="trade-go">Trade badges</button></div>'
+    +'</div></div>';
+
+  $('#code-copy').onclick=()=>{
+    const done=()=>{ $('#code-copy').textContent='Copied'; setTimeout(()=>{$('#code-copy').textContent='Copy code';},1600); };
+    if(navigator.clipboard) navigator.clipboard.writeText(acct.code).then(done,()=>{});
+    else done();
+  };
+  const go=async()=>{
+    const code=$('#trade-in').value.trim().toUpperCase(), msg=$('#trade-msg');
+    if(code.length!==6){ msg.innerHTML='<div class="form-err">A friend code is six characters.</div>'; return; }
+    $('#trade-go').disabled=true; $('#trade-go').textContent='Trading\u2026';
+    try{
+      const d=await api('/trade',{code});
+      acct=d.user;
+      const t=TR(d.got.id);
+      closePanel();
+      openPanel('<div style="text-align:center">'+badgeSVG(d.got.id,110,true)
+        +'<h3 style="margin:12px 0 6px">Congratulations</h3>'
+        +'<p class="small">You '+(d.got.updated?'updated':'earned')+' the <strong>'+esc(t?t.n:d.got.id)
+        +'</strong> badge from <strong>'+esc(d.got.from)+'</strong>.'
+        +(d.got.updated?' They were already in your collection, so their slot now shows what they\u2019re wearing today.':'')
+        +'</p><p class="tiny" style="margin-top:8px">'+esc(d.got.from)+' now holds your badge too, and will see this '
+        +'next time they open the site.</p></div>'
+        +'<button class="btn btn-primary btn-block" style="margin-top:20px" onclick="closePanel()">Nice</button>');
+      renderBadgesView();
+    }catch(e){
+      msg.innerHTML='<div class="form-err">'+esc(e.message)+'</div>';
+    }
+    const g=$('#trade-go'); if(g){ g.disabled=false; g.textContent='Trade badges'; }
+  };
+  $('#trade-go').onclick=go;
+  $('#trade-in').onkeydown=e=>{ if(e.key==='Enter') go(); };
+}
+
+function renderCollection(){
+  const host=$('#badges-coll');
+  const coll = signedIn() ? (acct.collection||{}) : {};
+  const people = Object.keys(coll);
+
+  if(!people.length){
+    host.innerHTML='<div class="card"><p class="eyebrow">Your collection</p>'
+      +'<div class="empty-note" style="margin-top:12px;border:0;padding:18px 0">'
+      +'<p class="small" style="margin:0">'+(signedIn()
+        ? 'Nothing collected yet. Trade codes with someone and their badge shows up here.'
+        : 'Sign in to start a collection.')+'</p></div></div>';
+    return;
+  }
+  /* group by badge — several people can hold the same one */
+  const groups={};
+  people.forEach(who=>{ const g=coll[who]; (groups[g.id]=groups[g.id]||[]).push({who,...g}); });
+  const ids=Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length
+    ||(TR(a)?TR(a).n:a).localeCompare(TR(b)?TR(b).n:b));
+
+  host.innerHTML='<div class="card"><p class="eyebrow">Your collection</p>'
+    +'<h3 style="margin-bottom:4px">'+people.length+' badge'+(people.length===1?'':'s')
+    +' from '+people.length+' '+(people.length===1?'person':'people')+'</h3>'
+    +'<p class="meter-caption" style="margin-bottom:18px">Tap a badge to see who you got it from.</p>'
+    +'<div class="coll-grid">'+ids.map(id=>{
+      const g=groups[id], t=TR(id);
+      return '<button class="coll-card" data-id="'+esc(id)+'">'
+        +(BADGES[id]?badgeSVG(id,86,true):blankBadgeSVG(86))
+        +'<div style="font-weight:700;font-size:14px;letter-spacing:-.012em;margin-top:9px">'
+        +esc(t?t.n:id)+(g.length>1?'<span class="coll-count">'+g.length+'</span>':'')+'</div>'
+        +'<div class="coll-from hidden" id="from-'+esc(id)+'">'
+        +g.map(x=>'<div>'+esc(x.who)+'</div>').join('')
+        +'</div></button>';
+    }).join('')+'</div></div>';
+
+  $$('#badges-coll .coll-card').forEach(c=>c.onclick=()=>{
+    const f=$('#from-'+c.dataset.id);
+    if(f) f.classList.toggle('hidden');
+  });
+}
+
+/* composedPath() is captured when the event is dispatched, so it still holds the
+   original ancestors even if a handler has since replaced the menu's contents.
+   e.target.closest() cannot: by the time this runs the clicked node may be
+   detached, and a detached node is inside nothing. */
+document.addEventListener('click',e=>{
+  const path=(e.composedPath&&e.composedPath())||[];
+  const inside=path.length ? path.some(nd=>nd&&nd.id==='account-host')
+                           : !!(e.target.closest&&e.target.closest('#account-host'));
+  if(!inside) closeNavPop();
+});
+
+/* ---------- glossary ---------- */
+$('#glossary').innerHTML=Object.keys(DEFNS).map(k=>
+  '<div><div style="color:#fff;font-weight:700;font-size:14.5px">'+esc(DEFNS[k][0])+'</div>'
+  +'<div style="color:#9AA3C4;font-size:13.5px;line-height:1.5">'+esc(DEFNS[k][1])+'</div></div>').join('');
+
+/* ---------- boot ---------- */
+renderMatrix($('#home-matrix'), ['authority','god','salvation','baptism','supper','governance']);
+renderAccount();
+refreshAccount().then(async()=>{
+  await syncLocalBadge();
+  renderAccount();
+  if(!$('#view-badges').classList.contains('hidden')) renderBadgesView();
+  showNotices();
+});
+const done=answeredCount();
+if(done>=QUESTIONS.length){
+  $('#assess-start').classList.add('hidden');
+  $('#assess-result').classList.remove('hidden');
+  renderResult();
+}else if(done>0){
+  $('#btn-start').textContent='Resume — '+done+' of '+QUESTIONS.length+' answered';
+  const b=document.createElement('button');
+  b.className='btn btn-ghost'; b.textContent='See where you stand so far';
+  b.onclick=()=>{ $('#assess-start').classList.add('hidden');
+    $('#assess-result').classList.remove('hidden'); renderResult(); };
+  $('#btn-start').parentNode.appendChild(b);
+}
+const h=(location.hash||'').replace('#','');
+setView(['assess','explore','compare','badges'].includes(h)?h:'assess');
+</script>
+</body>
+</html>
